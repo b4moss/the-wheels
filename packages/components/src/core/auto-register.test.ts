@@ -11,12 +11,16 @@ describe("auto-register on module import", () => {
     const { TwButton } = await import("../button/tw-button.js");
     const { TwDropdown } = await import("../dropdown/tw-dropdown.js");
     const { TwActionMenu } = await import("../action_menu/tw-action-menu.js");
+    const { TwAccordion } = await import("../accordion/tw-accordion.js");
+    const { TwModal } = await import("../modal/tw-modal.js");
 
     expect(customElements.get("tw-svg-loader")).toBeTruthy();
     expect(customElements.get("tw-spinner")).toBeTruthy();
     expect(customElements.get("tw-button")).toBeTruthy();
     expect(customElements.get("tw-dropdown")).toBeTruthy();
     expect(customElements.get("tw-action-menu")).toBeTruthy();
+    expect(customElements.get("tw-accordion")).toBeTruthy();
+    expect(customElements.get("tw-modal")).toBeTruthy();
     // First registration should keep the original ctor when available.
     expect(
       customElements.get("tw-svg-loader") === TwSvgLoader ||
@@ -26,6 +30,8 @@ describe("auto-register on module import", () => {
     expect(TwButton).toBeTruthy();
     expect(TwDropdown).toBeTruthy();
     expect(TwActionMenu).toBeTruthy();
+    expect(TwAccordion).toBeTruthy();
+    expect(TwModal).toBeTruthy();
   });
 
   it("registers app-* tags when setPrefix runs before import", async () => {
@@ -36,12 +42,16 @@ describe("auto-register on module import", () => {
     await import("../button/tw-button.js");
     await import("../dropdown/tw-dropdown.js");
     await import("../action_menu/tw-action-menu.js");
+    await import("../accordion/tw-accordion.js");
+    await import("../modal/tw-modal.js");
 
     expect(customElements.get("app-svg-loader")).toBeTruthy();
     expect(customElements.get("app-spinner")).toBeTruthy();
     expect(customElements.get("app-button")).toBeTruthy();
     expect(customElements.get("app-dropdown")).toBeTruthy();
     expect(customElements.get("app-action-menu")).toBeTruthy();
+    expect(customElements.get("app-accordion")).toBeTruthy();
+    expect(customElements.get("app-modal")).toBeTruthy();
   });
 
   it("keeps existing tw-* tags when setPrefix changes later", async () => {
