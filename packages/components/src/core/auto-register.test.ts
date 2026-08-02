@@ -9,10 +9,14 @@ describe("auto-register on module import", () => {
     const { TwSvgLoader } = await import("../svg_loader/tw-svg-loader.js");
     const { TwSpinner } = await import("../spinner/tw-spinner.js");
     const { TwButton } = await import("../button/tw-button.js");
+    const { TwDropdown } = await import("../dropdown/tw-dropdown.js");
+    const { TwActionMenu } = await import("../action_menu/tw-action-menu.js");
 
     expect(customElements.get("tw-svg-loader")).toBeTruthy();
     expect(customElements.get("tw-spinner")).toBeTruthy();
     expect(customElements.get("tw-button")).toBeTruthy();
+    expect(customElements.get("tw-dropdown")).toBeTruthy();
+    expect(customElements.get("tw-action-menu")).toBeTruthy();
     // First registration should keep the original ctor when available.
     expect(
       customElements.get("tw-svg-loader") === TwSvgLoader ||
@@ -20,6 +24,8 @@ describe("auto-register on module import", () => {
     ).toBe(true);
     expect(TwSpinner).toBeTruthy();
     expect(TwButton).toBeTruthy();
+    expect(TwDropdown).toBeTruthy();
+    expect(TwActionMenu).toBeTruthy();
   });
 
   it("registers app-* tags when setPrefix runs before import", async () => {
@@ -28,10 +34,14 @@ describe("auto-register on module import", () => {
     await import("../svg_loader/tw-svg-loader.js");
     await import("../spinner/tw-spinner.js");
     await import("../button/tw-button.js");
+    await import("../dropdown/tw-dropdown.js");
+    await import("../action_menu/tw-action-menu.js");
 
     expect(customElements.get("app-svg-loader")).toBeTruthy();
     expect(customElements.get("app-spinner")).toBeTruthy();
     expect(customElements.get("app-button")).toBeTruthy();
+    expect(customElements.get("app-dropdown")).toBeTruthy();
+    expect(customElements.get("app-action-menu")).toBeTruthy();
   });
 
   it("keeps existing tw-* tags when setPrefix changes later", async () => {

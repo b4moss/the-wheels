@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown — The Wheels kitchen-sink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script type="module">
+      import "@b4moss/the-wheels-components";
+    </script>
+  </head>
+  <body>
+    <div class="ks-shell">
+      <nav class="ks-nav" aria-label="kitchen-sink">
+        <a href="/">Home</a>
+        <a href="/typography/">Typography</a>
+        <a href="/tokens/">Tokens</a>
+        <a href="/svg-loader/">SVGLoader</a>
+        <a href="/spinner/">Spinner</a>
+        <a href="/button/">Button</a>
+        <a href="/dropdown/" aria-current="page">Dropdown</a>
+        <a href="/action-menu/">ActionMenu</a>
+      </nav>
+
+      <main>
+        <h1>Dropdown</h1>
+        <p class="ks-meta">trigger / panel slots · placement · Floating UI</p>
+
+        <section>
+          <h2>Button を trigger に</h2>
+          <p class="ks-row">
+            <tw-dropdown>
+              <tw-button slot="trigger">メニューを開く</tw-button>
+              <div slot="panel">
+                <p style="margin: 0.8rem 1.2rem; max-width: none">
+                  panel の中身は自由に置けます。
+                </p>
+              </div>
+            </tw-dropdown>
+          </p>
+        </section>
+
+        <section>
+          <h2>placement</h2>
+          <p class="ks-row">
+            <tw-dropdown placement="bottom-start">
+              <tw-button slot="trigger" variant="stroke">bottom-start</tw-button>
+              <div slot="panel">
+                <p style="margin: 0.8rem 1.2rem; max-width: none">bottom-start</p>
+              </div>
+            </tw-dropdown>
+            <tw-dropdown placement="top-end">
+              <tw-button slot="trigger" variant="stroke">top-end</tw-button>
+              <div slot="panel">
+                <p style="margin: 0.8rem 1.2rem; max-width: none">top-end</p>
+              </div>
+            </tw-dropdown>
+            <tw-dropdown placement="right-start">
+              <tw-button slot="trigger" variant="ghost">right-start</tw-button>
+              <div slot="panel">
+                <p style="margin: 0.8rem 1.2rem; max-width: none">right-start</p>
+              </div>
+            </tw-dropdown>
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
