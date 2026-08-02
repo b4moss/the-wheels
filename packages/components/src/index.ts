@@ -30,3 +30,37 @@ export {
 export { TwAvatar } from "./avatar/tw-avatar.js";
 export { TwVerticalNav } from "./vertical_nav/tw-vertical-nav.js";
 export { TwTabs } from "./tabs/tw-tabs.js";
+export {
+  mergeWindowItems,
+  trimWindowItems,
+  normalizeSortDirection,
+  normalizeMaxItems,
+  DEFAULT_MAX_ITEMS,
+} from "./infinite_scroll/window.js";
+export {
+  TwInfiniteScroll,
+} from "./infinite_scroll/tw-infinite-scroll.js";
+export type {
+  InfiniteScrollDirection,
+  InfiniteScrollLoadContext,
+  InfiniteScrollLoadResult,
+  InfiniteScrollLoader,
+  RenderItemFn,
+} from "./infinite_scroll/tw-infinite-scroll.js";
+export type {
+  SortDirection,
+  WindowItem,
+  WindowItemValue,
+} from "./infinite_scroll/window.js";
+export { debounce } from "./combobox/debounce.js";
+export { filterOptionsByQuery, optionLabel } from "./combobox/filter.js";
+export { TwCombobox } from "./combobox/tw-combobox.js";
+export type {
+  ComboboxMode,
+  ComboboxOption,
+  ComboboxOptionValue,
+  LoadOptionsContext,
+  LoadOptionsFn,
+  LoadOptionsResult,
+  RenderOptionFn,
+} from "./combobox/types.js";
