@@ -2,7 +2,7 @@
 
 PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](./roadmap.md)）に転記する。
 
-- **WC 候補（UserMenu 等）** → roadmap v0.11.0 および「将来項目」
+- **WC 候補（UserMenu / CookieConsent）** → roadmap **v0.12.0**
 - **アプリ・配信・統合の意図** → 本ファイル。版が決まったら roadmap のマイルストーンへ
 
 ## 優先順位（確定）
@@ -10,11 +10,12 @@ PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](
 1. Twig → **v0.8.0**（済）
 2. ドキュメントサイト体裁 → **v0.9.0**（済）
 3. CI 整備 → **v0.10.0**（済）
-4. 追加コンポーネント → **v0.11.0**
-5. Playwright / Storybook テストシナリオ → **v0.12.0**
-6. yoshinani-form subtree → **v0.13.0**
-7. SaaS スキャフォールド設計 → **v0.14.0**（実装は将来項目）
-8. a11y 本検討 → **無期限延期**（将来項目）
+4. 追加コンポーネント（Combobox / InfiniteScroll）→ **v0.11.0**
+5. UserMenu / CookieConsent → **v0.12.0**
+6. Playwright / Storybook テストシナリオ → **v0.13.0**
+7. yoshinani-form subtree → **v0.14.0**
+8. SaaS スキャフォールド設計 → **v0.15.0**（実装は将来項目）
+9. a11y 本検討 → **無期限延期**（将来項目）
 
 詳細な含むもの／含まないものは roadmap を正とする。
 
@@ -31,13 +32,13 @@ PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](
 - kitchen-sink を拡張する形
 - FV 参照アセット（旧 the-wheels）: `the-wheels/dev/src/assets/img/home/main-visual.png`（自転車っぽい乗った人の絵）。取り込み方針は PO 判断（コピー or プレースホルダ）
 
-### yoshinani-form（→ v0.13.0）
+### yoshinani-form（→ v0.14.0）
 
 - 別ソースをモノレポへ。取り込みは **git subtree**（ネスト `.git` は置かない）
 - remote URL・入れ先パス・旧リポ archive は **【PO作業】**
-- umbrella への深い統合は v0.13 必須外。SaaS スキャフォールドとバランスを見ながら後続で
+- umbrella への深い統合は v0.14 必須外。SaaS スキャフォールドとバランスを見ながら後続で
 
-### Web アプリ管理画面のスタートアップ雛形（→ v0.14.0 設計 / 実装は将来）
+### Web アプリ管理画面のスタートアップ雛形（→ v0.15.0 設計 / 実装は将来）
 
 SaaS によくある画面を最初から用意したい。まずは設計のみ。
 
@@ -52,3 +53,15 @@ SaaS によくある画面を最初から用意したい。まずは設計のみ
   - 設定画面（タブでサブ項目切替、Sortable.js で項目入れ替え UI）
 - Sortable.js は scaffold 側依存（コア WC に入れない）
 - 不足コンポーネントは設計時に洗い出し、roadmap へ転記
+
+### ページネーション
+
+- よく使うやつがあるので、それ
+
+### ファイルポンド
+
+- DnDで、ファイルをアップロードできるやつ
+- 最大個数を指定可能
+- プレビュー表示
+- フロントでの容量チェック
+- フロントでの、MIME TYPEチェック

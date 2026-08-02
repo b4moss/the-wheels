@@ -218,7 +218,7 @@ CI の次に、コンポーネント拡充を先に進める。候補は「将�
 
 ### 含まないもの
 
-- **UserMenu** / **CookieConsent** — 本版完了後に仕様を詰め、後続版で実装
+- **UserMenu** / **CookieConsent** — **v0.12.0** で仕様・実装（本版対象外）
 - Tabs の追加改修（`TwTabs` 最小は先行済み）
 - a11y の本検討（無期限延期・将来項目）
 - SaaS スキャフォールド実装
@@ -229,9 +229,34 @@ CI の次に、コンポーネント拡充を先に進める。候補は「将�
 
 ---
 
-## v0.12.0 — Playwright / Storybook テストシナリオ
+## v0.12.0 — UserMenu / CookieConsent
 
-自動テストの厚みを先に上げる。a11y 本検討より優先。
+v0.11.0 で外したアカウント系・同意バナーを入れる。既存の Playwright マイルストーン以降は 0.1 ずつ後ろへずらす。
+
+### 含むもの
+
+- **UserMenu** — Dropdown 合成。仕様: [user_menu.md](./specs/components/user_menu.md)
+- **CookieConsent** — 下部 snackbar 風バナー＋ localStorage。仕様: [cookie_consent.md](./specs/components/cookie_consent.md)
+- **Snackbar レイヤ（共有）** — 将来 Toast 向け。仕様: [snackbar_layer.md](./specs/components/snackbar_layer.md)（Toast WC 自体は含まない）
+- 各 WC の style / kitchen-sink / Storybook
+- Vitest（TDD）。版内で `docs/specs/tests/v0.12.0.md` を切る
+
+### 含まないもの
+
+- Toast WC 本体
+- Cookie 設定画面のチェックボックス UI
+- a11y 本検討
+- Playwright / Storybook シナリオの本実装（→ v0.13.0）
+
+### 依存
+
+- v0.11.0（Combobox / InfiniteScroll）まで完了していること
+
+---
+
+## v0.13.0 — Playwright / Storybook テストシナリオ
+
+自動テストの厚みを先に上げる。a11y 本検討より優先。（旧 v0.12.0）
 
 ### 含むもの
 
@@ -246,13 +271,13 @@ CI の次に、コンポーネント拡充を先に進める。候補は「将�
 
 ### 依存
 
-- v0.11.0 の追加コンポーネントが一通り入っていることが望ましい（シナリオ対象が増える）。並行は PO 判断
+- v0.11.0〜v0.12.0 の追加コンポーネントが一通り入っていることが望ましい（シナリオ対象が増える）。並行は PO 判断
 
 ---
 
-## v0.13.0 — yoshinani-form subtree 取り込み
+## v0.14.0 — yoshinani-form subtree 取り込み
 
-form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後の form 側）。
+form を先にモノレポへ載せる（旧 v0.13.0）。
 
 ### 含むもの
 
@@ -271,9 +296,9 @@ form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後�
 
 ---
 
-## v0.14.0 — SaaS スキャフォールド設計
+## v0.15.0 — SaaS スキャフォールド設計
 
-設計ドキュメントが成果物。アプリ実装コードは含めない。form 取り込み後に境界を固める。
+設計ドキュメントが成果物。アプリ実装コードは含めない。form 取り込み後に境界を固める。（旧 v0.14.0）
 
 ### 含むもの
 
@@ -290,16 +315,18 @@ form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後�
 
 ### 補足
 
-- v0.13.0（form subtree）の後が推奨。並行・入れ替えは PO 判断
+- v0.14.0（form subtree）の後が推奨。並行・入れ替えは PO 判断
 
 ---
 
-## v0.15.0 — 安定化・品質
+## v0.16.0 — 安定化・品質
+
+（旧 v0.15.0）
 
 ### 含むもの
 
 - 分岐カバレッジの底上げ（v0.n 目標 50% からの引き上げを検討）
-- Playwright / Storybook シナリオの穴埋め（主戦場は v0.12.0。ここで不足分を足す）
+- Playwright / Storybook シナリオの穴埋め（主戦場は v0.13.0。ここで不足分を足す）
 - API の破壊的変更の棚卸しと、1.0 に向けた凍結候補リスト
 
 ### 含まないもの
@@ -312,17 +339,17 @@ form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後�
 
 ### 含むもの（目安）
 
-- MVP コンポーネント一式が仕様どおり揃っている（v0.11.0 の追加分を含む）
+- MVP コンポーネント一式が仕様どおり揃っている（v0.11.0〜v0.12.0 の追加分を含む）
 - style / components / the-wheels の公開面が安定
 - README / 基本ドキュメントが利用可能な水準
 - kitchen-sink がドキュメントサイトとして一通り使えること（v0.8〜v0.9）
-- CI および Playwright / Storybook シナリオが PR で運用されていること（v0.10〜v0.12）
+- CI および Playwright / Storybook シナリオが PR で運用されていること（v0.10〜v0.13）
 - 対応ブラウザ（最新2メジャー）での動作確認済み
 - （PO 判断で）npm 公開
 
 ### この版で必須にしない
 
-- SaaS スキャフォールドの**実装**（設計は v0.14.0）
+- SaaS スキャフォールドの**実装**（設計は v0.15.0）
 - yoshinani-form の the-wheels 公式バンドル／深い統合（subtree 済みならリポ内にある状態で可）
 - **a11y 本検討**（無期限延期）
 - Card / ContentSection（必要になったら別バージョンで検討）
@@ -340,10 +367,9 @@ form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後�
 
 ### その他
 
-- **UserMenu / CookieConsent** — v0.11.0 完了後に仕様化して後続版で実装
-- **Combobox / InfiniteScroll** — v0.11.0 で実装（完了後は本項から外す）
-- **SaaS scaffold 実装** — v0.14.0 設計の後続（例: v1.1 または `apps/` サイド）
-- **form × scaffold の本統合** — v0.13.0 取り込みの後続
+- **Toast** — Snackbar レイヤ（v0.12.0）の上に載せる。版未定
+- **SaaS scaffold 実装** — v0.15.0 設計の後続（例: v1.1 または `apps/` サイド）
+- **form × scaffold の本統合** — v0.14.0 取り込みの後続
 - **ドキュメント用 別 SSG / CMS** — wishlist。後日
 - **release dry-run / npm CD の本実装** — git.md。v0.10.0 の必須外の残り
 
@@ -354,7 +380,7 @@ form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後�
 - TypeScript: `strict: true`
 - 配布: ESM 主 + CJS dual package
 - npm 公開: PO がタイミングを見計らう
-- TDD: ロジックは Vitest。見た目は Storybook 手動確認が基本。Playwright / Storybook シナリオは v0.12.0 で厚くする（自動 VRT は任意）
+- TDD: ロジックは Vitest。見た目は Storybook 手動確認が基本。Playwright / Storybook シナリオは v0.13.0 で厚くする（自動 VRT は任意）
 - kitchen-sink: 動作確認に加え、ドキュメントサイト体裁のホスト（v0.9.0〜）
 - Git / CI: [git.md](./git.md)（v0.10.0 で CI 整備）
 - a11y 本検討: 無期限延期（将来項目）
@@ -375,16 +401,17 @@ v0.1.0 style
                            └─ v0.8.0 Twig
                                  └─ v0.9.0 ドキュメント体裁
                                        └─ v0.10.0 CI 整備
-                                             └─ v0.11.0 追加コンポーネント
-                                                   └─ v0.12.0 Playwright / Storybook シナリオ
-                                                         ├─ v0.13.0 form subtree
-                                                         └─ v0.14.0 SaaS 設計
-                                                               └─ v0.15.0 安定化
-                                                                     └─ v1.0.0
-                                                                           └─（後続）SaaS 実装 / form 深い統合 / a11y（延期解除時）
+                                             └─ v0.11.0 Combobox / InfiniteScroll
+                                                   └─ v0.12.0 UserMenu / CookieConsent
+                                                         └─ v0.13.0 Playwright / Storybook シナリオ
+                                                               ├─ v0.14.0 form subtree
+                                                               └─ v0.15.0 SaaS 設計
+                                                                     └─ v0.16.0 安定化
+                                                                           └─ v1.0.0
+                                                                             └─（後続）SaaS 実装 / form 深い統合 / Toast / a11y（延期解除時）
 ```
 
-`v0.13` と `v0.14` は直列必須ではない（推奨は 13 → 14）。
+`v0.14` と `v0.15` は直列必須ではない（推奨は 14 → 15）。
 
 ----
 
