@@ -9,8 +9,9 @@ PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](
 
 1. Twig 最優先 → **v0.8.0**
 2. ドキュメントサイトの体裁（kitchen-sink 拡張）→ **v0.9.0**
-3. SaaS スキャフォールドの設計を詰める → **v0.10.0**（実装は将来項目）
-4. yoshinani-form は **subtree** で取り込む → **v0.11.0**
+3. CI 整備 → **v0.10.0**（roadmap 割り込み）
+4. SaaS スキャフォールドの設計を詰める → **v0.11.0**（実装は将来項目）
+5. yoshinani-form は **subtree** で取り込む → **v0.12.0**
 
 詳細な含むもの／含まないものは roadmap を正とする。
 
@@ -27,13 +28,13 @@ PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](
 - kitchen-sink を拡張する形
 - FV 参照アセット（旧 the-wheels）: `the-wheels/dev/src/assets/img/home/main-visual.png`（自転車っぽい乗った人の絵）。取り込み方針は PO 判断（コピー or プレースホルダ）
 
-### yoshinani-form（→ v0.11.0）
+### yoshinani-form（→ v0.12.0）
 
 - 別ソースをモノレポへ。取り込みは **git subtree**（ネスト `.git` は置かない）
 - remote URL・入れ先パス・旧リポ archive は **【PO作業】**
-- umbrella への深い統合は v0.11 必須外。SaaS スキャフォールドとバランスを見ながら後続で
+- umbrella への深い統合は v0.12 必須外。SaaS スキャフォールドとバランスを見ながら後続で
 
-### Web アプリ管理画面のスタートアップ雛形（→ v0.10.0 設計 / 実装は将来）
+### Web アプリ管理画面のスタートアップ雛形（→ v0.11.0 設計 / 実装は将来）
 
 SaaS によくある画面を最初から用意したい。まずは設計のみ。
 
