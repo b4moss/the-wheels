@@ -21,6 +21,7 @@
 - `type`: 内部の `button` に透過する（未指定時は `button`）
 - `disable-on-click`（JS: `disableOnClick`）: HTML 真偽属性
   - 付与されている場合、クリック後に `disabled` とし、スピナーを表示する
+  - 表示は **ラベル（およびアイコン slot）を隠し、スピナーのみ** とする
   - スピナーは SVGLoader / Spinner 経由で描画する（Spinner 仕様も参照）
 
 ## メソッド

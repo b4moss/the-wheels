@@ -75,6 +75,7 @@
 - Light DOMで実装する。Shadow DOMは使わない。
 - WCは、スタイルを持たない。（ユーザーが好きなCSSを当てられるようにするため）
 - 接頭辞はデフォルト `tw-`。import で自動登録。変えるときは import 前に `setPrefix`。
+- `data-tw-*` は接頭辞変更しても固定。将来のカスタムイベント名は接頭辞に追従（`getEventName`）。当面イベントは出さない。
 
 ## 技術スタック
 
@@ -166,7 +167,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 - Dropdown（Floating UI 採用）
 - ActionMenu（Dropdown + SVGLoader。メニュー項目は slot 列挙）
 - Avatar
-- Vertical Nav
+- Vertical Nav（実体は Item。タグは `tw-vertical-nav`。リストは素の HTML）
 - Spinner（SVGLoader 経由）
 
 ##### 今回対象外
@@ -178,11 +179,14 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 ##### 実装順（目安）
 
-1. スタイル土台（v0.1.0。詳細は [roadmap.md](./roadmap.md) / [specs/style.md](./specs/style.md)）
-2. SVGLoader → Spinner → Button
-3. Dropdown → ActionMenu
-4. Accordion / Modal
-5. Avatar / Vertical Nav
+詳細な版分けは [roadmap.md](./roadmap.md) を参照。
+
+1. v0.1.0 スタイル土台（[specs/style.md](./specs/style.md)）
+2. v0.2.0 SVGLoader → Spinner → Button
+3. v0.3.0 Dropdown → ActionMenu
+4. v0.4.0 Accordion / Modal
+5. v0.5.0 Avatar / Vertical Nav
+6. v0.6.0〜 全部入り実用化 → Storybook → a11y → 安定化 → v1.0.0
 
 仕様の詳細は `docs/specs/components/` および `docs/specs/style.md` を参照。
 

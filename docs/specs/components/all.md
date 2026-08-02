@@ -19,17 +19,24 @@
 - HTML 真偽属性とする（属性が存在すれば true）
   - 例: `<tw-button disable-on-click>`
 
+## data 属性
+
+- `data-tw-*` は接頭辞変更しても **固定**（決め打ち）
+  - 例: `data-tw-component`, `data-tw-modal-close`, `data-tw-accordion-open`
+- ホストには常に `data-tw-component` を付与する（例: `data-tw-component="avatar"`）
+- ホストへのスタイル指定に要素セレクタは使わない
+  - ホストは `[data-tw-component="avatar"]` で指定する
+
+## カスタムイベント
+
+- 当面、カスタムイベントは発火しない
+  - DOM 標準イベント（例: `<dialog>` の `close` / `toggle`）とホストメソッドで足りる範囲とする
+- 将来カスタムイベントを出す場合、イベント名の接頭辞は `setPrefix` に **追従**する
+  - ヘルパー `getEventName('open')` を用意する（初回イベント実装まで未使用でよい）
+
 ## 同梱アセット
 
-- Spinner / ActionMenu 三本点などの同梱 SVG は `packages/components/assets/` に集約する
-
-## ホストとスタイルの対応
-
-- カスタム要素のホストには、接頭辞のいかんにかかわらず `data-tw-component` を付与する
-  - 例: `data-tw-component="avatar"`
-  - デフォルト接頭辞（`tw-`）でも、オーバーライド後でも、両方とも付与する
-- ホストへのスタイル指定に、要素セレクタ（例: `tw-avatar`）は使わない
-  - ホストは `[data-tw-component="avatar"]` で指定する
+- Spinner / ActionMenu 三本点 / Modal 閉じるボタンなどの同梱 SVG は `packages/components/assets/` に集約する
 
 ## 内部要素のクラス
 
