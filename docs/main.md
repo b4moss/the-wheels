@@ -88,8 +88,8 @@
 - Web Components（Light DOM）
 - Floating UI（`@floating-ui/dom`）— Dropdown 等のポジショニング（flip / shift デフォルト有効）
 - npm workspaces
-- kitchen-sink: Vituum による MPA（関心ごとの複数ページ）
-- Storybook: コンポーネントがある程度揃ってから導入する
+- kitchen-sink: Vituum による MPA（関心ごとの複数ページ）。Twig 化・ドキュメント体裁は roadmap v0.8〜v0.9
+- Storybook: コンポーネントカタログ（v0.7.0 で導入済み）。説明・導線は kitchen-sink 側
 - 対応ブラウザ: Chrome / Firefox / Safari / Edge の最新2メジャー
 - ライセンス: MIT
 - npm 公開タイミングはバージョンに固定せず、PO が見計らう
@@ -116,9 +116,9 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 │       ├── package.json         # deps: style + components
 │       └── src/
 └── apps/
-    ├── kitchen-sink/            # 動作確認用（Vituum MPA）
+    ├── kitchen-sink/            # 動作確認 + ドキュメントサイト体裁（Vituum / Twig）
     │   └── package.json
-    └── storybook/               # コンポーネントが揃ってから実装
+    └── storybook/               # コンポーネントカタログ（v0.7.0）
         └── package.json
 ```
 
@@ -130,12 +130,12 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
   └─ @b4moss/the-wheels-components   # style 非依存（Light DOM）
 ```
 
-- 公開単位は最初からこの3つまでとする。
+- 公開単位は最初からこの3つまでとする（form は v0.11.0 で subtree 予定。umbrella 必須バンドルとは切り分ける）。
 - `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）を提供する。
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する。
-- kitchen-sink は抽出・実装の動作確認場とする。
-- Storybook はドキュメント／カタログ用途とし、Components がある程度揃ってから入れる。
-- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。ロードマップは [roadmap.md](./roadmap.md) を参照。
+- kitchen-sink は動作確認場であり、v0.9.0 以降はドキュメントサイト体裁のホストでもある。
+- Storybook はコンポーネントカタログ。説明・導線は kitchen-sink。
+- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。ロードマップは [roadmap.md](./roadmap.md)、PO メモは [wishlist.md](./wishlist.md) を参照。
 
 ### 参考リポジトリ（リポジトリ外・将来削除）
 
@@ -170,12 +170,11 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 - Vertical Nav（実体は Item。タグは `tw-vertical-nav`。リストは素の HTML）
 - Spinner（SVGLoader 経由）
 
-##### 今回対象外
+##### 今回対象外（初期 MVP 外。版は roadmap 参照）
 
-- Card
-- ContentSection
-- CookieConsent
-- フォーム系（`yoshinani-form` 側）
+- Card / ContentSection
+- CookieConsent ほか将来項目（UserMenu / Combobox 等）
+- フォーム系の深い統合（`yoshinani-form` は v0.11.0 で subtree。公式バンドルは必須外）
 
 ##### 実装順（目安）
 
@@ -186,7 +185,9 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 3. v0.3.0 Dropdown → ActionMenu
 4. v0.4.0 Accordion / Modal
 5. v0.5.0 Avatar / Vertical Nav
-6. v0.6.0〜 全部入り実用化 → Storybook → a11y → 安定化 → v1.0.0
+6. v0.6.0 全部入り実用化 → v0.7.0 Storybook
+7. v0.8.0 Twig → v0.9.0 ドキュメント体裁 → v0.10.0 SaaS 設計 → v0.11.0 form subtree
+8. v0.12.0 a11y → v0.13.0 安定化 → v1.0.0
 
 仕様の詳細は `docs/specs/components/`、`docs/specs/style.md`、同梱アイコンは `docs/specs/icons.md` を参照。
 
@@ -202,9 +203,9 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 ## 特記事項
 
-- the-wheelsでは、フォームは扱わない
-- フォームは別途`yoshinani-form`というプロダクトを開発している。
-  - 状況次第で、これもモノリポにするかもしれない。
+- the-wheels コア（style / components / umbrella）ではフォームを扱わない
+- フォームは別プロダクト `yoshinani-form`。roadmap **v0.11.0** で git subtree によりモノレポへ取り込む
+  - 取り込み後も、umbrella への深い統合や SaaS スキャフォールドとの本結合は後続（将来項目）
 
 ----
 

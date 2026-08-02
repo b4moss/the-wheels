@@ -4,7 +4,7 @@
 - タグ名は `tw-vertical-nav`（短い名前を維持）
 - JS クラス名: `TwVerticalNav`
 - Web Component として実装する（Light DOM）
-- a11y の詳細は後日検討。追加属性は可能な限り不要にする
+- a11y の詳細は v0.12.0 で検討。追加属性は可能な限り不要にする
 
 ## 役割
 

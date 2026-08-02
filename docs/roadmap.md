@@ -1,7 +1,8 @@
 # the-wheels ロードマップ
 
 npm 公開タイミングはバージョンに固定せず、PO が見計らう。  
-各版のテスト仕様は `docs/specs/tests/vX.Y.Z.md`（その版のロジックをすべて載せる）。
+各版のテスト仕様は `docs/specs/tests/vX.Y.Z.md`（その版のロジックをすべて載せる）。  
+PO メモ・未決定の意図は [wishlist.md](./wishlist.md)。決定した版分けは本ドキュメントに転記する。
 
 ---
 
@@ -130,6 +131,7 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 - 主要コンポーネントのカタログ
 - スタイル／見た目の検証方針の再検討（自動 VRT は任意）
 - Bug 修正: [Issue #6](https://github.com/b4m-oss/the-wheels-reconstruct/issues/6) — Button `disable-on-click` クリック直後の横幅シュリンク
+- Spinner 開始フリーズ回避（同梱 `spinner.svg` を SMIL から SVG 内 CSS `@keyframes` へ）
 
 ### 前提
 
@@ -137,7 +139,95 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 
 ---
 
-## v0.8.0 — a11y の本検討
+## v0.8.0 — kitchen-sink Twig 化
+
+Vituum を維持したまま、テンプレートを Twig にする。以降のドキュメント体裁の土台。
+
+### 含むもの
+
+- `@vituum/vite-plugin-twig`（または同等）の導入
+- 共通 layout / partial（head、ナビ、fonts、style / JS 読込）
+- 既存ページの Twig 移行（URL・trailing slash 互換を維持）
+- `dev:kitchen-sink` / `build:kitchen-sink` の通し
+
+### 含まないもの
+
+- ドキュメントサイトとしての情報設計・FV の作り込み（v0.9.0）
+- 別 SSG / CMS
+
+### 依存
+
+- v0.7.0 まで完了していること
+
+---
+
+## v0.9.0 — ドキュメントサイト体裁（kitchen-sink 拡張）
+
+kitchen-sink を「読めるドキュメントサイト」として体裁を整える。別 SSG はまだ導入しない。
+
+### 含むもの
+
+- トップ（FV。アセットは参照リポ由来またはプレースホルダ。PO 判断）
+- 共通ナビの統一、Getting Started（install / `setPrefix` / style）
+- Components 一覧から各デモへの導線
+- Storybook との役割分けの明記（説明・導線 = kitchen-sink、カタログ = Storybook）
+
+### 含まないもの
+
+- 別 SSG / CMS（wishlist・後日）
+- SaaS スキャフォールド実装
+
+### 依存
+
+- v0.8.0（Twig）
+
+---
+
+## v0.10.0 — SaaS スキャフォールド設計
+
+設計ドキュメントが成果物。アプリ実装コードは含めない。
+
+### 含むもの
+
+- 配置案（例: 将来 `apps/saas-scaffold`。本体パッケージとは版を分離しうる）
+- レイアウト3種の責務（シンプル / ダッシュボード / 3column）
+- 必要ページとレイアウトの対応表（ログイン、パスワード再発行、ダッシュボード、設定＋タブ、Sortable 等）
+- the-wheels / yoshinani-form / scaffold の依存方向
+- 不足コンポーネント・機能の洗い出し → 「将来項目」または後続版へ転記
+- Sortable.js 等は scaffold 側依存（コア WC に入れない）と明記
+
+### 含まないもの
+
+- scaffold の実装、不足 WC の実装（設計と転記のみ）
+
+### 補足
+
+- v0.11.0（form subtree）と直列必須ではないが、境界設計が form に効くため **10 → 11 を推奨**。並行・入れ替えは PO 判断
+
+---
+
+## v0.11.0 — yoshinani-form subtree 取り込み
+
+### 含むもの
+
+- `git subtree` で履歴付き取り込み（パス案: `packages/yoshinani-form`）
+- workspaces / 最小の build・README 接続
+- モノレポ内でパッケージとして触れる状態まで
+
+### 含まないもの（この版の必須外）
+
+- `@b4moss/the-wheels` への再エクスポートや深い API 統合
+- SaaS スキャフォールド実装との本結合
+
+### 前提（PO）
+
+- 取り込み元 remote URL・ブランチ／タグ、入れ先パス、旧リポの archive 方針
+
+---
+
+## v0.12.0 — a11y の本検討
+
+旧計画の「v0.8.0 a11y」相当。DX・取り込みの後に実施する。
 
 ### 含むもの
 
@@ -151,7 +241,9 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 
 ---
 
-## v0.9.0 — 安定化・品質
+## v0.13.0 — 安定化・品質
+
+旧計画の「v0.9.0 安定化」相当。
 
 ### 含むもの
 
@@ -168,12 +260,14 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 - MVP コンポーネント一式が仕様どおり揃っている
 - style / components / the-wheels の公開面が安定
 - README / 基本ドキュメントが利用可能な水準
+- kitchen-sink がドキュメントサイトとして一通り使えること（v0.8〜v0.9）
 - 対応ブラウザ（最新2メジャー）での動作確認済み
 - （PO 判断で）npm 公開
 
-### 含まないもの（継続対象外のまま）
+### この版で必須にしない
 
-- フォーム（`yoshinani-form`）
+- SaaS スキャフォールドの**実装**（設計は v0.10.0）
+- yoshinani-form の the-wheels 公式バンドル／深い統合（subtree 済みならリポ内にある状態で可。README 案内は PO 判断）
 - Card / ContentSection（必要になったら別バージョンで検討）
 - 下記「将来項目」のコンポーネント（バージョン未定）
 
@@ -181,11 +275,15 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 
 ## 将来項目
 
-バージョン未定。詳細仕様は後日。メモのみ。
+バージョン未定。詳細仕様は後日。メモのみ。v0.10.0 設計で優先が上がったら版を切る。
 
 - **UserMenu** — Avatar と Dropdown を組み合わせたもの
 - **Combobox** — Dropdown をベースに拡張
 - **CookieConsent** — 詳細は後ほど
+- **Tabs 等** — SaaS 設計の不足リスト由来（洗い出し後に追加）
+- **SaaS scaffold 実装** — v0.10.0 設計の後続（例: v1.1 または `apps/` サイド）
+- **form × scaffold の本統合** — v0.11.0 の後続
+- **ドキュメント用 別 SSG / CMS** — wishlist。後日
 
 ---
 
@@ -195,6 +293,7 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 - 配布: ESM 主 + CJS dual package
 - npm 公開: PO がタイミングを見計らう
 - TDD: ロジックは Vitest。スタイル自動テストは行わず、見た目は Storybook で手動確認（自動 VRT は任意）
+- kitchen-sink: 動作確認に加え、ドキュメントサイト体裁のホスト（v0.9.0〜）
 - ライセンス: MIT
 
 ---
@@ -209,10 +308,17 @@ v0.1.0 style
          └─ v0.5.0 Avatar / Vertical Nav
                └─ v0.6.0 umbrella 実用化
                      └─ v0.7.0 Storybook
-                           └─ v0.8.0 a11y
-                                 └─ v0.9.0 安定化
-                                       └─ v1.0.0
+                           └─ v0.8.0 Twig
+                                 └─ v0.9.0 ドキュメント体裁
+                                       ├─ v0.10.0 SaaS 設計 ──→（不足 WC は将来項目へ）
+                                       ├─ v0.11.0 form subtree
+                                       └─ v0.12.0 a11y
+                                             └─ v0.13.0 安定化
+                                                   └─ v1.0.0
+                                                         └─（後続）SaaS 実装 / form 深い統合 / 将来 WC
 ```
+
+`v0.10` と `v0.11` は直列必須ではない（推奨は 10 → 11）。
 
 ----
 
