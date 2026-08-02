@@ -1,7 +1,7 @@
 {
   "name": "@b4moss/the-wheels-storybook",
   "private": true,
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "The Wheels Storybook catalog",
   "type": "module",
   "scripts": {
@@ -9,8 +9,8 @@
     "build": "storybook build"
   },
   "dependencies": {
-    "@b4moss/the-wheels": "0.9.0",
-    "@b4moss/the-wheels-components": "0.9.0"
+    "@b4moss/the-wheels": "0.10.0",
+    "@b4moss/the-wheels-components": "0.10.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.14",
