@@ -244,4 +244,128 @@ describe("TwButton", () => {
     expect(el.hasAttribute("disabled")).toBe(true);
     expect(el.querySelector("button")!.disabled).toBe(true);
   });
+
+  describe("disable-on-click size lock (Issue #6)", () => {
+    function stubButtonSize(
+      button: HTMLButtonElement,
+      width: number,
+      height: number,
+    ): void {
+      Object.defineProperty(button, "offsetWidth", {
+        configurable: true,
+        get: () => width,
+      });
+      Object.defineProperty(button, "offsetHeight", {
+        configurable: true,
+        get: () => height,
+      });
+    }
+
+    it("preserves inner button width and height after click", () => {
+      const el = mountButton(
+        { "disable-on-click": "" },
+        [document.createTextNode("Save changes now")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      stubButtonSize(button, 160, 44);
+
+      const w0 = button.offsetWidth;
+      const h0 = button.offsetHeight;
+      button.click();
+
+      expect(button.disabled).toBe(true);
+      expect(el.querySelector(".button-label")!.hasAttribute("hidden")).toBe(true);
+      expect(el.querySelector(".button-spinner")).not.toBeNull();
+      expect(button.style.minWidth).toBe(`${w0}px`);
+      expect(button.style.minHeight).toBe(`${h0}px`);
+      expect(parseFloat(button.style.minWidth)).toBeGreaterThanOrEqual(w0);
+      expect(parseFloat(button.style.minHeight)).toBeGreaterThanOrEqual(h0);
+    });
+
+    it("sets inline minWidth/minHeight from measured size before hide", () => {
+      const el = mountButton(
+        { "disable-on-click": "" },
+        [document.createTextNode("Long enough label")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      stubButtonSize(button, 120, 36);
+      button.click();
+      expect(button.style.minWidth).toBe("120px");
+      expect(button.style.minHeight).toBe("36px");
+    });
+
+    it("does not lock size without disable-on-click", () => {
+      const el = mountButton({}, [document.createTextNode("Go")]);
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      stubButtonSize(button, 100, 32);
+      button.click();
+      expect(button.style.minWidth).toBe("");
+      expect(button.style.minHeight).toBe("");
+    });
+
+    it("does not lock size when already disabled", () => {
+      const el = mountButton(
+        { disabled: "", "disable-on-click": "" },
+        [document.createTextNode("Go")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      stubButtonSize(button, 100, 32);
+      button.click();
+      expect(button.style.minWidth).toBe("");
+      expect(button.style.minHeight).toBe("");
+      expect(el.querySelectorAll(".button-spinner").length).toBe(0);
+    });
+
+    it("does not throw when measured width is 0", () => {
+      const el = mountButton(
+        { "disable-on-click": "" },
+        [document.createTextNode("Go")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      stubButtonSize(button, 0, 0);
+      expect(() => button.click()).not.toThrow();
+      expect(button.disabled).toBe(true);
+      expect(el.querySelector(".button-spinner")).not.toBeNull();
+    });
+
+    it("clears size lock on reset()", () => {
+      const el = mountButton(
+        { "disable-on-click": "" },
+        [document.createTextNode("Go")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      stubButtonSize(button, 140, 40);
+      button.click();
+      expect(button.style.minWidth).not.toBe("");
+      el.reset();
+      expect(button.style.minWidth).toBe("");
+      expect(button.style.minHeight).toBe("");
+      expect(el.querySelector(".button-spinner")).toBeNull();
+      expect(el.querySelector(".button-label")!.hasAttribute("hidden")).toBe(false);
+    });
+
+    it("reset() before click leaves size styles unchanged", () => {
+      const el = mountButton(
+        { "disable-on-click": "" },
+        [document.createTextNode("Go")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      button.style.minWidth = "99px";
+      expect(() => el.reset()).not.toThrow();
+      expect(button.style.minWidth).toBe("99px");
+    });
+
+    it("reset() on author-disabled does not add or clear size lock", () => {
+      const el = mountButton(
+        { disabled: "" },
+        [document.createTextNode("Go")],
+      );
+      const button = el.querySelector("button.button") as HTMLButtonElement;
+      expect(button.style.minWidth).toBe("");
+      el.reset();
+      expect(el.hasAttribute("disabled")).toBe(true);
+      expect(button.style.minWidth).toBe("");
+      expect(button.style.minHeight).toBe("");
+    });
+  });
 });

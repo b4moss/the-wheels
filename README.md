@@ -66,6 +66,26 @@ import { TwButton, TwAvatar } from "@b4moss/the-wheels";
 import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
 ```
 
+## Storybook
+
+コンポーネント・カタログ（手動の見た目確認用）。自動 VRT は入れていません。
+
+```bash
+npm install
+npm run build:components
+npm run build:the-wheels
+npm run dev:storybook
+```
+
+静的ビルド:
+
+```bash
+npm run build:storybook
+```
+
+preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/the-wheels` を読み込みます。  
+パッケージの `exports` はビルド成果物（`dist`）を指すため、起動前に components / the-wheels のビルドが必要です。
+
 ## kitchen-sink
 
 目視確認用の Vituum MPA です。
@@ -77,8 +97,6 @@ npm run build:the-wheels
 npm run dev:kitchen-sink
 ```
 
-パッケージの `exports` はビルド成果物（`dist`）を指すため、kitchen-sink 起動前に components / the-wheels のビルドが必要です。
-
 ## 開発コマンド
 
 ```bash
@@ -86,9 +104,11 @@ npm run build:style
 npm run build:components
 npm run build:the-wheels
 npm run build:kitchen-sink
+npm run build:storybook
 npm run test:components
 npm run test:package
 npm run dev:kitchen-sink
+npm run dev:storybook
 ```
 
 `test:package` はビルド後の dual package（ESM + CJS）と exports 解決のスモークです。

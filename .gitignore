@@ -13,5 +13,6 @@ Thumbs.db
 .env.production
 node_modules/
 dist/
+storybook-static/
 *.log
 .npm

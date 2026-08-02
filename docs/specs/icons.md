@@ -24,7 +24,7 @@
 - npm 依存: `@tabler/icons` を `@b4moss/the-wheels-components` の **devDependency** に追加
 - 配布物は `assets/` にコピーした SVG（利用側は Tabler を直接依存しなくてよい）
 - 再同期: `npm run sync:icons -w @b4moss/the-wheels-components`
-- `spinner.svg` のみ、Tabler `loader-2` をベースに SMIL アニメーションを付与して別管理
+- `spinner.svg` のみ、Tabler `loader-2` をベースに SVG 内 CSS 回転アニメーションを付与して別管理
 
 ## 同梱するアイコン（これ以外は同梱しない）
 

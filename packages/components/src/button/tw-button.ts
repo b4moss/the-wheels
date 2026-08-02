@@ -21,6 +21,7 @@ export class TwButton extends HTMLElement {
   #spinner: HTMLElement | null = null;
   #lock: HTMLElement | null = null;
   #clickDisabled = false;
+  #sizeLocked = false;
   #projecting = false;
   #initialized = false;
   #onClick = (): void => {
@@ -218,12 +219,15 @@ export class TwButton extends HTMLElement {
     this.#button.disabled = disabled;
 
     if (this.#clickDisabled) {
+      // Lock outer size before hiding label/icons so the control does not shrink.
+      this.#lockSize();
       this.#ensureSpinner();
       this.#iconLeft?.setAttribute("hidden", "");
       this.#label?.setAttribute("hidden", "");
       this.#iconRight?.setAttribute("hidden", "");
       this.#spinner?.removeAttribute("hidden");
     } else {
+      this.#clearSizeLock();
       this.#spinner?.remove();
       this.#spinner = null;
       this.#iconLeft?.removeAttribute("hidden");
@@ -237,6 +241,22 @@ export class TwButton extends HTMLElement {
       this.#lock?.remove();
       this.#lock = null;
     }
+  }
+
+  #lockSize(): void {
+    if (!this.#button || this.#sizeLocked) return;
+    const width = this.#button.offsetWidth;
+    const height = this.#button.offsetHeight;
+    if (width > 0) this.#button.style.minWidth = `${width}px`;
+    if (height > 0) this.#button.style.minHeight = `${height}px`;
+    this.#sizeLocked = true;
+  }
+
+  #clearSizeLock(): void {
+    if (!this.#button || !this.#sizeLocked) return;
+    this.#button.style.minWidth = "";
+    this.#button.style.minHeight = "";
+    this.#sizeLocked = false;
   }
 
   #ensureSpinner(): void {
