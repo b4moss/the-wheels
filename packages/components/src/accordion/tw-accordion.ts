@@ -159,8 +159,14 @@ export class TwAccordion extends HTMLElement {
       // Bare text is not projected into header/content.
     }
 
-    this.#headerSlot.replaceChildren(...headerNodes);
-    this.#content.replaceChildren(...contentNodes);
+    // Empty buckets mean content is already inside details (reconnect) —
+    // do not wipe projected header/content.
+    if (headerNodes.length) {
+      this.#headerSlot.replaceChildren(...headerNodes);
+    }
+    if (contentNodes.length) {
+      this.#content.replaceChildren(...contentNodes);
+    }
 
     for (const node of Array.from(this.childNodes)) {
       if (node === this.#details) continue;

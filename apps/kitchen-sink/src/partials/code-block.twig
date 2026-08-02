@@ -1,0 +1,6 @@
+{#
+  Single highlighted code block.
+  @param {string} language — highlight.js language id (html, javascript, typescript, css, bash, …)
+  @param {string} code — source text (will be HTML-escaped)
+#}
+<pre class="ks-code"><code class="language-{{ language }}">{{ code|trim|e }}</code></pre>

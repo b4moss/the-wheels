@@ -1,0 +1,123 @@
+{% set current = "button" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Button — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Button</h1>
+  <p class="ks-meta">variant / slot / disable-on-click / reset()</p>
+
+  {% set preview %}
+    <section>
+      <h2>variant</h2>
+      <div class="ks-row">
+        <tw-button>送信する</tw-button>
+        <tw-button variant="stroke">下書き保存</tw-button>
+        <tw-button variant="ghost">キャンセル</tw-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>icon slot</h2>
+      <div class="ks-row">
+        <tw-button>
+          <tw-svg-loader
+            id="btn-icon"
+            slot="icon-left"
+            width="16"
+            height="16"
+            stroke-color="currentColor"
+          ></tw-svg-loader>
+          保存する
+        </tw-button>
+        <tw-button variant="stroke">
+          <tw-svg-loader
+            id="btn-icon-right"
+            slot="icon-right"
+            width="16"
+            height="16"
+            stroke-color="currentColor"
+          ></tw-svg-loader>
+          次へ進む
+        </tw-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>disabled</h2>
+      <div class="ks-row">
+        <tw-button disabled>送信する</tw-button>
+        <tw-button variant="stroke" disabled>下書き保存</tw-button>
+        <tw-button variant="ghost" disabled>キャンセル</tw-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>disable-on-click</h2>
+      <div class="ks-row">
+        <tw-button id="click-once" disable-on-click>一度だけ押せる</tw-button>
+        <tw-button type="button" id="reset-btn" variant="stroke">reset()</tw-button>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<div class="ks-row">
+  <tw-button>送信する</tw-button>
+  <tw-button variant="stroke">下書き保存</tw-button>
+  <tw-button variant="ghost">キャンセル</tw-button>
+</div>
+
+<div class="ks-row">
+  <tw-button>
+    <tw-svg-loader
+      id="…"
+      slot="icon-left"
+      width="16"
+      height="16"
+      stroke-color="currentColor"
+    ></tw-svg-loader>
+    保存する
+  </tw-button>
+</div>
+
+<div class="ks-row">
+  <tw-button id="…" disable-on-click>一度だけ押せる</tw-button>
+  <tw-button type="button" id="…" variant="stroke">reset()</tw-button>
+</div>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+
+const icon = document.getElementById("btn-icon");
+if (icon) icon.setAttribute("src", checkUrl);
+
+document.getElementById("reset-btn")?.addEventListener("click", () => {
+  document.getElementById("click-once")?.reset();
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+import type { TwButton } from "@b4moss/the-wheels";
+
+const icon = document.getElementById("btn-icon");
+if (icon) icon.setAttribute("src", checkUrl);
+
+document.getElementById("reset-btn")?.addEventListener("click", () => {
+  const once = document.getElementById("click-once") as TwButton | null;
+  once?.reset();
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/button.js"></script>
+{% endblock %}

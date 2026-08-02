@@ -161,6 +161,9 @@
   }
 
   [data-tw-component="dropdown"] .panel {
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 20;
     min-width: 12rem;
     box-sizing: border-box;
@@ -173,7 +176,7 @@
   }
 
   [data-tw-component="dropdown"] .panel[hidden] {
-    display: none;
+    display: none !important;
   }
 
   /* —— ActionMenu —— */
@@ -441,5 +444,60 @@
     background: var(--tw-bg-highlight);
     color: var(--tw-text-highlight);
     font-weight: 700;
+  }
+
+  /* —— Tabs —— */
+  [data-tw-component="tabs"] {
+    display: block;
+    max-width: none;
+  }
+
+  [data-tw-component="tabs"] .tabs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    border-bottom: 1px solid var(--tw-bg-button-optional);
+    max-width: none;
+  }
+
+  [data-tw-component="tabs"] .tabs-tab {
+    margin: 0;
+    padding: 0.8rem 1.4rem;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    border-radius: 0;
+    background: transparent;
+    color: var(--tw-text-caption);
+    font: inherit;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  [data-tw-component="tabs"] .tabs-tab:hover {
+    color: var(--tw-text-main);
+  }
+
+  [data-tw-component="tabs"] .tabs-tab[aria-selected="true"] {
+    color: var(--tw-text-highlight);
+    border-bottom-color: var(--tw-text-highlight);
+    font-weight: 600;
+  }
+
+  [data-tw-component="tabs"] .tabs-panels {
+    max-width: none;
+  }
+
+  [data-tw-component="tabs"] .tabs-panel {
+    max-width: none;
+    margin: 0;
+  }
+
+  [data-tw-component="tabs"] .tabs-panel[hidden] {
+    display: none;
   }
 }

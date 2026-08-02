@@ -46,6 +46,11 @@ export class TwDropdown extends HTMLElement {
     this.#syncOpenUi();
     this.#bindTrigger();
     this.#observeSlots();
+    // Catch slotted children that arrive in the same parse tick after connect.
+    queueMicrotask(() => {
+      if (!this.isConnected) return;
+      this.#projectSlots();
+    });
     this.#initialized = true;
     if (this.hasAttribute("open")) {
       this.#startPositioning();

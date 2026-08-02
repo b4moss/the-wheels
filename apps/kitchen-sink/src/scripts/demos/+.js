@@ -1,0 +1,8 @@
+import './accordion.js'
+import './action-menu.js'
+import './button.js'
+import './modal.js'
+import './register.js'
+import './svg-loader.js'
+import './tabs.js'
+import './vertical-nav.js'

@@ -1,0 +1,96 @@
+{% set current = "modal" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Modal — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Modal</h1>
+  <p class="ks-meta">showModal · × / backdrop / data-tw-modal-close · 長文スクロール</p>
+
+  {% set preview %}
+    <section>
+      <h2>基本</h2>
+      {# Use div, not p: avoid <p> autoclose around custom-element hosts. #}
+      <div class="ks-row">
+        <tw-button type="button" id="open-modal">メンバーを招待</tw-button>
+      </div>
+
+      <tw-modal id="demo-modal">
+        <h2 slot="header">メンバーを招待</h2>
+        <div slot="content">
+          <p>
+            招待メールを送信します。相手が承諾するとプロジェクトに参加できます。
+          </p>
+          <p>
+            × ボタン、backdrop、フッターの閉じる、Escape で閉じられます。初回表示後にサイズが固定され、以降の内容増減は content 内スクロールで吸収します。
+          </p>
+          <p>
+            招待できるロールは「閲覧」「編集」「管理者」です。管理者以外は請求情報を変更できません。招待リンクの有効期限は 7 日です。期限切れの場合は再送してください。
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+            enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur.
+          </p>
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et
+            malesuada fames ac turpis egestas. Vestibulum tortor quam,
+            feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+            libero sit amet quam egestas semper.
+          </p>
+        </div>
+        <div slot="footer">
+          <tw-button type="button" variant="ghost" data-tw-modal-close
+            >キャンセル</tw-button
+          >
+          <tw-button type="button" data-tw-modal-close>招待を送る</tw-button>
+        </div>
+      </tw-modal>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-button type="button" id="…">メンバーを招待</tw-button>
+
+<tw-modal id="…">
+  <h2 slot="header">メンバーを招待</h2>
+  <div slot="content">
+    <p>招待メールを送信します。相手が承諾するとプロジェクトに参加できます。</p>
+  </div>
+  <div slot="footer">
+    <tw-button type="button" variant="ghost" data-tw-modal-close>キャンセル</tw-button>
+    <tw-button type="button" data-tw-modal-close>招待を送る</tw-button>
+  </div>
+</tw-modal>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const modal = document.getElementById("demo-modal");
+document.getElementById("open-modal")?.addEventListener("click", () => {
+  modal?.showModal();
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwModal } from "@b4moss/the-wheels";
+
+const modal = document.getElementById("demo-modal") as TwModal | null;
+document.getElementById("open-modal")?.addEventListener("click", () => {
+  modal?.showModal();
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/modal.js"></script>
+{% endblock %}

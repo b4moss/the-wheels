@@ -1,0 +1,138 @@
+{% set current = "svg-loader" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}SVGLoader — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>SVGLoader</h1>
+  <p class="ks-meta">fetch → Light DOM 注入 / 失敗時プレースホルダ / 見た目属性</p>
+
+  {% set preview %}
+    <section>
+      <h2>基本</h2>
+      <div class="ks-row">
+        <tw-svg-loader
+          id="icon-check"
+          width="32"
+          height="32"
+          stroke-color="var(--tw-text-main)"
+          aria-label="チェック"
+        ></tw-svg-loader>
+      </div>
+    </section>
+
+    <section>
+      <h2>flip / rotate</h2>
+      <div class="ks-row">
+        <tw-svg-loader
+          id="icon-chevron"
+          width="32"
+          height="32"
+          stroke-color="var(--tw-text-main)"
+          aria-label="開く"
+        ></tw-svg-loader>
+        <tw-svg-loader
+          id="icon-chevron-rot"
+          width="32"
+          height="32"
+          rotate="180"
+          stroke-color="var(--tw-text-main)"
+          aria-label="閉じる"
+        ></tw-svg-loader>
+        <tw-svg-loader
+          id="icon-menu"
+          width="32"
+          height="32"
+          flip="horizontal"
+          stroke-color="var(--tw-text-main)"
+          aria-label="メニュー"
+        ></tw-svg-loader>
+      </div>
+    </section>
+
+    <section>
+      <h2>失敗時</h2>
+      <div class="ks-row">
+        <tw-svg-loader
+          src="/this-file-does-not-exist.svg"
+          width="32"
+          height="32"
+          aria-label="読み込み失敗の例"
+        ></tw-svg-loader>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-svg-loader
+  id="…"
+  width="32"
+  height="32"
+  stroke-color="var(--tw-text-main)"
+  aria-label="チェック"
+></tw-svg-loader>
+
+<tw-svg-loader
+  id="…"
+  width="32"
+  height="32"
+  stroke-color="var(--tw-text-main)"
+  aria-label="開く"
+></tw-svg-loader>
+<tw-svg-loader
+  id="…"
+  width="32"
+  height="32"
+  rotate="180"
+  stroke-color="var(--tw-text-main)"
+  aria-label="閉じる"
+></tw-svg-loader>
+<tw-svg-loader
+  id="…"
+  width="32"
+  height="32"
+  flip="horizontal"
+  stroke-color="var(--tw-text-main)"
+  aria-label="メニュー"
+></tw-svg-loader>
+
+<tw-svg-loader
+  src="/this-file-does-not-exist.svg"
+  width="32"
+  height="32"
+  aria-label="読み込み失敗の例"
+></tw-svg-loader>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+import chevronUrl from "@b4moss/the-wheels-components/assets/chevron.svg?url";
+import menuUrl from "@b4moss/the-wheels-components/assets/menu.svg?url";
+
+document.getElementById("icon-check")?.setAttribute("src", checkUrl);
+document.getElementById("icon-chevron")?.setAttribute("src", chevronUrl);
+document.getElementById("icon-chevron-rot")?.setAttribute("src", chevronUrl);
+document.getElementById("icon-menu")?.setAttribute("src", menuUrl);
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+import chevronUrl from "@b4moss/the-wheels-components/assets/chevron.svg?url";
+import menuUrl from "@b4moss/the-wheels-components/assets/menu.svg?url";
+
+document.getElementById("icon-check")?.setAttribute("src", checkUrl);
+document.getElementById("icon-chevron")?.setAttribute("src", chevronUrl);
+document.getElementById("icon-chevron-rot")?.setAttribute("src", chevronUrl);
+document.getElementById("icon-menu")?.setAttribute("src", menuUrl);
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/svg-loader.js"></script>
+{% endblock %}

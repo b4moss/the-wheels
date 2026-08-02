@@ -86,15 +86,28 @@ npm run build:storybook
 preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/the-wheels` を読み込みます。  
 パッケージの `exports` はビルド成果物（`dist`）を指すため、起動前に components / the-wheels のビルドが必要です。
 
-## kitchen-sink
+## kitchen-sink（ドキュメントサイト）
 
-目視確認用の Vituum MPA です。
+説明・導入・デモ導線用の Vituum + Twig MPA です。コンポーネントカタログは Storybook を使います。
+
+| ルート | 内容 |
+| --- | --- |
+| `/` | FV 付きトップ（Getting Started / Components 導線） |
+| `/getting-started/` | install・style・umbrella JS・`setPrefix` 注意 |
+| `/components/` | 9 WC + Typography / Tokens のデモ一覧 |
+| `/button/` など | 各コンポーネントの目視デモ |
 
 ```bash
 npm install
 npm run build:components
 npm run build:the-wheels
 npm run dev:kitchen-sink
+```
+
+静的ビルド:
+
+```bash
+npm run build:kitchen-sink
 ```
 
 ## 開発コマンド

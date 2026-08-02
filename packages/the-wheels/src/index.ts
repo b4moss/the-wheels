@@ -25,5 +25,6 @@ export {
   TwModal,
   TwSpinner,
   TwSvgLoader,
+  TwTabs,
   TwVerticalNav,
 } from "@b4moss/the-wheels-components";

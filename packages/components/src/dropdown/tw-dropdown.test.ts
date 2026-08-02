@@ -82,6 +82,47 @@ describe("TwDropdown", () => {
       expect(panelOf(node).contains(panel)).toBe(true);
     });
 
+    it("projects slots from declarative innerHTML (not only createElement)", async () => {
+      const wrap = document.createElement("div");
+      document.body.append(wrap);
+      wrap.innerHTML = `
+        <${dropdownTag()}>
+          <button slot="trigger">Open</button>
+          <div slot="panel">Menu item</div>
+        </${dropdownTag()}>
+      `;
+      await Promise.resolve();
+      const node = wrap.querySelector(dropdownTag()) as TwDropdown;
+      const slotted = node.querySelector('[slot="panel"]');
+      expect(slotted).not.toBeNull();
+      expect(panelOf(node).contains(slotted!)).toBe(true);
+      expect(panelOf(node).hasAttribute("hidden")).toBe(true);
+      expect(wrap.querySelector(`:scope > [slot="panel"]`)).toBeNull();
+    });
+
+    it("keeps panel content inside host when wrapper is a div (not p)", async () => {
+      // Regression: wrapping tw-dropdown in <p> causes the HTML parser to
+      // autoclose <p> at <div slot="panel"> and eject panel into page flow.
+      // Demos must use a non-<p> wrapper (e.g. div.ks-row).
+      const wrap = document.createElement("div");
+      document.body.append(wrap);
+      wrap.innerHTML = `
+        <div class="row">
+          <${dropdownTag()}>
+            <button slot="trigger">Open</button>
+            <div slot="panel"><button type="button">Item</button></div>
+          </${dropdownTag()}>
+        </div>
+      `;
+      await Promise.resolve();
+      const node = wrap.querySelector(dropdownTag()) as TwDropdown;
+      const slotted = node.querySelector('[slot="panel"]');
+      expect(slotted).not.toBeNull();
+      expect(panelOf(node).contains(slotted!)).toBe(true);
+      expect(slotted!.textContent).toContain("Item");
+      expect(wrap.querySelector('.row > [slot="panel"]')).toBeNull();
+    });
+
     it("connects without slots without throwing", () => {
       expect(() => mountDropdown()).not.toThrow();
       const node = mountDropdown();

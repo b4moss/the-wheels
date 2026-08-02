@@ -1,0 +1,92 @@
+{% set current = "dropdown" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Dropdown — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Dropdown</h1>
+  <p class="ks-meta">trigger / panel slots · placement · Floating UI</p>
+
+  {% set preview %}
+    <section>
+      <h2>Button を trigger に</h2>
+      {# Use div, not p: HTML parser closes <p> when it sees <div slot="panel">,
+         ejecting panel content out of tw-dropdown into document flow. #}
+      <div class="ks-row">
+        <tw-dropdown>
+          <tw-button slot="trigger">アカウント</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button">プロフィール</button>
+            <button type="button">通知設定</button>
+            <button type="button">ログアウト</button>
+          </div>
+        </tw-dropdown>
+      </div>
+    </section>
+
+    <section>
+      <h2>placement</h2>
+      <div class="ks-row">
+        <tw-dropdown placement="bottom-start">
+          <tw-button slot="trigger" variant="stroke">ファイル</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button">新規作成</button>
+            <button type="button">アップロード</button>
+            <button type="button">フォルダを開く</button>
+          </div>
+        </tw-dropdown>
+        <tw-dropdown placement="top-end">
+          <tw-button slot="trigger" variant="stroke">共有</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button">リンクをコピー</button>
+            <button type="button">メールで送信</button>
+          </div>
+        </tw-dropdown>
+        <tw-dropdown placement="right-start">
+          <tw-button slot="trigger" variant="ghost">表示</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button">リスト表示</button>
+            <button type="button">グリッド表示</button>
+          </div>
+        </tw-dropdown>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-dropdown>
+  <tw-button slot="trigger">アカウント</tw-button>
+  <div slot="panel" class="ks-menu-panel">
+    <button type="button">プロフィール</button>
+    <button type="button">通知設定</button>
+    <button type="button">ログアウト</button>
+  </div>
+</tw-dropdown>
+
+<tw-dropdown placement="bottom-start">
+  <tw-button slot="trigger" variant="stroke">ファイル</tw-button>
+  <div slot="panel" class="ks-menu-panel">
+    <button type="button">新規作成</button>
+    <button type="button">アップロード</button>
+    <button type="button">フォルダを開く</button>
+  </div>
+</tw-dropdown>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+// tw-dropdown は import 時に自動登録されます
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/register.js"></script>
+{% endblock %}

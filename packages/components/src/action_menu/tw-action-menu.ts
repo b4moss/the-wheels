@@ -35,6 +35,13 @@ export class TwActionMenu extends HTMLElement {
     this.#bindPanelClose();
     this.#observeSlots();
     this.#observeDropdownOpen();
+    // Catch children that arrive in the same parse/upgrade tick after connect.
+    queueMicrotask(() => {
+      if (!this.isConnected) return;
+      this.#projectSlots();
+      this.#dropdown?.refreshSlots();
+      this.#syncSrc();
+    });
     this.#initialized = true;
   }
 
@@ -167,7 +174,10 @@ export class TwActionMenu extends HTMLElement {
         if (node instanceof Element) node.setAttribute("slot", "trigger");
         this.#dropdown.append(node);
       }
-    } else if (!this.#defaultTrigger?.isConnected) {
+    } else if (
+      !this.#usingCustomTrigger &&
+      !this.#defaultTrigger?.isConnected
+    ) {
       this.#dropdown.append(this.#createDefaultTrigger());
     }
 
