@@ -212,7 +212,8 @@ CI の次に、コンポーネント拡充を先に進める。候補は「将�
 ### 含むもの（候補・詳細は版着手時に確定）
 
 - **UserMenu** — Avatar + Dropdown
-- **Combobox** — Dropdown ベースの拡張
+- **Combobox** — Dropdown ベースの拡張（仕様: [combobox.md](./specs/components/combobox.md)）
+- **InfiniteScroll** — 上下無限スクロール基盤（Combobox と同版・後接続。仕様: [infinite_scroll.md](./specs/components/infinite_scroll.md)）
 - **CookieConsent** — 詳細は版内仕様で詰める
 - 必要なら Tabs の不足分（`TwTabs` 最小は v0.9 系で先行済み）
 - 各 WC の style / kitchen-sink / Storybook への反映
