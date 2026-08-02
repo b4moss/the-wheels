@@ -1,0 +1,126 @@
+@import "@b4moss/the-wheels-style";
+
+/* App-only chrome for kitchen-sink (not part of the design system package). */
+
+.ks-shell {
+  --tw-mb: 0;
+  max-width: 96rem;
+  margin: 0 auto;
+  padding: 3.2rem calc(var(--tw-global-px) / 10 * 1rem);
+}
+
+.ks-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem 2.4rem;
+  margin-bottom: 4.8rem;
+  max-width: none;
+}
+
+.ks-nav a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.ks-meta {
+  color: var(--tw-text-caption);
+  max-width: none;
+}
+
+.ks-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1.6rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ks-swatch {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: var(--tw-bg-highlight);
+  border-radius: calc(var(--tw-global-radius) / 10 * 1rem);
+  overflow: hidden;
+}
+
+.ks-swatch__chip {
+  display: block;
+  height: 8rem;
+}
+
+.ks-swatch__body {
+  padding: 1.2rem 1.4rem 1.6rem;
+  max-width: none;
+}
+
+.ks-swatch__name,
+.ks-swatch__value {
+  display: block;
+  max-width: none;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.ks-swatch__name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--tw-text-highlight);
+}
+
+.ks-swatch__value {
+  margin-top: 0.4rem;
+  color: var(--tw-text-caption);
+}
+
+.ks-token-table {
+  width: 100%;
+  max-width: none;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.ks-token-table th,
+.ks-token-table td {
+  padding: 0.8rem 1.2rem 0.8rem 0;
+  border-bottom: 1px solid var(--tw-bg-button-optional);
+  vertical-align: top;
+}
+
+.ks-token-table th {
+  color: var(--tw-text-caption);
+  font-weight: 400;
+}
+
+.ks-token-table code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--tw-text-highlight);
+}
+
+.ks-focus-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  max-width: none;
+  margin: 0;
+}
+
+.ks-focus-row a,
+.ks-focus-row button {
+  font: inherit;
+  color: var(--tw-text-highlight);
+  background: var(--tw-bg-highlight);
+  border: 1px solid var(--tw-bg-button-optional);
+  border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+  padding: 0.8rem 1.4rem;
+  cursor: pointer;
+}
+
+.ks-focus-row a:hover {
+  text-decoration: none;
+}

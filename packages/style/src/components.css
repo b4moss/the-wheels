@@ -1,0 +1,6 @@
+@layer components {
+  /*
+   * Component styles land from v0.2.0 onward.
+   * Keep this layer declared so consumer overrides can target @layer components.
+   */
+}

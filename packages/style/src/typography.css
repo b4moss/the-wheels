@@ -1,0 +1,216 @@
+@layer base {
+  /*
+   * Root sizing: 62.5% → 1rem ≈ 10px (when browser default is 16px).
+   * Font files are NOT bundled; consumers must load Inter / Noto Sans JP.
+   */
+
+  :root {
+    font-size: 62.5%;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    line-height: 1;
+  }
+
+  body {
+    --tw-fz: 18;
+    font-size: calc(var(--tw-fz) / 10 * 1rem);
+    background-color: var(--tw-bg-page);
+    color: var(--tw-text-main);
+    font-family: var(--tw-font-sans);
+  }
+
+  @media (width < 480px) {
+    body {
+      --tw-fz: 16;
+    }
+  }
+
+  p,
+  ul,
+  ol,
+  dl,
+  li,
+  figure,
+  table,
+  blockquote,
+  summary,
+  details {
+    --tw-mb: 30;
+    --tw-fz: 18;
+    font-size: calc(var(--tw-fz) / 10 * 1rem);
+    line-height: var(--tw-body-text-lh);
+    text-align: justify;
+    max-width: 40ch;
+    margin-top: calc(
+      var(--tw-fz) * (1 - var(--tw-body-text-lh) / 2) * -1 * 1px
+    );
+    margin-bottom: calc(
+      var(--tw-fz) * (1 - var(--tw-body-text-lh) / 2) * -1 * 1px +
+        (var(--tw-mb) * 1px)
+    );
+  }
+
+  p:last-child,
+  ul:last-child,
+  ol:last-child,
+  dl:last-child,
+  li:last-child,
+  figure:last-child,
+  table:last-child,
+  blockquote:last-child,
+  summary:last-child,
+  details:last-child {
+    margin-bottom: 0;
+  }
+
+  summary,
+  details {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @media (width < 480px) {
+    p,
+    ul,
+    ol,
+    dl,
+    li,
+    figure,
+    table,
+    blockquote,
+    summary,
+    details {
+      --tw-fz: 16;
+      --tw-mb: 20;
+    }
+  }
+
+  a {
+    color: var(--tw-text-highlight);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav a:hover,
+  button a:hover {
+    text-decoration: none;
+  }
+
+  em {
+    color: var(--tw-text-caption);
+    font-size: 75%;
+  }
+
+  strong {
+    color: var(--tw-text-highlight);
+    font-weight: 700;
+  }
+
+  h1,
+  .heading-1 {
+    --tw-fz: 54;
+    font-size: calc(var(--tw-fz) / 10 * 1rem);
+    font-weight: 700;
+    color: var(--tw-text-highlight);
+  }
+
+  @media (width < 480px) {
+    h1,
+    .heading-1 {
+      --tw-fz: 36;
+    }
+  }
+
+  h1 ~ *,
+  .heading-1 ~ * {
+    margin-top: 4rem;
+  }
+
+  h2,
+  .heading-2 {
+    --tw-fz: 42;
+    --tw-mt: 85;
+    --tw-mb: 32;
+    font-size: calc(var(--tw-fz) / 10 * 1rem);
+    line-height: var(--tw-heading-lh);
+    font-weight: 700;
+    color: var(--tw-text-caption);
+    margin-top: calc(var(--tw-mt) / 10 * 1rem);
+    margin-bottom: calc(var(--tw-mb) / 10 * 1rem);
+  }
+
+  @media (width < 480px) {
+    h2,
+    .heading-2 {
+      --tw-fz: 28;
+      --tw-mt: 62;
+      --tw-mb: 12;
+      --tw-heading-lh: 1.14;
+    }
+  }
+
+  h1 + h2,
+  h2 + h3,
+  h3 + h4,
+  h4 + h5,
+  h5 + h6,
+  .heading-1 + .heading-2,
+  .heading-2 + .heading-3,
+  .heading-3 + .heading-4,
+  .heading-4 + .heading-5,
+  .heading-5 + .heading-6 {
+    margin-top: 1em;
+  }
+
+  @media (width < 480px) {
+    h1 + h2,
+    h2 + h3,
+    h3 + h4,
+    h4 + h5,
+    h5 + h6,
+    .heading-1 + .heading-2,
+    .heading-2 + .heading-3,
+    .heading-3 + .heading-4,
+    .heading-4 + .heading-5,
+    .heading-5 + .heading-6 {
+      margin-top: 2.4rem;
+    }
+  }
+
+  :is(h1, h2, h3, h4, h5, h6, .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6):first-child {
+    margin-top: 0;
+  }
+
+  :is(h1, h2, h3, h4, h5, h6, .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6) + * {
+    margin-top: 0;
+  }
+
+  main section,
+  article section {
+    --tw-mb: 95;
+    margin-bottom: calc(var(--tw-mb) / 10 * 1rem);
+  }
+
+  h1 + section,
+  .heading-1 + section {
+    --tw-mt: 36;
+    margin-top: calc(var(--tw-mt) / 10 * 1rem);
+  }
+
+  @media (width < 480px) {
+    h1 + section,
+    .heading-1 + section {
+      --tw-mt: 24;
+    }
+  }
+}

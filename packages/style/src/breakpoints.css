@@ -1,0 +1,15 @@
+@layer tokens {
+  /*
+   * Breakpoint tokens are defined in tokens.css (--tw-bp-*).
+   *
+   * Canonical ranges (match reference implementation):
+   *   sm: width < 480px
+   *   md: 481px – 1279px
+   *   lg: 1280px – 1679px
+   *   xl: width >= 1680px
+   *
+   * Example:
+   *   @media (width < 480px) { ... }
+   *   @media (width >= 1280px) { ... }
+   */
+}

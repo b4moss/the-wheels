@@ -50,15 +50,19 @@
 ### スタイルの責務
 
 - リセットCSS - `reset-css`を採用
-- フォント - `Noto Sans JP`を採用
+- フォント - Inter + Noto Sans JP（本体は同梱せず、stack のみ定義。利用側が用意）
+- ルート文字サイズは 62.5% 方式
+- 詳細は [スタイル仕様](./specs/style.md) を参照
 
 #### 長文の扱い
 
-- 1行は40文字以内に収めること
+- 1行はおおよそ40文字以内に収めること
+- CSS では `max-width: 40ch` で抑える
 
 #### デザイントークン
 
 - 色や数値は、デザイントークンに抽象化する。
+- CSS 変数名は `--tw-` 接頭辞を付ける（例: `--tw-text-main`）
 - ユースケースごとの変数を作る。
   - ユースケースにバリアントを求めるときは、下のユースケースから、oklchなどで色を変化させる。
   - 色ごとのデザイントークンは必要が出るまで作らない（常識的な設計では、`red-100`などの定義は不要と考える）。
@@ -66,21 +70,29 @@
 ### コンポーネントの責務
 
 - UIとしての振る舞いを提供する。
-- Web Componentsで実装する。
+- Web Componentsで実装する（JS クラス名は `TwButton` 形式。総則は [specs/components/all.md](./specs/components/all.md)）。
 - props, slotを適切に使用する。
 - Light DOMで実装する。Shadow DOMは使わない。
 - WCは、スタイルを持たない。（ユーザーが好きなCSSを当てられるようにするため）
+- 接頭辞はデフォルト `tw-`。import で自動登録。変えるときは import 前に `setPrefix`。
+- `data-tw-*` は接頭辞変更しても固定。将来のカスタムイベント名は接頭辞に追従（`getEventName`）。当面イベントは出さない。
 
 ## 技術スタック
 
-- Vite/TypeScript - npmパッケージモード
+- Vite/TypeScript - npmパッケージモード（`strict: true`）
+- 配布形式: ESM 主 + CJS も dual package
 - Vitest
 - Node.js 22+
-- Native CSS
+- Native CSS（`@layer`: `reset` / `tokens` / `base` / `components`）
+- ルート文字サイズ: 62.5% 方式
 - Web Components（Light DOM）
-- npm workspaces（または pnpm workspaces）
-- kitchen-sink: Vituum による MPA
+- Floating UI（`@floating-ui/dom`）— Dropdown 等のポジショニング（flip / shift デフォルト有効）
+- npm workspaces
+- kitchen-sink: Vituum による MPA（関心ごとの複数ページ）
 - Storybook: コンポーネントがある程度揃ってから導入する
+- 対応ブラウザ: Chrome / Firefox / Safari / Edge の最新2メジャー
+- ライセンス: MIT
+- npm 公開タイミングはバージョンに固定せず、PO が見計らう
 
 ## ディレクトリ構成案
 
@@ -95,6 +107,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 │   │   └── src/
 │   ├── components/              # @b4moss/the-wheels-components
 │   │   ├── package.json         # style は同梱しない
+│   │   ├── assets/              # 同梱 SVG（icons.md 参照。chevron は1種）
 │   │   └── src/
 │   │       ├── accordion/
 │   │       ├── modal/
@@ -118,9 +131,11 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 ```
 
 - 公開単位は最初からこの3つまでとする。
+- `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）を提供する。
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する。
 - kitchen-sink は抽出・実装の動作確認場とする。
 - Storybook はドキュメント／カタログ用途とし、Components がある程度揃ってから入れる。
+- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。ロードマップは [roadmap.md](./roadmap.md) を参照。
 
 ### 参考リポジトリ（リポジトリ外・将来削除）
 
@@ -149,10 +164,10 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 ##### 新規
 
-- Dropdown（Popper.js 採用）
+- Dropdown（Floating UI 採用）
 - ActionMenu（Dropdown + SVGLoader。メニュー項目は slot 列挙）
 - Avatar
-- Vertical Nav
+- Vertical Nav（実体は Item。タグは `tw-vertical-nav`。リストは素の HTML）
 - Spinner（SVGLoader 経由）
 
 ##### 今回対象外
@@ -164,13 +179,26 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 ##### 実装順（目安）
 
-1. スタイル土台（typo / token / reset / focus）
-2. SVGLoader → Spinner → Button
-3. Dropdown → ActionMenu
-4. Accordion / Modal
-5. Avatar / Vertical Nav
+詳細な版分けは [roadmap.md](./roadmap.md) を参照。
 
-仕様の詳細は `docs/specs/components/` を参照。
+1. v0.1.0 スタイル土台（[specs/style.md](./specs/style.md)）
+2. v0.2.0 SVGLoader → Spinner → Button
+3. v0.3.0 Dropdown → ActionMenu
+4. v0.4.0 Accordion / Modal
+5. v0.5.0 Avatar / Vertical Nav
+6. v0.6.0〜 全部入り実用化 → Storybook → a11y → 安定化 → v1.0.0
+
+仕様の詳細は `docs/specs/components/`、`docs/specs/style.md`、同梱アイコンは `docs/specs/icons.md` を参照。
+
+## テスト方針
+
+[テスト方針](./test.md)を参照して下さい。
+
+## 関数・メソッドの分割方針
+
+- UNIX哲学にある **1つのことをうまくやる** を大切にする。
+- 1ロジック、1責務と考える。
+- 関数にするか、クラス・メソッドにするかは、文脈に応じて適切に判断する。
 
 ## 特記事項
 
