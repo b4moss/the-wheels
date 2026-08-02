@@ -1,6 +1,6 @@
 {
   "name": "@b4moss/the-wheels",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "The Wheels all-in-one package (style + components)",
   "type": "module",
   "license": "MIT",
@@ -19,8 +19,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@b4moss/the-wheels-components": "0.4.0",
-    "@b4moss/the-wheels-style": "0.4.0"
+    "@b4moss/the-wheels-components": "0.5.0",
+    "@b4moss/the-wheels-style": "0.5.0"
   },
   "devDependencies": {
     "typescript": "~5.6.2",

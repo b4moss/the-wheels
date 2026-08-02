@@ -1,0 +1,57 @@
+@layer base {
+  /*
+   * Minimal layout utilities for demos (kitchen-sink / consumer pages).
+   * Not a full layout system. Class names have no .tw- prefix.
+   */
+
+  .container {
+    width: 100%;
+    max-width: 118rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  @media (480px < width < 1200px) {
+    .container {
+      padding-left: 8.25%;
+      padding-right: 8.25%;
+    }
+  }
+
+  @media (width < 480px) {
+    .container {
+      padding-left: 6.25%;
+      padding-right: 6.25%;
+    }
+  }
+
+  .layout-sidebar {
+    display: flex;
+    flex-flow: row;
+    gap: 4.5rem;
+    align-items: flex-start;
+  }
+
+  .layout-sidebar .sidebar {
+    min-width: 22rem;
+    flex: 0 0 auto;
+  }
+
+  .layout-sidebar > :not(.sidebar) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  @media (width < 1280px) {
+    .layout-sidebar {
+      flex-flow: column;
+      gap: 3rem;
+    }
+
+    .layout-sidebar .sidebar {
+      min-width: 0;
+      width: 100%;
+    }
+  }
+}

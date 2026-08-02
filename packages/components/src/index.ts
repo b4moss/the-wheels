@@ -19,3 +19,13 @@ export {
 } from "./accordion/accordion-group.js";
 export { CHEVRON_SRC, TwAccordion } from "./accordion/tw-accordion.js";
 export { CLOSE_SRC, TwModal } from "./modal/tw-modal.js";
+export { getFirstGrapheme } from "./avatar/grapheme.js";
+export {
+  contrastRatio,
+  DEFAULT_AVATAR_BG,
+  parseColor,
+  pickContrastingTextColor,
+  relativeLuminance,
+} from "./avatar/contrast.js";
+export { TwAvatar } from "./avatar/tw-avatar.js";
+export { TwVerticalNav } from "./vertical_nav/tw-vertical-nav.js";
