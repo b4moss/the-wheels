@@ -1,9 +1,12 @@
 {
   "name": "@b4moss/the-wheels",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "The Wheels all-in-one package (style + components)",
   "type": "module",
   "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "src",
     "dist",
@@ -11,19 +14,22 @@
   ],
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
-    }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style": "./src/style.css"
   },
   "scripts": {
     "build": "vite build"
   },
   "dependencies": {
-    "@b4moss/the-wheels-components": "0.5.0",
-    "@b4moss/the-wheels-style": "0.5.0"
+    "@b4moss/the-wheels-components": "0.6.0",
+    "@b4moss/the-wheels-style": "0.6.0"
   },
   "devDependencies": {
     "typescript": "~5.6.2",
-    "vite": "^6.0.1"
+    "vite": "^6.0.1",
+    "vite-plugin-dts": "^4.5.4"
   }
 }

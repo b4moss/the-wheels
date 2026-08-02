@@ -165,9 +165,10 @@ export class TwSvgLoader extends HTMLElement {
         target.style.stroke = "";
         target.style.color = "";
       }
-    } else if (target instanceof HTMLElement) {
-      if (width != null) target.style.width = "100%";
-      if (height != null) target.style.height = "100%";
+    } else {
+      const el = target as HTMLElement;
+      if (width != null) el.style.width = "100%";
+      if (height != null) el.style.height = "100%";
     }
   }
 }
