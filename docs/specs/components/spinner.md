@@ -13,8 +13,8 @@
 
 ## 属性
 
-- `src`: 省略可。未指定時はパッケージ同梱のデフォルト spinner SVG を使う
-  - アセットは `packages/components/assets/` に置く
+- `src`: 省略可。未指定時はパッケージ同梱の `spinner.svg`（アニメーション込み）を使う
+  - 一覧は [icons.md](../icons.md) を参照
 - `width` / `height`: サイズ。未指定時は親の文字サイズに追従（`1em` 相当）
 - SVGLoader に委譲する見た目系（`stroke-color` 等）は必要に応じて透過する
 

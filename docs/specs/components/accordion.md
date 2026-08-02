@@ -18,6 +18,7 @@
 - header（`summary`）
 - content（`details` 内の本体）
 - header をクリックすると content が展開される
+- 開閉インジケータは同梱の `chevron.svg` を1つ使い、SVGLoader の `rotate` で向きを変える
 
 ## 一斉開閉
 

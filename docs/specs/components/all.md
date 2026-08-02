@@ -36,7 +36,10 @@
 
 ## 同梱アセット
 
-- Spinner / ActionMenu 三本点 / Modal 閉じるボタンなどの同梱 SVG は `packages/components/assets/` に集約する
+- 同梱 SVG は `packages/components/assets/` に集約する
+- 対象一覧・入手方針は [icons.md](../icons.md) を参照
+  - 例: `spinner`, `more-vertical`, `close`, `menu`, `check`, `chevron`（1種・rotate で開閉）, `lock`
+  - 上記以外は同梱しない（利用側が用意）
 
 ## 内部要素のクラス
 

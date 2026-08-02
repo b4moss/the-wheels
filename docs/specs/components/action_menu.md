@@ -12,8 +12,8 @@
 
 ## トリガーアイコン
 
-- パッケージ同梱のデフォルト SVG（三本点）を SVGLoader で表示する
-  - アセットは `packages/components/assets/` に置く
+- パッケージ同梱のデフォルト SVG（`more-vertical.svg`）を SVGLoader で表示する
+  - 一覧は [icons.md](../icons.md) を参照
 - 利用側で差し替え可能とする
 
 ## メニュー項目

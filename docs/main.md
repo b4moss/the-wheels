@@ -107,7 +107,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 │   │   └── src/
 │   ├── components/              # @b4moss/the-wheels-components
 │   │   ├── package.json         # style は同梱しない
-│   │   ├── assets/              # 同梱 SVG（spinner, more 等）
+│   │   ├── assets/              # 同梱 SVG（icons.md 参照。chevron は1種）
 │   │   └── src/
 │   │       ├── accordion/
 │   │       ├── modal/
@@ -188,7 +188,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 5. v0.5.0 Avatar / Vertical Nav
 6. v0.6.0〜 全部入り実用化 → Storybook → a11y → 安定化 → v1.0.0
 
-仕様の詳細は `docs/specs/components/` および `docs/specs/style.md` を参照。
+仕様の詳細は `docs/specs/components/`、`docs/specs/style.md`、同梱アイコンは `docs/specs/icons.md` を参照。
 
 ## テスト方針
 

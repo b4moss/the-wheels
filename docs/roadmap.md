@@ -49,7 +49,9 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
   - SVGLoader（fetch、失敗時プレースホルダ、HTTP キャッシュ依存）
   - Spinner（同梱 SVG + SVG アニメーション、デフォルト `1em`）
   - Button（`variant` / `disable-on-click` / `reset()` / slot）
-- 同梱アセット: `packages/components/assets/`（spinner 等）
+- 同梱アセット: `packages/components/assets/`（詳細は [icons.md](./specs/icons.md)）
+  - `spinner`, `more-vertical`, `close`, `menu`, `check`, `chevron`（rotate で開閉）, `lock`
+  - これ以外は同梱しない
 - style: Button / Spinner 用の `components` レイヤーを追加
 - kitchen-sink: 上記コンポーネントの確認ページ
 - Vitest: ピュアロジック中心（TDD。スタイル自動テストはしない）
