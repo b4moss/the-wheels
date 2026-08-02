@@ -1,0 +1,183 @@
+# the-wheels-reconstruct
+
+このプロジェクトは、`the-wheels`というフロントエンドプロジェクトの再構築です。
+
+## 目的
+
+`the-wheels`は、以下の目的で開発されました。
+
+- 合同会社 知的・自転車でよく使われるUI集（デザインシステム）として活用する。
+- 「すぐ使える最小同梱」を目指す。
+  - 日本語向けの見た目と、毎回必要になる基本機能は最初から入れる。
+  - 既存 OSS UI 集にありがちな、使わない機能や装飾的な部品は入れない。
+  - 全部入りではなく、必要十分。足りないものは後から足す。
+- スタイルと機能を分け、ネイティブCSS、Web Componentsを採用し、Web標準で利用できるようにする。
+- **ゴール**: npmパッケージとして公開する。
+
+
+## 背景
+
+- フロントエンドに関しては、「すぐ使える最小同梱」にしたかった。
+- スタイル・WebComponentsで分けて開発し、時間がかかっていた。いまだに完成していない。
+- 別々の開発を、モノリポ（workspaces）に統合したい。
+- スタイルやコンポーネントは別々にnpmパッケージ化するが、上層で全部入りのパッケージも用意したい。
+
+## やること
+
+- 作りかけのソースコードから、必要なエッセンスを抽出する。
+  - [the-wheels](../../the-wheels/)
+  - [the-wheels-css](../../the-wheels-css/)
+  - [the-wheels-webcomponents](../../the-wheels-webcomponents/)
+  - これらのリポジトリは、必要がなくなれば破棄する。
+- 当リポジトリを、正当な`the-wheels`として、将来リリースする。
+  - その時は、リポジトリ名称も変更する。
+
+## ネーミング
+
+- **正式名称**: `The Wheels` - 自然言語として扱う場合の固有名詞
+- **識別子**:
+  - `the-wheels`
+  - `thewheels` - ハイフンが使えない場合
+
+## フィロソフィーと責務
+
+- 日本語で読みやすいUIを提供すること
+- 目に優しい
+- 認知としてわかりやすい
+- 組み込みが簡便であること
+- しかし、必要最低限の機能と、少しだけ使いやすい機能を提供すること
+
+### スタイルの責務
+
+- リセットCSS - `reset-css`を採用
+- フォント - `Noto Sans JP`を採用
+
+#### 長文の扱い
+
+- 1行は40文字以内に収めること
+
+#### デザイントークン
+
+- 色や数値は、デザイントークンに抽象化する。
+- ユースケースごとの変数を作る。
+  - ユースケースにバリアントを求めるときは、下のユースケースから、oklchなどで色を変化させる。
+  - 色ごとのデザイントークンは必要が出るまで作らない（常識的な設計では、`red-100`などの定義は不要と考える）。
+
+### コンポーネントの責務
+
+- UIとしての振る舞いを提供する。
+- Web Componentsで実装する。
+- props, slotを適切に使用する。
+- Light DOMで実装する。Shadow DOMは使わない。
+- WCは、スタイルを持たない。（ユーザーが好きなCSSを当てられるようにするため）
+
+## 技術スタック
+
+- Vite/TypeScript - npmパッケージモード
+- Vitest
+- Node.js 22+
+- Native CSS
+- Web Components（Light DOM）
+- npm workspaces（または pnpm workspaces）
+- kitchen-sink: Vituum による MPA
+- Storybook: コンポーネントがある程度揃ってから導入する
+
+## ディレクトリ構成案
+
+```text
+the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム）
+├── package.json                 # workspaces root
+├── docs/
+│   └── main.md
+├── packages/
+│   ├── style/                   # @b4moss/the-wheels-style
+│   │   ├── package.json
+│   │   └── src/
+│   ├── components/              # @b4moss/the-wheels-components
+│   │   ├── package.json         # style は同梱しない
+│   │   └── src/
+│   │       ├── accordion/
+│   │       ├── modal/
+│   │       └── ...
+│   └── the-wheels/              # @b4moss/the-wheels（全部入り）
+│       ├── package.json         # deps: style + components
+│       └── src/
+└── apps/
+    ├── kitchen-sink/            # 動作確認用（Vituum MPA）
+    │   └── package.json
+    └── storybook/               # コンポーネントが揃ってから実装
+        └── package.json
+```
+
+### パッケージ関係
+
+```text
+@b4moss/the-wheels
+  ├─ @b4moss/the-wheels-style
+  └─ @b4moss/the-wheels-components   # style 非依存（Light DOM）
+```
+
+- 公開単位は最初からこの3つまでとする。
+- 部品ごとの個別パッケージ分割は、需要が出てから検討する。
+- kitchen-sink は抽出・実装の動作確認場とする。
+- Storybook はドキュメント／カタログ用途とし、Components がある程度揃ってから入れる。
+
+### 参考リポジトリ（リポジトリ外・将来削除）
+
+- [the-wheels](../../the-wheels/)
+- [the-wheels-css](../../the-wheels-css/)
+- [the-wheels-webcomponents](../../the-wheels-webcomponents/)
+
+### 参考リポジトリから抽出する要素
+
+#### スタイル（ほぼ再利用）
+
+- Typography
+- 色のルール（ユースケース起点のトークン）
+- reset, focus, spacing, breakpoints
+- コンポーネント用スタイル（下記コンポーネントに対応するもの）
+- レイアウト最低限（container / sidebar など。Vertical Nav のデモに必要）
+
+#### コンポーネント
+
+##### 再利用
+
+- Button（WC。仕様: `docs/specs/components/button.md`）
+- Accordion（Shadow DOM → Light DOM に書き換え）
+- Modal（同上。`<dialog>` 採用）
+- SVGLoader（参照に明確な実装がなければ新規。Button / Nav の依存元になりやすい）
+
+##### 新規
+
+- Dropdown（Popper.js 採用）
+- ActionMenu（Dropdown + SVGLoader。メニュー項目は slot 列挙）
+- Avatar
+- Vertical Nav
+- Spinner（SVGLoader 経由）
+
+##### 今回対象外
+
+- Card
+- ContentSection
+- CookieConsent
+- フォーム系（`yoshinani-form` 側）
+
+##### 実装順（目安）
+
+1. スタイル土台（typo / token / reset / focus）
+2. SVGLoader → Spinner → Button
+3. Dropdown → ActionMenu
+4. Accordion / Modal
+5. Avatar / Vertical Nav
+
+仕様の詳細は `docs/specs/components/` を参照。
+
+## 特記事項
+
+- the-wheelsでは、フォームは扱わない
+- フォームは別途`yoshinani-form`というプロダクトを開発している。
+  - 状況次第で、これもモノリポにするかもしれない。
+
+----
+
+以上
