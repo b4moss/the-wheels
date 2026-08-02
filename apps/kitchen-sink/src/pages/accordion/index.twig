@@ -1,5 +1,5 @@
 {% set current = "accordion" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}Accordion — The Wheels kitchen-sink{% endblock %}
 
@@ -7,74 +7,128 @@
   <h1>Accordion</h1>
   <p class="ks-meta">単体開閉 · chevron · 飛地グループ一斉開閉</p>
 
-  <section>
-    <h2>単体</h2>
-    <tw-accordion>
-      <span slot="header">セクション A</span>
-      <div slot="content">
-        <p>summary クリックまたは open/close で開閉します。chevron は向きが変わります。</p>
-      </div>
-    </tw-accordion>
-    <tw-accordion>
-      <span slot="header">セクション B（同時オープン可）</span>
-      <div slot="content">
-        <p>複数パネルを同時に開けます（排他モードなし）。</p>
-      </div>
-    </tw-accordion>
-    <p class="ks-row">
-      <tw-button
-        type="button"
-        id="open-first"
-        variant="stroke"
-        >最初を open()</tw-button
-      >
-      <tw-button
-        type="button"
-        id="close-first"
-        variant="ghost"
-        >最初を close()</tw-button
-      >
-    </p>
-  </section>
-
-  <section>
-    <h2>グループ（飛地）</h2>
-    <p class="ks-row">
-      <button type="button" data-tw-accordion-open="faq">FAQ をすべて開く</button>
-      <button type="button" data-tw-accordion-close="faq">FAQ をすべて閉じる</button>
-    </p>
-
-    <tw-accordion data-tw-accordion-group="faq">
-      <span slot="header">FAQ 1</span>
-      <div slot="content"><p>グループ faq のパネルです。</p></div>
-    </tw-accordion>
-
-    <div class="ks-disjoint">
-      <p>（間に別コンテンツ）</p>
-      <tw-accordion data-tw-accordion-group="other">
-        <span slot="header">別グループ</span>
-        <div slot="content"><p>こちらは影響を受けません。</p></div>
+  {% set preview %}
+    <section>
+      <h2>単体</h2>
+      <tw-accordion>
+        <span slot="header">配送について</span>
+        <div slot="content">
+          <p>
+            ご注文確定後、2〜4 営業日以内に発送します。追跡番号は出荷完了メールに記載されます。
+          </p>
+        </div>
       </tw-accordion>
-    </div>
+      <tw-accordion>
+        <span slot="header">返品・交換</span>
+        <div slot="content">
+          <p>
+            到着から 14 日以内であれば未使用品に限り返品できます。交換は在庫がある場合のみ対応します。
+          </p>
+        </div>
+      </tw-accordion>
+      {# Use div, not p: avoid <p> autoclose around custom-element hosts / nested blocks. #}
+      <div class="ks-row">
+        <tw-button type="button" id="open-first" variant="stroke"
+          >最初を open()</tw-button
+        >
+        <tw-button type="button" id="close-first" variant="stroke"
+          >最初を close()</tw-button
+        >
+      </div>
+    </section>
 
-    <tw-accordion data-tw-accordion-group="faq">
-      <span slot="header">FAQ 2（飛地）</span>
-      <div slot="content"><p>DOM 上離れていても同一グループです。</p></div>
-    </tw-accordion>
-  </section>
+    <section>
+      <h2>グループ（飛地）</h2>
+      <div class="ks-row">
+        <tw-button type="button" data-tw-accordion-open="faq" variant="stroke"
+          >FAQ をすべて開く</tw-button
+        >
+        <tw-button type="button" data-tw-accordion-close="faq" variant="ghost"
+          >FAQ をすべて閉じる</tw-button
+        >
+      </div>
+
+      <tw-accordion data-tw-accordion-group="faq">
+        <span slot="header">支払い方法は何がありますか？</span>
+        <div slot="content">
+          <p>クレジットカード、銀行振込、コンビニ払いに対応しています。</p>
+        </div>
+      </tw-accordion>
+
+      <div class="ks-disjoint">
+        <p>（間に別コンテンツ — キャンペーン案内など）</p>
+        <tw-accordion data-tw-accordion-group="other">
+          <span slot="header">キャンペーン規約</span>
+          <div slot="content">
+            <p>こちらは別グループのため、FAQ 一斉開閉の影響を受けません。</p>
+          </div>
+        </tw-accordion>
+      </div>
+
+      <tw-accordion data-tw-accordion-group="faq">
+        <span slot="header">領収書は発行できますか？（飛地）</span>
+        <div slot="content">
+          <p>マイページの注文履歴から PDF 領収書をダウンロードできます。</p>
+        </div>
+      </tw-accordion>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-accordion>
+  <span slot="header">配送について</span>
+  <div slot="content">
+    <p>ご注文確定後、2〜4 営業日以内に発送します。</p>
+  </div>
+</tw-accordion>
+
+<div class="ks-row">
+  <tw-button type="button" id="…" variant="stroke">最初を open()</tw-button>
+  <tw-button type="button" id="…" variant="stroke">最初を close()</tw-button>
+</div>
+
+<tw-button type="button" data-tw-accordion-open="faq" variant="stroke">FAQ をすべて開く</tw-button>
+<tw-button type="button" data-tw-accordion-close="faq" variant="ghost">FAQ をすべて閉じる</tw-button>
+
+<tw-accordion data-tw-accordion-group="faq">
+  <span slot="header">支払い方法は何がありますか？</span>
+  <div slot="content">
+    <p>クレジットカード、銀行振込、コンビニ払いに対応しています。</p>
+  </div>
+</tw-accordion>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const first = document.querySelector("tw-accordion");
+document.getElementById("open-first")?.addEventListener("click", () => {
+  first?.open();
+});
+document.getElementById("close-first")?.addEventListener("click", () => {
+  first?.close();
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwAccordion } from "@b4moss/the-wheels";
+
+const first = document.querySelector("tw-accordion") as TwAccordion | null;
+document.getElementById("open-first")?.addEventListener("click", () => {
+  first?.open();
+});
+document.getElementById("close-first")?.addEventListener("click", () => {
+  first?.close();
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
 {% endblock %}
 
 {% block scripts %}
-  <script type="module">
-    import "@b4moss/the-wheels";
-  </script>
-  <script type="module">
-    const first = document.querySelector("tw-accordion");
-    document.getElementById("open-first")?.addEventListener("click", () => {
-      first?.open();
-    });
-    document.getElementById("close-first")?.addEventListener("click", () => {
-      first?.close();
-    });
-  </script>
+  {# External module: Vite html-proxy can drop inline script bodies after HMR. #}
+  <script type="module" src="/src/scripts/demos/accordion.js"></script>
 {% endblock %}

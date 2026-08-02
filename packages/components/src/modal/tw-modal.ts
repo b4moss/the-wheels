@@ -153,6 +153,16 @@ export class TwModal extends HTMLElement {
       }
     }
 
+    // Already projected — reconnect must not wipe header/content/footer.
+    if (
+      headerNodes.length === 0 &&
+      contentNodes.length === 0 &&
+      footerNodes.length === 0
+    ) {
+      this.#projecting = false;
+      return;
+    }
+
     this.#headerBody.replaceChildren(...headerNodes);
 
     if (this.#hasContent(contentNodes)) {

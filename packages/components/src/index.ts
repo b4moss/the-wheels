@@ -29,3 +29,4 @@ export {
 } from "./avatar/contrast.js";
 export { TwAvatar } from "./avatar/tw-avatar.js";
 export { TwVerticalNav } from "./vertical_nav/tw-vertical-nav.js";
+export { TwTabs } from "./tabs/tw-tabs.js";

@@ -21,6 +21,7 @@ const REQUIRED_UMBRELLA_EXPORTS = [
   "TwModal",
   "TwAvatar",
   "TwVerticalNav",
+  "TwTabs",
 ] as const;
 
 const PACKAGE_DIRS: Record<string, string> = {

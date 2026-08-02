@@ -1,0 +1,27 @@
+{% extends "@layouts/base.twig" %}
+
+{#
+  App shell: header / sidebar / main / footer.
+  Class names (`layout-dashboard*`) are reusable for a future SaaS scaffold.
+#}
+{% block body %}
+  <div class="layout-dashboard{% if shell_class %} {{ shell_class }}{% endif %}">
+    <header class="layout-dashboard__header">
+      <a href="/" class="layout-dashboard__brand">The Wheels</a>
+    </header>
+
+    <div class="layout-dashboard__body">
+      <aside class="layout-dashboard__sidebar">
+        {% include "@partials/sidebar-nav.twig" %}
+      </aside>
+
+      <main class="layout-dashboard__main" id="main">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <footer class="layout-dashboard__footer">
+      {% include "@partials/global-footer.twig" %}
+    </footer>
+  </div>
+{% endblock %}

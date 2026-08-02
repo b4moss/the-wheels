@@ -1,5 +1,5 @@
 {% set current = "avatar" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}Avatar — The Wheels kitchen-sink{% endblock %}
 
@@ -7,33 +7,71 @@
   <h1>Avatar</h1>
   <p class="ks-meta">書記素イニシャル · コントラスト · 画像モード</p>
 
-  <section>
-    <h2>イニシャル</h2>
-    <p class="ks-focus-row">
-      <tw-avatar name="山田太郎"></tw-avatar>
-      <tw-avatar name="Alice" color="#3b3b3b"></tw-avatar>
-      <tw-avatar name="😀テスト" color="#bc2f2f"></tw-avatar>
-      <tw-avatar name="日本" color="#000000" width="64" height="64"></tw-avatar>
-    </p>
-  </section>
+  {% set preview %}
+    <section>
+      <h2>イニシャル</h2>
+      <p class="ks-focus-row">
+        <tw-avatar name="山田太郎"></tw-avatar>
+        <tw-avatar name="佐藤花子" color="#3b3b3b"></tw-avatar>
+        <tw-avatar name="Alice Chen" color="#494949"></tw-avatar>
+        <tw-avatar name="😀テスト" color="#bc2f2f"></tw-avatar>
+        <tw-avatar name="日本" color="#000000" width="64" height="64"></tw-avatar>
+      </p>
+    </section>
 
-  <section>
-    <h2>画像（枠としての背景）</h2>
-    <p class="ks-focus-row">
-      <tw-avatar
-        image-path="https://picsum.photos/seed/wheels/128"
-        alt="Demo user"
-        name="山"
-        color="#3b3b3b"
-        width="64"
-        height="64"
-      ></tw-avatar>
-    </p>
-  </section>
+    <section>
+      <h2>画像（枠としての背景）</h2>
+      <p class="ks-focus-row">
+        <tw-avatar
+          image-path="https://picsum.photos/seed/wheels/128"
+          alt="山田太郎"
+          name="山田太郎"
+          color="#3b3b3b"
+          width="64"
+          height="64"
+        ></tw-avatar>
+        <tw-avatar
+          image-path="https://picsum.photos/seed/wheels-b/128"
+          alt="佐藤花子"
+          name="佐藤花子"
+          color="#494949"
+          width="48"
+          height="48"
+        ></tw-avatar>
+      </p>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-avatar name="山田太郎"></tw-avatar>
+<tw-avatar name="佐藤花子" color="#3b3b3b"></tw-avatar>
+<tw-avatar name="Alice Chen" color="#494949"></tw-avatar>
+<tw-avatar name="日本" color="#000000" width="64" height="64"></tw-avatar>
+
+<tw-avatar
+  image-path="https://picsum.photos/seed/wheels/128"
+  alt="山田太郎"
+  name="山田太郎"
+  color="#3b3b3b"
+  width="64"
+  height="64"
+></tw-avatar>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+// tw-avatar は import 時に自動登録されます
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
 {% endblock %}
 
 {% block scripts %}
-  <script type="module">
-    import "@b4moss/the-wheels";
-  </script>
+  <script type="module" src="/src/scripts/demos/register.js"></script>
 {% endblock %}

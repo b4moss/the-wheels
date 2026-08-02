@@ -1,0 +1,12 @@
+{% extends "@layouts/base.twig" %}
+
+{% block body %}
+  <div class="ks-home">
+    <main id="main">
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      {% include "@partials/global-footer.twig" %}
+    </footer>
+  </div>
+{% endblock %}

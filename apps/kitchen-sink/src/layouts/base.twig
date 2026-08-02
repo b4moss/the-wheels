@@ -5,14 +5,8 @@
     <title>{% block title %}The Wheels — kitchen-sink{% endblock %}</title>
   </head>
   <body>
-    {% block body %}
-      <div class="ks-shell{% if shell_class %} {{ shell_class }}{% endif %}">
-        {% include "@partials/nav.twig" %}
-        <main>
-          {% block content %}{% endblock %}
-        </main>
-      </div>
-    {% endblock %}
+    {% block body %}{% endblock %}
     {% block scripts %}{% endblock %}
+    <script type="module" src="/src/scripts/highlight.js"></script>
   </body>
 </html>

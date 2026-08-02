@@ -1,5 +1,5 @@
 {% set current = "spinner" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}Spinner — The Wheels kitchen-sink{% endblock %}
 
@@ -7,25 +7,58 @@
   <h1>Spinner</h1>
   <p class="ks-meta">同梱 spinner.svg（SVG アニメーション）/ デフォルト 1em</p>
 
-  <section>
-    <h2>デフォルト（1em）</h2>
-    <p style="font-size: 2.4rem">
-      読み込み中 <tw-spinner stroke-color="var(--tw-text-main)"></tw-spinner>
-    </p>
-  </section>
+  {% set preview %}
+    <section>
+      <h2>デフォルト（1em）</h2>
+      <p style="font-size: 2.4rem">
+        読み込み中 <tw-spinner stroke-color="var(--tw-text-main)" aria-label="読み込み中"></tw-spinner>
+      </p>
+    </section>
 
-  <section>
-    <h2>サイズ指定</h2>
-    <p class="ks-row">
-      <tw-spinner width="16" height="16" stroke-color="var(--tw-text-main)"></tw-spinner>
-      <tw-spinner width="32" height="32" stroke-color="var(--tw-text-main)"></tw-spinner>
-      <tw-spinner width="48" height="48" stroke-color="var(--tw-alert)"></tw-spinner>
-    </p>
-  </section>
+    <section>
+      <h2>サイズ指定</h2>
+      <div class="ks-row">
+        <span class="ks-row">
+          <tw-spinner width="16" height="16" stroke-color="var(--tw-text-main)" aria-label="小"></tw-spinner>
+          保存中…
+        </span>
+        <span class="ks-row">
+          <tw-spinner width="32" height="32" stroke-color="var(--tw-text-main)" aria-label="中"></tw-spinner>
+          同期中…
+        </span>
+        <span class="ks-row">
+          <tw-spinner width="48" height="48" stroke-color="var(--tw-alert)" aria-label="大"></tw-spinner>
+          処理に失敗しました。再試行中…
+        </span>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<p style="font-size: 2.4rem">
+  読み込み中
+  <tw-spinner stroke-color="var(--tw-text-main)" aria-label="読み込み中"></tw-spinner>
+</p>
+
+<tw-spinner width="16" height="16" stroke-color="var(--tw-text-main)" aria-label="小"></tw-spinner>
+<tw-spinner width="32" height="32" stroke-color="var(--tw-text-main)" aria-label="中"></tw-spinner>
+<tw-spinner width="48" height="48" stroke-color="var(--tw-alert)" aria-label="大"></tw-spinner>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+// tw-spinner は import 時に自動登録されます
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
 {% endblock %}
 
 {% block scripts %}
-  <script type="module">
-    import "@b4moss/the-wheels";
-  </script>
+  <script type="module" src="/src/scripts/demos/register.js"></script>
 {% endblock %}

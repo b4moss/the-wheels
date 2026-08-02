@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@b4moss/the-wheels": "0.9.0",
-    "@b4moss/the-wheels-components": "0.9.0"
+    "@b4moss/the-wheels-components": "0.9.0",
+    "highlight.js": "^11.11.1"
   },
   "devDependencies": {
     "@vituum/vite-plugin-twig": "^1.1.0",

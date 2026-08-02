@@ -1,5 +1,5 @@
 {% set current = "typography" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}Typography — The Wheels kitchen-sink{% endblock %}
 
@@ -47,5 +47,32 @@
     <h2>補助クラス</h2>
     <p class="heading-1">.heading-1</p>
     <p class="heading-2">.heading-2</p>
+  </section>
+
+  <section>
+    <h2>サンプルコード</h2>
+    {% set html_sample %}
+<h1>見出し 1</h1>
+<h2>見出し 2</h2>
+<p>
+  本文は <code>max-width: 40ch</code> で抑えます。
+  <strong>強調</strong>と <em>注釈</em>、<a href="#focus">リンク</a>も確認できます。
+</p>
+<ul>
+  <li>箇条書き</li>
+  <li>日本語と Latin</li>
+</ul>
+<p class="heading-1">.heading-1</p>
+<p class="heading-2">.heading-2</p>
+    {% endset %}
+    {% set css_sample %}
+@import "@b4moss/the-wheels/style";
+    {% endset %}
+    <div class="ks-sample">
+      <h3 class="ks-sample__label">HTML</h3>
+      {% include "@partials/code-block.twig" with { language: "html", code: html_sample } only %}
+      <h3 class="ks-sample__label">CSS</h3>
+      {% include "@partials/code-block.twig" with { language: "css", code: css_sample } only %}
+    </div>
   </section>
 {% endblock %}

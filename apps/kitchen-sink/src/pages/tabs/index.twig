@@ -1,0 +1,103 @@
+{% set current = "tabs" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Tabs — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Tabs</h1>
+  <p class="ks-meta">slot=tab / slot=panel · selected-index · select()</p>
+
+  {% set preview %}
+    <section>
+      <h2>基本</h2>
+      <tw-tabs>
+        <button type="button" slot="tab">概要</button>
+        <button type="button" slot="tab">詳細</button>
+        <button type="button" slot="tab">履歴</button>
+        <div slot="panel">
+          <p>プロジェクトの概要です。タブをクリックするとパネルが切り替わります。</p>
+        </div>
+        <div slot="panel">
+          <p>詳細パネル。矢印キーでもタブを移動できます。</p>
+        </div>
+        <div slot="panel">
+          <p>履歴パネル。初期選択は先頭（selected-index=0）です。</p>
+        </div>
+      </tw-tabs>
+    </section>
+
+    <section>
+      <h2>selected-index / select()</h2>
+      <tw-tabs id="tabs-controlled" selected-index="1">
+        <button type="button" slot="tab">JS</button>
+        <button type="button" slot="tab">TS</button>
+        <div slot="panel">
+          <pre class="ks-code"><code>console.log("js");</code></pre>
+        </div>
+        <div slot="panel">
+          <pre class="ks-code"><code>console.log("ts");</code></pre>
+        </div>
+      </tw-tabs>
+      <div class="ks-row" style="margin-top: 1.6rem">
+        <tw-button type="button" id="select-js" variant="stroke">select(0)</tw-button>
+        <tw-button type="button" id="select-ts" variant="ghost">select(1)</tw-button>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-tabs>
+  <button type="button" slot="tab">概要</button>
+  <button type="button" slot="tab">詳細</button>
+  <div slot="panel">
+    <p>プロジェクトの概要です。</p>
+  </div>
+  <div slot="panel">
+    <p>詳細パネル。</p>
+  </div>
+</tw-tabs>
+
+<tw-tabs id="…" selected-index="1">
+  <button type="button" slot="tab">JS</button>
+  <button type="button" slot="tab">TS</button>
+  <div slot="panel"><pre><code>console.log("js");</code></pre></div>
+  <div slot="panel"><pre><code>console.log("ts");</code></pre></div>
+</tw-tabs>
+
+<button type="button" id="…">select(0)</button>
+<button type="button" id="…">select(1)</button>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const tabs = document.getElementById("tabs-controlled");
+document.getElementById("select-js")?.addEventListener("click", () => {
+  tabs?.select(0);
+});
+document.getElementById("select-ts")?.addEventListener("click", () => {
+  tabs?.select(1);
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwTabs } from "@b4moss/the-wheels";
+
+const tabs = document.getElementById("tabs-controlled") as TwTabs | null;
+document.getElementById("select-js")?.addEventListener("click", () => {
+  tabs?.select(0);
+});
+document.getElementById("select-ts")?.addEventListener("click", () => {
+  tabs?.select(1);
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/tabs.js"></script>
+{% endblock %}

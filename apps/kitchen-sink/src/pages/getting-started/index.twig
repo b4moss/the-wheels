@@ -1,5 +1,5 @@
 {% set current = "getting-started" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}Getting Started — The Wheels{% endblock %}
 
@@ -9,7 +9,7 @@
 
   <section>
     <h2>インストール</h2>
-    <pre class="ks-code"><code>npm install @b4moss/the-wheels</code></pre>
+    <pre class="ks-code"><code class="language-bash">npm install @b4moss/the-wheels</code></pre>
     <p>
       未公開の間は、このリポジトリを workspace / <code>file:</code> 参照で利用してください。
     </p>
@@ -17,23 +17,41 @@
 
   <section>
     <h2>CSS（全部入り）</h2>
-    <pre class="ks-code"><code>@import "@b4moss/the-wheels/style";</code></pre>
+    <pre class="ks-code"><code class="language-css">@import "@b4moss/the-wheels/style";</code></pre>
   </section>
 
   <section>
     <h2>JavaScript（umbrella）</h2>
     <p>コンポーネントは import 時にカスタム要素として自動登録されます。</p>
-    <pre class="ks-code"><code>import { TwButton, TwAvatar } from "@b4moss/the-wheels";</code></pre>
+    <pre class="ks-code"><code class="language-javascript">import { TwButton, TwAvatar } from "@b4moss/the-wheels";</code></pre>
     <p>
       プレフィックスを変える場合は、<strong>コンポーネントを import する前に</strong>
       <code>setPrefix</code> を呼んでください。
     </p>
-    <pre class="ks-code"><code>import { setPrefix } from "@b4moss/the-wheels";
+    {% set prefix_js %}
+import { setPrefix } from "@b4moss/the-wheels";
 
 setPrefix("app"); // タグは app-button など
 
 // setPrefix のあとにコンポーネントを読み込む
-import { TwButton } from "@b4moss/the-wheels";</code></pre>
+import { TwButton } from "@b4moss/the-wheels";
+    {% endset %}
+    {% include "@partials/code-block.twig" with { language: "javascript", code: prefix_js } only %}
+  </section>
+
+  <section>
+    <h2>TypeScript</h2>
+    <p>型は umbrella / components からそのまま import できます。</p>
+    {% set ts_sample %}
+import { TwButton, TwAvatar, setPrefix } from "@b4moss/the-wheels";
+import type { TwModal } from "@b4moss/the-wheels";
+
+setPrefix("tw");
+
+const modal = document.querySelector("tw-modal") as TwModal | null;
+modal?.showModal();
+    {% endset %}
+    {% include "@partials/code-block.twig" with { language: "typescript", code: ts_sample } only %}
   </section>
 
   <section>
@@ -42,6 +60,6 @@ import { TwButton } from "@b4moss/the-wheels";</code></pre>
       コンポーネントのカタログ確認は Storybook です。説明・デモ導線はこの kitchen-sink、
       カタログは Storybook、と役割を分けています。
     </p>
-    <pre class="ks-code"><code>npm run dev:storybook</code></pre>
+    <pre class="ks-code"><code class="language-bash">npm run dev:storybook</code></pre>
   </section>
 {% endblock %}

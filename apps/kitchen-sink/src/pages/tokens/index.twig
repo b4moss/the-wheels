@@ -1,5 +1,5 @@
 {% set current = "tokens" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}Tokens — The Wheels kitchen-sink{% endblock %}
 
@@ -150,5 +150,28 @@
         </tr>
       </tbody>
     </table>
+  </section>
+
+  <section>
+    <h2>サンプルコード</h2>
+    {% set css_sample %}
+@import "@b4moss/the-wheels/style";
+
+.card {
+  background: var(--tw-bg-highlight);
+  color: var(--tw-text-main);
+  border-radius: calc(var(--tw-global-radius) / 10 * 1rem);
+  padding: 1.6rem;
+}
+
+.card__caption {
+  color: var(--tw-text-caption);
+  line-height: var(--tw-caption-lh);
+}
+    {% endset %}
+    <div class="ks-sample">
+      <h3 class="ks-sample__label">CSS</h3>
+      {% include "@partials/code-block.twig" with { language: "css", code: css_sample } only %}
+    </div>
   </section>
 {% endblock %}

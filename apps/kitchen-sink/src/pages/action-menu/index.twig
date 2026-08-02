@@ -1,5 +1,5 @@
 {% set current = "action-menu" %}
-{% extends "@layouts/base.twig" %}
+{% extends "@layouts/app.twig" %}
 
 {% block title %}ActionMenu — The Wheels kitchen-sink{% endblock %}
 
@@ -7,45 +7,87 @@
   <h1>ActionMenu</h1>
   <p class="ks-meta">デフォルト more-vertical · src 差し替え · カスタム trigger</p>
 
-  <section>
-    <h2>デフォルト</h2>
-    <p class="ks-row">
-      <tw-action-menu>
-        <button type="button">編集</button>
-        <button type="button">複製</button>
-        <button type="button">削除</button>
-      </tw-action-menu>
-    </p>
-  </section>
+  {% set preview %}
+    <section>
+      <h2>デフォルト</h2>
+      {# Prefer div over p for custom-element hosts (avoid accidental <p> autoclose). #}
+      <div class="ks-row">
+        <tw-action-menu>
+          <button type="button">編集</button>
+          <button type="button">複製</button>
+          <button type="button">アーカイブ</button>
+          <button type="button">削除</button>
+        </tw-action-menu>
+      </div>
+    </section>
 
-  <section>
-    <h2>src 差し替え</h2>
-    <p class="ks-row">
-      <tw-action-menu id="src-swap">
-        <button type="button">完了にする</button>
-        <button type="button">キャンセル</button>
-      </tw-action-menu>
-    </p>
-  </section>
+    <section>
+      <h2>src 差し替え</h2>
+      <div class="ks-row">
+        <tw-action-menu id="src-swap">
+          <button type="button">完了にする</button>
+          <button type="button">担当者を変更</button>
+          <button type="button">キャンセル</button>
+        </tw-action-menu>
+      </div>
+    </section>
 
-  <section>
-    <h2>カスタム trigger</h2>
-    <p class="ks-row">
-      <tw-action-menu>
-        <tw-button slot="trigger" variant="stroke">操作</tw-button>
-        <button type="button">共有</button>
-        <button type="button">エクスポート</button>
-      </tw-action-menu>
-    </p>
-  </section>
+    <section>
+      <h2>カスタム trigger</h2>
+      <div class="ks-row">
+        <tw-action-menu>
+          <tw-button slot="trigger" variant="stroke">操作</tw-button>
+          <button type="button">共有</button>
+          <button type="button">エクスポート（CSV）</button>
+          <button type="button">印刷</button>
+        </tw-action-menu>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-action-menu>
+  <button type="button">編集</button>
+  <button type="button">複製</button>
+  <button type="button">アーカイブ</button>
+  <button type="button">削除</button>
+</tw-action-menu>
+
+<tw-action-menu id="…">
+  <button type="button">完了にする</button>
+  <button type="button">担当者を変更</button>
+  <button type="button">キャンセル</button>
+</tw-action-menu>
+
+<tw-action-menu>
+  <tw-button slot="trigger" variant="stroke">操作</tw-button>
+  <button type="button">共有</button>
+  <button type="button">エクスポート（CSV）</button>
+  <button type="button">印刷</button>
+</tw-action-menu>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+
+const swap = document.getElementById("src-swap");
+if (swap) swap.setAttribute("src", checkUrl);
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+
+const swap = document.getElementById("src-swap");
+if (swap) swap.setAttribute("src", checkUrl);
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
 {% endblock %}
 
 {% block scripts %}
-  <script type="module">
-    import "@b4moss/the-wheels";
-    import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
-
-    const swap = document.getElementById("src-swap");
-    if (swap) swap.setAttribute("src", checkUrl);
-  </script>
+  <script type="module" src="/src/scripts/demos/action-menu.js"></script>
 {% endblock %}

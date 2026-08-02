@@ -1,0 +1,48 @@
+{#
+  Demo split: Preview | (HTML + JS/TS code group).
+  Pass any of: preview (raw HTML), html, js, ts (code strings).
+  Omit unused columns. Narrow viewports stack vertically.
+#}
+{% set has_code = (html is defined and html) or (js is defined and js) or (ts is defined and ts) %}
+<div class="ks-demo-split">
+  {% if preview is defined and preview %}
+    <div class="ks-demo-split__col ks-demo-split__preview">
+      <p class="ks-sample__label">Preview</p>
+      <div class="ks-demo-split__live">{{ preview|raw }}</div>
+    </div>
+  {% endif %}
+
+  {% if has_code %}
+    <div class="ks-demo-split__code">
+      {% if html is defined and html %}
+        <div class="ks-demo-split__col ks-demo-split__html">
+          <p class="ks-sample__label">HTML</p>
+          {% include "@partials/code-block.twig" with { language: "html", code: html } only %}
+        </div>
+      {% endif %}
+
+      {% if (js is defined and js) or (ts is defined and ts) %}
+        <div class="ks-demo-split__col ks-demo-split__script">
+          {% if (js is defined and js) and (ts is defined and ts) %}
+            <tw-tabs>
+              <button type="button" slot="tab">JS</button>
+              <button type="button" slot="tab">TS</button>
+              <div slot="panel">
+                {% include "@partials/code-block.twig" with { language: "javascript", code: js } only %}
+              </div>
+              <div slot="panel">
+                {% include "@partials/code-block.twig" with { language: "typescript", code: ts } only %}
+              </div>
+            </tw-tabs>
+          {% elseif js is defined and js %}
+            <p class="ks-sample__label">JS</p>
+            {% include "@partials/code-block.twig" with { language: "javascript", code: js } only %}
+          {% else %}
+            <p class="ks-sample__label">TS</p>
+            {% include "@partials/code-block.twig" with { language: "typescript", code: ts } only %}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

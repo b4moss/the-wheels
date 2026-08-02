@@ -24,6 +24,7 @@ export class TwButton extends HTMLElement {
   #sizeLocked = false;
   #projecting = false;
   #initialized = false;
+  #observer: MutationObserver | null = null;
   #onClick = (): void => {
     if (!this.hasAttribute("disable-on-click")) return;
     if (this.#isDisabled()) return;
@@ -39,11 +40,19 @@ export class TwButton extends HTMLElement {
     this.#syncType();
     this.#syncDisabledUi();
     this.#button?.addEventListener("click", this.#onClick);
+    this.#observeSlots();
+    // Catch light-DOM children that arrive in the same parse tick after connect.
+    queueMicrotask(() => {
+      if (!this.isConnected) return;
+      this.#projectSlots();
+    });
     this.#initialized = true;
   }
 
   disconnectedCallback(): void {
     this.#button?.removeEventListener("click", this.#onClick);
+    this.#observer?.disconnect();
+    this.#observer = null;
   }
 
   attributeChangedCallback(name: string): void {
@@ -82,6 +91,15 @@ export class TwButton extends HTMLElement {
     this.#label = label;
   }
 
+  #observeSlots(): void {
+    if (this.#observer) return;
+    this.#observer = new MutationObserver(() => {
+      if (this.#projecting) return;
+      this.#projectSlots();
+    });
+    this.#observer.observe(this, { childList: true });
+  }
+
   #projectSlots(): void {
     if (!this.#button || !this.#label || this.#projecting) return;
     this.#projecting = true;
@@ -89,6 +107,13 @@ export class TwButton extends HTMLElement {
     const nodes = Array.from(this.childNodes).filter(
       (node) => node !== this.#button && node !== this.#lock,
     );
+
+    // Content already lives inside the inner button (label/icons). Re-running
+    // after reparent (dropdown/action-menu/modal slot projection) would wipe it.
+    if (nodes.length === 0) {
+      this.#projecting = false;
+      return;
+    }
 
     const buckets: Record<SlotName, Node[]> = {
       "icon-left": [],
