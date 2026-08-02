@@ -246,7 +246,7 @@ v0.11.0 で外したアカウント系・同意バナーを入れる。既存の
 - Toast WC 本体
 - Cookie 設定画面のチェックボックス UI
 - a11y 本検討
-- Playwright / Storybook シナリオの本実装（→ v0.13.0）
+- Playwright の本実装（→ v0.13.0）。Storybook play はさらに後続
 
 ### 依存
 
@@ -254,24 +254,32 @@ v0.11.0 で外したアカウント系・同意バナーを入れる。既存の
 
 ---
 
-## v0.13.0 — Playwright / Storybook テストシナリオ
+## v0.13.0 — Playwright E2E
 
-自動テストの厚みを先に上げる。a11y 本検討より優先。（旧 v0.12.0）
+自動テストの厚みを先に上げる。a11y 本検討より優先。（旧「Playwright / Storybook シナリオ」から Storybook play を外した版）
 
 ### 含むもの
 
-- Playwright: kitchen-sink の主要導線の最小〜実用セット（開閉・ナビ・代表コンポーネント）
-- Storybook: 主要ストーリーに対するテストシナリオ（interaction / play または同等。自動 VRT は任意のまま）
-- CI（v0.10.0）からの実行配線（PR で落ちたらマージ不可、の運用に載せる）
+- Playwright（Chromium）: kitchen-sink 上の振る舞い E2E
+  - 開閉系（Modal / ActionMenu / UserMenu 等）
+  - Combobox / InfiniteScroll
+  - CookieConsent
+  - Floating UI を手厚く（端配置・複数 placement・viewport 内収まり）
+- Floating UI 用フィクスチャページ（kitchen-sink）
+- テスト仕様: [v0.13.0.md](./specs/tests/v0.13.0.md)
+- CI への実行配線（PR で落ちたらマージ不可）
 
 ### 含まないもの
 
+- kitchen-sink 全ページの HTTP 200 / ナビ横断 smoke
+- Storybook play / interaction（後続版）
+- 自動 VRT・Chromatic 必須化
 - a11y 本検討
-- Chromatic 等の有料 VRT 必須化（任意）
+- Firefox / WebKit（本版は Chromium のみ）
 
 ### 依存
 
-- v0.11.0〜v0.12.0 の追加コンポーネントが一通り入っていることが望ましい（シナリオ対象が増える）。並行は PO 判断
+- v0.11.0〜v0.12.0 の追加コンポーネントが一通り入っていること
 
 ---
 
@@ -326,7 +334,7 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 ### 含むもの
 
 - 分岐カバレッジの底上げ（v0.n 目標 50% からの引き上げを検討）
-- Playwright / Storybook シナリオの穴埋め（主戦場は v0.13.0。ここで不足分を足す）
+- Playwright / Storybook シナリオの穴埋め（Playwright 主戦場は v0.13.0。Storybook play や不足分はここで足してよい）
 - API の破壊的変更の棚卸しと、1.0 に向けた凍結候補リスト
 
 ### 含まないもの
@@ -343,7 +351,7 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 - style / components / the-wheels の公開面が安定
 - README / 基本ドキュメントが利用可能な水準
 - kitchen-sink がドキュメントサイトとして一通り使えること（v0.8〜v0.9）
-- CI および Playwright / Storybook シナリオが PR で運用されていること（v0.10〜v0.13）
+- CI および Playwright E2E が PR で運用されていること（v0.10〜v0.13）。Storybook play は任意／後続
 - 対応ブラウザ（最新2メジャー）での動作確認済み
 - （PO 判断で）npm 公開
 
@@ -380,7 +388,7 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 - TypeScript: `strict: true`
 - 配布: ESM 主 + CJS dual package
 - npm 公開: PO がタイミングを見計らう
-- TDD: ロジックは Vitest。見た目は Storybook 手動確認が基本。Playwright / Storybook シナリオは v0.13.0 で厚くする（自動 VRT は任意）
+- TDD: ロジックは Vitest。見た目は Storybook 手動確認が基本。Playwright E2E は v0.13.0 で厚くする（Storybook play・自動 VRT は任意／後続）
 - kitchen-sink: 動作確認に加え、ドキュメントサイト体裁のホスト（v0.9.0〜）
 - Git / CI: [git.md](./git.md)（v0.10.0 で CI 整備）
 - a11y 本検討: 無期限延期（将来項目）
@@ -403,7 +411,7 @@ v0.1.0 style
                                        └─ v0.10.0 CI 整備
                                              └─ v0.11.0 Combobox / InfiniteScroll
                                                    └─ v0.12.0 UserMenu / CookieConsent
-                                                         └─ v0.13.0 Playwright / Storybook シナリオ
+                                                         └─ v0.13.0 Playwright E2E
                                                                ├─ v0.14.0 form subtree
                                                                └─ v0.15.0 SaaS 設計
                                                                      └─ v0.16.0 安定化

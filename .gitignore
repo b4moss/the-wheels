@@ -16,3 +16,8 @@ dist/
 storybook-static/
 *.log
 .npm
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+e2e/.auth/

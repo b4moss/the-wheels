@@ -2,7 +2,8 @@
 
 PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](./roadmap.md)）に転記する。
 
-- **WC 候補（UserMenu / CookieConsent）** → roadmap **v0.12.0**（実装中 / 本マイルストーン）
+- **UserMenu / CookieConsent** → roadmap **v0.12.0**
+- **Playwright E2E** → roadmap **v0.13.0**
 - **アプリ・配信・統合の意図** → 本ファイル。版が決まったら roadmap のマイルストーンへ
 
 ## 優先順位（確定）
@@ -12,7 +13,7 @@ PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](
 3. CI 整備 → **v0.10.0**（済）
 4. 追加コンポーネント（Combobox / InfiniteScroll）→ **v0.11.0**
 5. UserMenu / CookieConsent → **v0.12.0**
-6. Playwright / Storybook テストシナリオ → **v0.13.0**
+6. Playwright E2E（Floating UI 手厚め）→ **v0.13.0**（Storybook play は後続）
 7. yoshinani-form subtree → **v0.14.0**
 8. SaaS スキャフォールド設計 → **v0.15.0**（実装は将来項目）
 9. a11y 本検討 → **無期限延期**（将来項目）
