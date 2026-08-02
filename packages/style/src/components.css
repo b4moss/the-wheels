@@ -1,6 +1,149 @@
 @layer components {
-  /*
-   * Component styles land from v0.2.0 onward.
-   * Keep this layer declared so consumer overrides can target @layer components.
-   */
+  /* —— Spinner —— */
+  [data-tw-component="spinner"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    vertical-align: middle;
+  }
+
+  [data-tw-component="spinner"] .spinner-loader {
+    display: inline-flex;
+  }
+
+  /* —— Button —— */
+  [data-tw-component="button"] {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    vertical-align: middle;
+  }
+
+  [data-tw-component="button"] .button {
+    --fz: 16;
+    --px: 2.375;
+    --py: 1.3125;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    width: fit-content;
+    margin: 0;
+    border-radius: calc(var(--tw-global-radius) / 10 * 1rem);
+    border-style: solid;
+    border-width: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: calc(var(--fz) / 10 * 1rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #e4e4e4;
+    background-color: var(--tw-bg-button-main);
+    padding-top: calc(var(--py) * 1em);
+    padding-bottom: calc(var(--py) * 1em);
+    padding-left: calc(var(--px) * 1em);
+    padding-right: calc(var(--px) * 1em);
+  }
+
+  [data-tw-component="button"] .button:hover {
+    background-color: var(--tw-bg-button-hover);
+  }
+
+  [data-tw-component="button"] .button:active {
+    background-color: var(--tw-text-main);
+    top: 1px;
+  }
+
+  [data-tw-component="button"] .button:disabled {
+    text-decoration-line: line-through;
+    background: #989898;
+    pointer-events: none;
+  }
+
+  /* stroke ≈ legacy ghost (bordered) */
+  [data-tw-component="button"] .button--stroke {
+    background-color: transparent;
+    border: 1px solid var(--tw-text-caption);
+    color: var(--tw-text-main);
+  }
+
+  [data-tw-component="button"] .button--stroke:hover {
+    color: var(--tw-text-highlight);
+    border-color: var(--tw-text-highlight);
+    background-color: transparent;
+    padding-top: calc(var(--py) * 1em - 1px);
+    padding-bottom: calc(var(--py) * 1em - 1px);
+    padding-left: calc(var(--px) * 1em - 1px);
+    padding-right: calc(var(--px) * 1em - 1px);
+    border-width: 2px;
+  }
+
+  [data-tw-component="button"] .button--stroke:active {
+    background-color: transparent;
+  }
+
+  [data-tw-component="button"] .button--stroke:disabled {
+    text-decoration-line: line-through;
+    border-color: #989898;
+    color: #989898;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  /* ghost ≈ legacy optional (borderless) */
+  [data-tw-component="button"] .button--ghost {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--tw-text-main);
+  }
+
+  [data-tw-component="button"] .button--ghost:hover {
+    color: var(--tw-text-highlight);
+    background: #d8d8d8;
+    border-color: transparent;
+    padding-top: calc(var(--py) * 1em - 1px);
+    padding-bottom: calc(var(--py) * 1em - 1px);
+    padding-left: calc(var(--px) * 1em - 1px);
+    padding-right: calc(var(--px) * 1em - 1px);
+    border-width: 2px;
+  }
+
+  [data-tw-component="button"] .button--ghost:disabled {
+    text-decoration-line: line-through;
+    color: #989898;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  [data-tw-component="button"] .button-label,
+  [data-tw-component="button"] .button-icon-left,
+  [data-tw-component="button"] .button-icon-right {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  [data-tw-component="button"] .button-label[hidden],
+  [data-tw-component="button"] .button-icon-left[hidden],
+  [data-tw-component="button"] .button-icon-right[hidden] {
+    display: none;
+  }
+
+  [data-tw-component="button"] .button-spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+  }
+
+  [data-tw-component="button"] .button-lock {
+    position: absolute;
+    right: -1.2rem;
+    top: -1.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: currentColor;
+    pointer-events: none;
+  }
 }
