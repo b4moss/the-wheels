@@ -1,6 +1,8 @@
 import './accordion.js'
 import './action-menu.js'
 import './button.js'
+import './combobox.js'
+import './infinite-scroll.js'
 import './modal.js'
 import './register.js'
 import './svg-loader.js'

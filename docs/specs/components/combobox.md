@@ -11,22 +11,22 @@
 
 - テキスト検索を本懐とする、Dropdown 上の選択肢 UI
 - リスト供給は静的配列・非同期 fetch・その併用を `mode` で明示する
-- 見た目の多く（トリガー・行・タグ・サブフィルタ）は利用側スロットに任せ、WC は値・検索・取得オーケストレーションに徹する
+- 見た目の多く（トリガー・タグ・サブフィルタ）は利用側スロットに、行は `renderOption` に任せ、WC は値・検索・取得オーケストレーションに徹する
 
 ## 組み合わせ
 
 - **Dropdown**（開閉・領域外クリック・Floating UI 配置）を土台に拡張する
-- **InfiniteScroll**（[infinite_scroll.md](./infinite_scroll.md)）— 上下無限スクロール・ウィンドウ・sortKey マージ。同版内で Combobox 先行のあと接続する
+- **InfiniteScroll**（[infinite_scroll.md](./infinite_scroll.md)）— 上下無限スクロール・ウィンドウ・sortKey マージ。`async` / `hybrid` ではリスト領域に当初から載せる
 
 ## v0.11.0 内の進め方
 
-1. Combobox（検索・`mode`・`loadOptions`・debounce・選択値・スロット）を先に入れる
+1. Combobox（検索・`mode`・`loadOptions`・debounce・選択値・スロット／`renderOption`）を入れる
 2. 同版内で InfiniteScroll 基盤を実装する
-3. Combobox のリスト領域を InfiniteScroll に載せる（上下ページング・ウィンドウ）
+3. Combobox の `async` / `hybrid` リスト領域は InfiniteScroll に載せる（上下ページング・ウィンドウ）。`static` は単純リストのまま
 
 ## mode
 
-属性 `mode` で供給方法を明示する（必須、またはデフォルト `static`）。
+属性 `mode` で供給方法を明示する。未指定時は `static`。
 
 | 値 | 意味 |
 |---|---|
@@ -40,7 +40,7 @@
 
 - 少なくとも `value`（`string | number`）と `label`（`string`）を持つ
 - `disabled` は任意
-- InfiniteScroll 接続後は、ソート用フィールド（`sortKey` で指すプロパティ）を item に含める
+- InfiniteScroll 接続時は、ソート用フィールド（`sortKey` で指すプロパティ）を item に含める（欠けるとソート末尾へ）
 
 ### 静的 options
 
@@ -71,6 +71,7 @@ el.loadOptions = async (ctx) => {
   - リクエスト: カスタムイベント（名称は `getEventName('load-request')` に乗せる）
   - レスポンス: ホストメソッド（例: `applyLoadResult(result)`）で結果を返す
 - 利用は `loadOptions` 未設定時のフォールバックとする。**プロパティを主**とする
+- `applyLoadResult` が呼ばれない場合は、**次の microtask** で loading を解除し空結果とする
 
 ### debounce
 
@@ -84,7 +85,7 @@ el.loadOptions = async (ctx) => {
 - 単一: `value` にスカラー（未選択は空／`null` 相当）
 - 複数: 真偽属性 `multiple`。値は配列
 - 上限: 任意属性 `max-selected`（複数時）
-- 値の更新はホストプロパティ／属性と、DOM 標準に近い入力系（実装時に `input` / `change` 相当の扱いを決める）。カスタムイベントに依存しない方針を優先する
+- 値の更新はホストプロパティ／属性と、`change` イベント（バブリング可）。選択用の独自カスタムイベントは発火しない
 - **トリガー上の選択表示（ラベル・タグ等）はスロット必須**。WC は値の保持・更新のみ行い、組み込みのタグ UI は持たない
 
 ## テキスト検索
@@ -103,15 +104,18 @@ el.loadOptions = async (ctx) => {
 
 ### 行の差し替え
 
-- オプション行全体をスロットで差し替え可能とする（アイコン・色チップ等は利用側）
+- JS プロパティ `renderOption(option, selected)` でオプション行全体を差し替える（スロット／テンプレートではない）
+- 未設定時は上記デフォルト行。アイコン・色チップ等は利用側が `renderOption` で組み立てる
 
-### InfiniteScroll 接続前
+### mode ごとのリスト実装
 
-- 取得済み配列を単純リスト表示する（ページング UI なしでも可）
+- `static`: 取得済み／フィルタ済み配列を単純リスト表示する（InfiniteScroll は使わない）
+- `async` / `hybrid`: **当初から** リスト領域に InfiniteScroll を載せる（単純リスト段階を経ない）
+- Combobox は内側 InfiniteScroll の `autoLoad` を **false** にする（Combobox 側の debounce／`loadOptions` オーケストレーションと二重 fetch しないため）。詳細は [infinite_scroll.md](./infinite_scroll.md)
 
-### InfiniteScroll 接続後
+### InfiniteScroll への委譲（async / hybrid）
 
-- リスト領域は InfiniteScroll に委譲する（上下 fetch・ウィンドウ・sortKey マージ）
+- 上下 fetch・ウィンドウ・sortKey マージは InfiniteScroll に委譲する
 - 詳細は [infinite_scroll.md](./infinite_scroll.md)
 
 ## サブエリア（カテゴリ／タグ絞り込み等）
@@ -126,9 +130,10 @@ el.loadOptions = async (ctx) => {
 |---|---|
 | `trigger` | 発動領域の中身（選択表示はここに書く） |
 | `subarea` | 検索とリストのあいだの拡張（カテゴリ等） |
-| `option` | オプション行の差し替え（代入の詳細は実装時） |
 | `footer` | パネル下部の任意アクション |
 | （Dropdown 由来） | 開閉・パネル骨格は Dropdown の構造を踏襲 |
+
+オプション行の差し替えはスロットではなく、JS プロパティ `renderOption` を使う。
 
 `trigger` は必須運用（空でも開閉はできるが、選択の可視化は利用側任せ）。
 
@@ -142,17 +147,18 @@ el.loadOptions = async (ctx) => {
 ## その他属性・状態（最小）
 
 - `disabled`（真偽）
-- `placeholder`（検索または未選択時のヒント。実装でどちらに効くか明記）
+- `placeholder`（検索入力の placeholder に反映）
 - `placement` 等は Dropdown に準拠
 - loading 中はリスト領域に読み込み表示
+- 静的検索の一致は、大文字小文字を無視した label の部分一致を既定とする
 
 ## 責務の境界
 
 | 担当 | 内容 |
 |---|---|
-| Combobox | 検索 UI、mode、選択値、debounce、`loadOptions` 呼び出し、Dropdown 開閉／位置、スロット出口 |
-| InfiniteScroll | 上下 fetch トリガ、ウィンドウ、sortKey マージ、がたつき抑制 |
-| 利用側 | fetch 実装、サブフィルタ、トリガー／行／タグの見た目、`sortKey`・窓サイズ・debounce の指定 |
+| Combobox | 検索 UI、mode、選択値、debounce、`loadOptions` 呼び出し、Dropdown 開閉／位置、スロット出口、`renderOption` |
+| InfiniteScroll | 上下 fetch トリガ、ウィンドウ、sortKey マージ、がたつき抑制（`autoLoad` 既定 true。Combobox 利用時は false） |
+| 利用側 | fetch 実装、サブフィルタ、トリガー／行／タグの見た目、`sortKey`・窓サイズ・debounce の指定、`renderOption` |
 
 ## 含まないもの（v0.11.0）
 

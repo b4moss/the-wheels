@@ -209,18 +209,17 @@ Git / GitHub 戦略（[git.md](./git.md)）に沿った CI を、次の実装と
 
 CI の次に、コンポーネント拡充を先に進める。候補は「将来項目」から取り上げ、版内でテスト仕様を切って実装する。
 
-### 含むもの（候補・詳細は版着手時に確定）
+### 含むもの
 
-- **UserMenu** — Avatar + Dropdown
-- **Combobox** — Dropdown ベースの拡張（仕様: [combobox.md](./specs/components/combobox.md)）
+- **Combobox** — Dropdown ベースの拡張（仕様: [combobox.md](./specs/components/combobox.md)、テスト: [v0.11.0.md](./specs/tests/v0.11.0.md)）
 - **InfiniteScroll** — 上下無限スクロール基盤（Combobox と同版・後接続。仕様: [infinite_scroll.md](./specs/components/infinite_scroll.md)）
-- **CookieConsent** — 詳細は版内仕様で詰める
-- 必要なら Tabs の不足分（`TwTabs` 最小は v0.9 系で先行済み）
 - 各 WC の style / kitchen-sink / Storybook への反映
 - Vitest（TDD）
 
 ### 含まないもの
 
+- **UserMenu** / **CookieConsent** — 本版完了後に仕様を詰め、後続版で実装
+- Tabs の追加改修（`TwTabs` 最小は先行済み）
 - a11y の本検討（無期限延期・将来項目）
 - SaaS スキャフォールド実装
 
@@ -341,7 +340,8 @@ form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後�
 
 ### その他
 
-- **UserMenu / Combobox / CookieConsent** — v0.11.0 で着手予定。残ればここに戻す
+- **UserMenu / CookieConsent** — v0.11.0 完了後に仕様化して後続版で実装
+- **Combobox / InfiniteScroll** — v0.11.0 で実装（完了後は本項から外す）
 - **SaaS scaffold 実装** — v0.14.0 設計の後続（例: v1.1 または `apps/` サイド）
 - **form × scaffold の本統合** — v0.13.0 取り込みの後続
 - **ドキュメント用 別 SSG / CMS** — wishlist。後日
