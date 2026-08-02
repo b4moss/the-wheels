@@ -28,7 +28,7 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 ### 含まないもの
 
 - Web Components の実装
-- スタイルに対する自動テスト（Storybook 導入時に再検討）
+- スタイルに対する自動テスト（見た目確認は Storybook 手動レビュー。自動 VRT は任意）
 - npm 公開
 
 詳細: [スタイル仕様](./specs/style.md) / [main.md](./main.md)
@@ -129,6 +129,7 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 - `apps/storybook` 導入
 - 主要コンポーネントのカタログ
 - スタイル／見た目の検証方針の再検討（自動 VRT は任意）
+- Bug 修正: [Issue #6](https://github.com/b4m-oss/the-wheels-reconstruct/issues/6) — Button `disable-on-click` クリック直後の横幅シュリンク
 
 ### 前提
 
@@ -173,7 +174,18 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 ### 含まないもの（継続対象外のまま）
 
 - フォーム（`yoshinani-form`）
-- Card / ContentSection / CookieConsent（必要になったら別バージョンで検討）
+- Card / ContentSection（必要になったら別バージョンで検討）
+- 下記「将来項目」のコンポーネント（バージョン未定）
+
+---
+
+## 将来項目
+
+バージョン未定。詳細仕様は後日。メモのみ。
+
+- **UserMenu** — Avatar と Dropdown を組み合わせたもの
+- **Combobox** — Dropdown をベースに拡張
+- **CookieConsent** — 詳細は後ほど
 
 ---
 
@@ -182,7 +194,7 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 - TypeScript: `strict: true`
 - 配布: ESM 主 + CJS dual package
 - npm 公開: PO がタイミングを見計らう
-- TDD: ロジックは Vitest。スタイル自動テストは Storybook 導入後に再検討
+- TDD: ロジックは Vitest。スタイル自動テストは行わず、見た目は Storybook で手動確認（自動 VRT は任意）
 - ライセンス: MIT
 
 ---

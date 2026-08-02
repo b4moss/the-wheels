@@ -16,7 +16,7 @@ Icons in this directory are derived from **[Tabler Icons](https://tabler.io/icon
 | `check.svg` | `check.svg` |
 | `chevron.svg` | `chevron-down.svg` |
 | `lock.svg` | `lock.svg` |
-| `spinner.svg` | `loader-2.svg` + SMIL `animateTransform` (The Wheels) |
+| `spinner.svg` | `loader-2.svg` + CSS `@keyframes` rotation (The Wheels) |
 
 ## Notes
 

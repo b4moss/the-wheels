@@ -43,5 +43,5 @@ for (const [destName, sourceName] of Object.entries(mapping)) {
 }
 
 console.log(
-  "note: spinner.svg is maintained separately (Tabler loader-2 + SMIL animation).",
+  "note: spinner.svg is maintained separately (Tabler loader-2 + CSS rotation).",
 );
