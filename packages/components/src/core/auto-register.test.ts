@@ -13,6 +13,8 @@ describe("auto-register on module import", () => {
     const { TwActionMenu } = await import("../action_menu/tw-action-menu.js");
     const { TwAccordion } = await import("../accordion/tw-accordion.js");
     const { TwModal } = await import("../modal/tw-modal.js");
+    const { TwAvatar } = await import("../avatar/tw-avatar.js");
+    const { TwVerticalNav } = await import("../vertical_nav/tw-vertical-nav.js");
 
     expect(customElements.get("tw-svg-loader")).toBeTruthy();
     expect(customElements.get("tw-spinner")).toBeTruthy();
@@ -21,6 +23,8 @@ describe("auto-register on module import", () => {
     expect(customElements.get("tw-action-menu")).toBeTruthy();
     expect(customElements.get("tw-accordion")).toBeTruthy();
     expect(customElements.get("tw-modal")).toBeTruthy();
+    expect(customElements.get("tw-avatar")).toBeTruthy();
+    expect(customElements.get("tw-vertical-nav")).toBeTruthy();
     // First registration should keep the original ctor when available.
     expect(
       customElements.get("tw-svg-loader") === TwSvgLoader ||
@@ -32,6 +36,8 @@ describe("auto-register on module import", () => {
     expect(TwActionMenu).toBeTruthy();
     expect(TwAccordion).toBeTruthy();
     expect(TwModal).toBeTruthy();
+    expect(TwAvatar).toBeTruthy();
+    expect(TwVerticalNav).toBeTruthy();
   });
 
   it("registers app-* tags when setPrefix runs before import", async () => {
@@ -44,6 +50,8 @@ describe("auto-register on module import", () => {
     await import("../action_menu/tw-action-menu.js");
     await import("../accordion/tw-accordion.js");
     await import("../modal/tw-modal.js");
+    await import("../avatar/tw-avatar.js");
+    await import("../vertical_nav/tw-vertical-nav.js");
 
     expect(customElements.get("app-svg-loader")).toBeTruthy();
     expect(customElements.get("app-spinner")).toBeTruthy();
@@ -52,6 +60,8 @@ describe("auto-register on module import", () => {
     expect(customElements.get("app-action-menu")).toBeTruthy();
     expect(customElements.get("app-accordion")).toBeTruthy();
     expect(customElements.get("app-modal")).toBeTruthy();
+    expect(customElements.get("app-avatar")).toBeTruthy();
+    expect(customElements.get("app-vertical-nav")).toBeTruthy();
   });
 
   it("keeps existing tw-* tags when setPrefix changes later", async () => {

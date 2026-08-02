@@ -365,4 +365,81 @@
     background: var(--tw-bg-page);
     text-align: right;
   }
+
+  /* —— Avatar —— */
+  [data-tw-component="avatar"] {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: middle;
+  }
+
+  [data-tw-component="avatar"] .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  [data-tw-component="avatar"] .avatar-initial {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-tw-component="avatar"] .avatar--image {
+    padding: 7.5%;
+  }
+
+  [data-tw-component="avatar"] .avatar-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* —— Vertical Nav Item —— */
+  [data-tw-component="vertical-nav"] {
+    display: block;
+    max-width: none;
+  }
+
+  [data-tw-component="vertical-nav"] > a,
+  [data-tw-component="vertical-nav"] > button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 1rem 1.2rem;
+    border: 0;
+    border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+    background: transparent;
+    color: var(--tw-text-main);
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  [data-tw-component="vertical-nav"] > a:hover,
+  [data-tw-component="vertical-nav"] > button:hover {
+    background: var(--tw-bg-highlight);
+    color: var(--tw-text-highlight);
+    text-decoration: none;
+  }
+
+  [data-tw-component="vertical-nav"][data-tw-nav-current] > a,
+  [data-tw-component="vertical-nav"][data-tw-nav-current] > button {
+    background: var(--tw-bg-highlight);
+    color: var(--tw-text-highlight);
+    font-weight: 700;
+  }
 }
