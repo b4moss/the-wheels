@@ -125,3 +125,5 @@ npm run dev:storybook
 ```
 
 `test:package` はビルド後の dual package（ESM + CJS）と exports 解決のスモークです。
+
+ブランチ・PR・タグ・CI/CD の方針は [docs/git.md](docs/git.md) を参照してください。

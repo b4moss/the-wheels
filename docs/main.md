@@ -195,6 +195,10 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 [テスト方針](./test.md)を参照して下さい。
 
+## Git / GitHub
+
+ブランチ・PR・タグ・CI/CD は [git.md](./git.md) を参照。
+
 ## 関数・メソッドの分割方針
 
 - UNIX哲学にある **1つのことをうまくやる** を大切にする。
