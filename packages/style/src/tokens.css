@@ -1,0 +1,36 @@
+@layer tokens {
+  :root {
+    /* Colors (use-case based; renamed from reference with --tw- prefix) */
+    --tw-bg-page: #efefef;
+    --tw-bg-highlight: #ffffff;
+    --tw-text-main: #494949;
+    --tw-text-caption: #747474;
+    --tw-text-highlight: #000000;
+    --tw-bg-button-main: #3b3b3b;
+    --tw-bg-button-optional: #e1e1e1;
+    --tw-bg-button-hover: #000000;
+    --tw-alert: #bc2f2f;
+
+    /* Typography */
+    --tw-fz-root: 16;
+    --tw-heading-lh: 1.04;
+    --tw-body-text-lh: 1.7;
+    --tw-caption-lh: 1.3;
+    --tw-font-sans: "Inter", "Noto Sans JP", sans-serif;
+
+    /* Spacing / radius (unitless px values; convert with calc(... / 10 * 1rem)) */
+    --tw-global-px: 100;
+    --tw-global-radius: 5;
+    --tw-global-radius-minor: 3;
+
+    /* Breakpoints (unitless px; used with media queries) */
+    --tw-bp-sm-start: 320;
+    --tw-bp-sm-end: 480;
+    --tw-bp-md-start: 481;
+    --tw-bp-md-end: 1279;
+    --tw-bp-lg-start: 1280;
+    --tw-bp-lg-end: 1679;
+    --tw-bp-xl-start: 1680;
+    --tw-bp-xl-end: 2560;
+  }
+}

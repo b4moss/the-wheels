@@ -1,0 +1,6 @@
+@layer base {
+  *:focus {
+    outline-color: var(--tw-text-highlight);
+    outline-offset: 0.5em;
+  }
+}
