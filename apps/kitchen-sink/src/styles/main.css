@@ -273,6 +273,115 @@
   max-width: none;
 }
 
+/* CookieConsent demo — compact single-row banner + service consent panel */
+.ks-cookie-consent .cookie-consent-banner {
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.8rem 1.2rem;
+  width: min(72rem, 100%);
+  padding: 0.8rem 1.2rem;
+}
+
+.ks-cookie-consent .cookie-consent-banner > p {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ks-cookie-consent .cookie-consent-banner .cookie-consent-actions {
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  gap: 0.6rem;
+  margin-left: 0;
+}
+
+.ks-cookie-consent .cookie-consent-banner .cookie-consent-actions a {
+  display: inline-flex;
+  max-width: none;
+  margin: 0;
+  text-decoration: none;
+}
+
+.ks-cookie-consent .cookie-consent-banner [data-tw-component="button"] .button {
+  --fz: 12;
+  --px: 1.4;
+  --py: 0.7;
+}
+
+.ks-cookie-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.6rem;
+  max-width: none;
+  margin: 0 0 1.6rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ks-cookie-services > li {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: left;
+}
+
+.ks-cookie-services label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: none;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.ks-cookie-services input {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0;
+  accent-color: var(--tw-text-highlight);
+}
+
+.ks-cookie-storage {
+  max-width: none;
+  margin: 0;
+}
+
+.ks-cookie-storage__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem 1.6rem;
+  max-width: none;
+  margin: 0 0 0.8rem;
+}
+
+.ks-cookie-storage__header .ks-sample__label {
+  margin: 0;
+}
+
+.ks-cookie-storage__editor {
+  display: block;
+  width: 100%;
+  min-height: 18rem;
+  resize: vertical;
+  box-sizing: border-box;
+  margin: 0;
+  white-space: pre;
+  tab-size: 2;
+}
+
 /* Docs chrome */
 
 .ks-demo-split {
