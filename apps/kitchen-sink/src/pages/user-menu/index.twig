@@ -1,0 +1,68 @@
+{% set current = "user-menu" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}UserMenu — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>UserMenu</h1>
+  <p class="ks-meta">Avatar＋名前 trigger · Dropdown 合成 · data-tw-user-menu-item</p>
+
+  {% set preview %}
+    <section>
+      <h2>基本</h2>
+      <div class="ks-row">
+        <tw-user-menu>
+          <button type="button" slot="trigger" class="user-menu-trigger">
+            <tw-avatar name="山田太郎" width="32" height="32"></tw-avatar>
+            <span>山田太郎</span>
+          </button>
+          <a data-tw-user-menu-item href="#profile">プロフィール</a>
+          <a data-tw-user-menu-item href="#settings">設定</a>
+          <button type="button" data-tw-user-menu-item>ログアウト</button>
+        </tw-user-menu>
+      </div>
+    </section>
+
+    <section>
+      <h2>placement=top-end</h2>
+      <div class="ks-row">
+        <tw-user-menu placement="top-end">
+          <button type="button" slot="trigger" class="user-menu-trigger">
+            <tw-avatar name="佐藤花子" color="#494949" width="32" height="32"></tw-avatar>
+            <span>佐藤花子</span>
+          </button>
+          <a data-tw-user-menu-item href="#account">アカウント</a>
+          <a data-tw-user-menu-item href="#billing">請求</a>
+        </tw-user-menu>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-user-menu>
+  <button type="button" slot="trigger" class="user-menu-trigger">
+    <tw-avatar name="山田太郎" width="32" height="32"></tw-avatar>
+    <span>山田太郎</span>
+  </button>
+  <a data-tw-user-menu-item href="#profile">プロフィール</a>
+  <a data-tw-user-menu-item href="#settings">設定</a>
+  <button type="button" data-tw-user-menu-item>ログアウト</button>
+</tw-user-menu>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/register.js"></script>
+{% endblock %}

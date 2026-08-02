@@ -64,3 +64,36 @@ export type {
   LoadOptionsResult,
   RenderOptionFn,
 } from "./combobox/types.js";
+export {
+  createSnackbarLayer,
+  SNACKBAR_LAYER_ATTR,
+} from "./snackbar_layer/snackbar-layer.js";
+export type {
+  CreateSnackbarLayerOptions,
+  SnackbarLayer,
+} from "./snackbar_layer/snackbar-layer.js";
+export { TwUserMenu } from "./user_menu/tw-user-menu.js";
+export {
+  DEFAULT_STORAGE_KEY,
+  DEFAULT_TTL_DAYS,
+  acceptAllState,
+  createPendingState,
+  dismissBannerState,
+  expiresAtFromNow,
+  isExpired,
+  normalizeStorageKey,
+  normalizeTtlDays,
+  parseConsentState,
+  parseServiceIds,
+  readConsent,
+  removeConsent,
+  setServiceInState,
+  slideExpiresAt,
+  statusFromServices,
+  writeConsent,
+} from "./cookie_consent/storage.js";
+export type {
+  CookieConsentState,
+  CookieConsentStatus,
+} from "./cookie_consent/storage.js";
+export { TwCookieConsent } from "./cookie_consent/tw-cookie-consent.js";
