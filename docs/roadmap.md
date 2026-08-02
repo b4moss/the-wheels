@@ -50,6 +50,7 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
   - Spinner（同梱 SVG + SVG アニメーション、デフォルト `1em`）
   - Button（`variant` / `disable-on-click` / `reset()` / slot）
 - 同梱アセット: `packages/components/assets/`（詳細は [icons.md](./specs/icons.md)）
+  - 出典: `@tabler/icons`（MIT）。`sync:icons` で再取得可
   - `spinner`, `more-vertical`, `close`, `menu`, `check`, `chevron`（rotate で開閉）, `lock`
   - これ以外は同梱しない
 - style: Button / Spinner 用の `components` レイヤーを追加
