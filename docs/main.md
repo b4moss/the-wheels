@@ -50,15 +50,18 @@
 ### スタイルの責務
 
 - リセットCSS - `reset-css`を採用
-- フォント - `Noto Sans JP`を採用
+- フォント - Inter + Noto Sans JP（本体は同梱せず、stack のみ定義。利用側が用意）
+- 詳細は [スタイル仕様](./specs/style.md) を参照
 
 #### 長文の扱い
 
-- 1行は40文字以内に収めること
+- 1行はおおよそ40文字以内に収めること
+- CSS では `max-width: 40ch` で抑える
 
 #### デザイントークン
 
 - 色や数値は、デザイントークンに抽象化する。
+- CSS 変数名は `--tw-` 接頭辞を付ける（例: `--tw-text-main`）
 - ユースケースごとの変数を作る。
   - ユースケースにバリアントを求めるときは、下のユースケースから、oklchなどで色を変化させる。
   - 色ごとのデザイントークンは必要が出るまで作らない（常識的な設計では、`red-100`などの定義は不要と考える）。
@@ -66,21 +69,23 @@
 ### コンポーネントの責務
 
 - UIとしての振る舞いを提供する。
-- Web Componentsで実装する。
+- Web Componentsで実装する（JS クラス名は `TwButton` 形式。総則は [specs/components/all.md](./specs/components/all.md)）。
 - props, slotを適切に使用する。
 - Light DOMで実装する。Shadow DOMは使わない。
 - WCは、スタイルを持たない。（ユーザーが好きなCSSを当てられるようにするため）
+- 接頭辞はデフォルト `tw-`。`setPrefix` で早期にオーバーライド可能。
 
 ## 技術スタック
 
 - Vite/TypeScript - npmパッケージモード
 - Vitest
 - Node.js 22+
-- Native CSS
+- Native CSS（`@layer`: `reset` / `tokens` / `base` / `components`）
 - Web Components（Light DOM）
-- npm workspaces（または pnpm workspaces）
+- npm workspaces
 - kitchen-sink: Vituum による MPA
 - Storybook: コンポーネントがある程度揃ってから導入する
+- ライセンス: MIT
 
 ## ディレクトリ構成案
 
@@ -118,9 +123,11 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 ```
 
 - 公開単位は最初からこの3つまでとする。
+- `@b4moss/the-wheels-style` は全部入り + 部分 import（`/tokens` など）を提供する。
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する。
 - kitchen-sink は抽出・実装の動作確認場とする。
 - Storybook はドキュメント／カタログ用途とし、Components がある程度揃ってから入れる。
+- v0.1.0 では npm に公開しない（リポジトリ内利用）。ロードマップは [roadmap.md](./roadmap.md) を参照。
 
 ### 参考リポジトリ（リポジトリ外・将来削除）
 
@@ -164,13 +171,23 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 ##### 実装順（目安）
 
-1. スタイル土台（typo / token / reset / focus）
+1. スタイル土台（v0.1.0。詳細は [roadmap.md](./roadmap.md) / [specs/style.md](./specs/style.md)）
 2. SVGLoader → Spinner → Button
 3. Dropdown → ActionMenu
 4. Accordion / Modal
 5. Avatar / Vertical Nav
 
-仕様の詳細は `docs/specs/components/` を参照。
+仕様の詳細は `docs/specs/components/` および `docs/specs/style.md` を参照。
+
+## テスト方針
+
+[テスト方針](./test.md)を参照して下さい。
+
+## 関数・メソッドの分割方針
+
+- UNIX哲学にある **1つのことをうまくやる** を大切にする。
+- 1ロジック、1責務と考える。
+- 関数にするか、クラス・メソッドにするかは、文脈に応じて適切に判断する。
 
 ## 特記事項
 
