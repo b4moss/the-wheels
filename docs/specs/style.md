@@ -5,9 +5,16 @@
 ## パッケージ
 
 - 名前: `@b4moss/the-wheels-style`
-- 公開エントリ: 全部入り + 部分 import（例: `/tokens`, `/typography`）
+- 公開エントリ: 全部入り + 部分 import
+  - パスはカテゴリ付き（例: `@b4moss/the-wheels-style/css/tokens`, `/css/typography`）
 - ライセンス: MIT
 - v0.1.0 時点では npm 未公開（リポジトリ内利用）
+
+## ソース構成
+
+`packages/style/src` は layer / 関心ごとに分割する。
+
+- 例: `reset.css`, `tokens.css`, `typography.css`, `focus.css`, `breakpoints.css`, `index.css`
 
 ## 含む範囲（v0.1.0）
 
@@ -22,6 +29,11 @@
 - stack: `"Inter", "Noto Sans JP", sans-serif`
 - フォント本体は同梱しない。利用側が用意する
 - パッケージ側は `font-family` とフォールバックのみ定義する
+
+## ルート文字サイズ
+
+- `html { font-size: 62.5%; }` 方式を踏襲する（いわゆる 10px 基準）
+- 数値トークンからの rem 換算もこの前提に合わせる
 
 ## デザイントークン
 
@@ -47,6 +59,10 @@
 
 - ホスト: 要素セレクタは使わない。`[data-tw-component="..."]` で指定
 - 内部: クラスで指定。クラス名に `.tw-` 接頭辞は付けない（`@layer` で区分）
+
+## 対応ブラウザ
+
+- Chrome / Firefox / Safari / Edge の最新2メジャー
 
 ## テスト
 

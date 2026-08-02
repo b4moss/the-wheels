@@ -1,8 +1,16 @@
 # コンポーネント: Accordion 仕様書
 
 - Web Component として実装する（Light DOM）
+- JS クラス名: `TwAccordion`
 - ネイティブの `details` / `summary` を採用する
+- 複数パネルの同時オープン可（ネイティブ `details` のまま）
 - a11y の詳細は後日検討。追加属性は可能な限り不要にする
+
+## slot
+
+- `header`
+- `content`
+- デフォルト slot は使わない
 
 ## 構造
 

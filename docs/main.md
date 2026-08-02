@@ -51,6 +51,7 @@
 
 - リセットCSS - `reset-css`を採用
 - フォント - Inter + Noto Sans JP（本体は同梱せず、stack のみ定義。利用側が用意）
+- ルート文字サイズは 62.5% 方式
 - 詳細は [スタイル仕様](./specs/style.md) を参照
 
 #### 長文の扱い
@@ -73,19 +74,24 @@
 - props, slotを適切に使用する。
 - Light DOMで実装する。Shadow DOMは使わない。
 - WCは、スタイルを持たない。（ユーザーが好きなCSSを当てられるようにするため）
-- 接頭辞はデフォルト `tw-`。`setPrefix` で早期にオーバーライド可能。
+- 接頭辞はデフォルト `tw-`。import で自動登録。変えるときは import 前に `setPrefix`。
 
 ## 技術スタック
 
-- Vite/TypeScript - npmパッケージモード
+- Vite/TypeScript - npmパッケージモード（`strict: true`）
+- 配布形式: ESM 主 + CJS も dual package
 - Vitest
 - Node.js 22+
 - Native CSS（`@layer`: `reset` / `tokens` / `base` / `components`）
+- ルート文字サイズ: 62.5% 方式
 - Web Components（Light DOM）
+- Floating UI（`@floating-ui/dom`）— Dropdown 等のポジショニング（flip / shift デフォルト有効）
 - npm workspaces
-- kitchen-sink: Vituum による MPA
+- kitchen-sink: Vituum による MPA（関心ごとの複数ページ）
 - Storybook: コンポーネントがある程度揃ってから導入する
+- 対応ブラウザ: Chrome / Firefox / Safari / Edge の最新2メジャー
 - ライセンス: MIT
+- npm 公開タイミングはバージョンに固定せず、PO が見計らう
 
 ## ディレクトリ構成案
 
@@ -100,6 +106,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 │   │   └── src/
 │   ├── components/              # @b4moss/the-wheels-components
 │   │   ├── package.json         # style は同梱しない
+│   │   ├── assets/              # 同梱 SVG（spinner, more 等）
 │   │   └── src/
 │   │       ├── accordion/
 │   │       ├── modal/
@@ -123,11 +130,11 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 ```
 
 - 公開単位は最初からこの3つまでとする。
-- `@b4moss/the-wheels-style` は全部入り + 部分 import（`/tokens` など）を提供する。
+- `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）を提供する。
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する。
 - kitchen-sink は抽出・実装の動作確認場とする。
 - Storybook はドキュメント／カタログ用途とし、Components がある程度揃ってから入れる。
-- v0.1.0 では npm に公開しない（リポジトリ内利用）。ロードマップは [roadmap.md](./roadmap.md) を参照。
+- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。ロードマップは [roadmap.md](./roadmap.md) を参照。
 
 ### 参考リポジトリ（リポジトリ外・将来削除）
 
@@ -156,7 +163,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 
 ##### 新規
 
-- Dropdown（Popper.js 採用）
+- Dropdown（Floating UI 採用）
 - ActionMenu（Dropdown + SVGLoader。メニュー項目は slot 列挙）
 - Avatar
 - Vertical Nav
