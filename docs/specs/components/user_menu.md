@@ -44,7 +44,7 @@ ActionMenu に揃える。
 ## メニュー項目
 
 - デフォルト slot にリンク／ボタン等を列挙する
-- 推奨マークアップ用にクラスまたは `data-tw-user-menu-item`（名称は実装時に固定）を用意し、style / kitchen-sink で見た目を揃える
+- 推奨マークアップ用に `data-tw-user-menu-item` を用意し、style / kitchen-sink で見た目を揃える
 - 区切り線・危険色（ログアウト）の**組み込みバリアントは必須としない**（利用側 CSS で足してよい）
 
 ## 含まないもの

@@ -22,6 +22,11 @@ const REQUIRED_UMBRELLA_EXPORTS = [
   "TwAvatar",
   "TwVerticalNav",
   "TwTabs",
+  "TwCombobox",
+  "TwInfiniteScroll",
+  "TwUserMenu",
+  "TwCookieConsent",
+  "createSnackbarLayer",
 ] as const;
 
 const PACKAGE_DIRS: Record<string, string> = {

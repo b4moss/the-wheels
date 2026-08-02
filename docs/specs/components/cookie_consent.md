@@ -36,27 +36,42 @@
 ## localStorage
 
 - **1 JSON** を1キーに保存する
-- キー名は属性で変更可能（例: `storage-key`）。未指定時は固定デフォルト（例: `tw-cookie-consent`）
-- 論理フィールド（名称は実装で固定してよい）:
+- キー名は属性で変更可能（例: `storage-key`）。未指定時は **`tw-cookie-consent`**
+- 論理フィールド:
 
 | フィールド | 意味 |
 |---|---|
-| `status` | 例: `pending`（未承諾）/ `accepted`（全体承諾） |
+| `status` | `pending`（未決定）/ `accepted`（すべて承諾）/ `partial`（サービス別で1つ以上許可）/ `rejected`（登録済みサービスがすべて拒否） |
 | `bannerHidden` | バナーを出さない |
 | `services` | `{ [serviceId]: boolean }` サービス別許否 |
-| `expiresAt` | TTL 期限（ISO 日時または epoch。実装で固定） |
+| `expiresAt` | TTL 期限（**ISO 8601 文字列**を推奨） |
 
 ### すべて承諾
 
 - `status = accepted`、`bannerHidden = true`
-- **`services` は触らない**（未登録サービスは全体承諾と解釈する）
+- 属性 `service-ids`（カンマ区切りの既知サービス ID）がある場合、それらをすべて `true` で `services` に書く（既存キーも true に揃える）
+- `service-ids` 未指定かつ `services` が空なら、従来どおり空のまま（未登録＝全体承諾解釈は利用側）
 - TTL を「今から `ttl-days`」で設定／延長する
+
+### 属性
+
+- `storage-key` — localStorage キー（既定 `tw-cookie-consent`）
+- `ttl-days` — TTL 日数（既定 `365`）
+- `service-ids` — すべて承諾時に埋めるサービス ID 一覧（例: `analytics,ads,personalization`）
 
 ### 設定する（バナーを消す）
 
-- `status` は未承諾のまま（`pending`）
+- `status` は未決定のまま（`pending`）
 - `bannerHidden = true` を追加／更新
 - バナーを非表示にする（遷移は `href`）
+
+### サービス別保存時の status
+
+`setServiceConsent` のたびに `services` から再計算する。
+
+- 登録キーが1つ以上あり、いずれかが `true` → `partial`
+- 登録キーが1つ以上あり、すべて `false` → `rejected`
+- （`services` が空のままなら status は変えない。一括の `accepted` は個別編集が入った時点で `partial` / `rejected` に落ちる）
 
 ### TTL
 

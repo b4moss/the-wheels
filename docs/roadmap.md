@@ -239,7 +239,7 @@ v0.11.0 で外したアカウント系・同意バナーを入れる。既存の
 - **CookieConsent** — 下部 snackbar 風バナー＋ localStorage。仕様: [cookie_consent.md](./specs/components/cookie_consent.md)
 - **Snackbar レイヤ（共有）** — 将来 Toast 向け。仕様: [snackbar_layer.md](./specs/components/snackbar_layer.md)（Toast WC 自体は含まない）
 - 各 WC の style / kitchen-sink / Storybook
-- Vitest（TDD）。版内で `docs/specs/tests/v0.12.0.md` を切る
+- Vitest（TDD）。テスト仕様: [v0.12.0.md](./specs/tests/v0.12.0.md)
 
 ### 含まないもの
 

@@ -1,0 +1,141 @@
+{% set current = "cookie-consent" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}CookieConsent — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>CookieConsent</h1>
+  <p class="ks-meta">下部 snackbar · localStorage · サービス別同意 API · ストレージ双方向表示</p>
+
+  {% set preview %}
+    <section>
+      <h2>デモ</h2>
+      <p class="ks-meta">初回はバナーが表示されます。「デモをリセット」で localStorage を消して再読込できます。「設定する」は下のサービス別同意へスクロールします。</p>
+      <div class="ks-row">
+        <tw-button id="cookie-reset" variant="stroke">デモをリセット</tw-button>
+      </div>
+      <tw-cookie-consent
+        id="cookie-demo"
+        class="ks-cookie-consent"
+        service-ids="analytics,ads,personalization"
+      >
+        <p>当サイトは Cookie を利用します。続行する場合はすべて承諾してください。</p>
+        <div class="cookie-consent-actions">
+          <tw-button data-tw-cookie-accept-all>すべて承諾</tw-button>
+          <a href="#cookie-services" data-tw-cookie-settings>
+            <tw-button variant="stroke">設定する</tw-button>
+          </a>
+        </div>
+      </tw-cookie-consent>
+    </section>
+
+    <section id="cookie-services">
+      <h2>サービス別同意</h2>
+      <p class="ks-meta">チェックで <code>setServiceConsent</code> / 読取は <code>getServiceConsent</code>・<code>getAllServiceConsents</code>。下の JSON は localStorage と同期します。</p>
+      <ul class="ks-cookie-services">
+        <li>
+          <label>
+            <input type="checkbox" data-cookie-service="analytics" />
+            analytics
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-cookie-service="ads" />
+            ads
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" data-cookie-service="personalization" />
+            personalization
+          </label>
+        </li>
+      </ul>
+      <div class="ks-cookie-storage">
+        <div class="ks-cookie-storage__header">
+          <p class="ks-sample__label">localStorage[<code>tw-cookie-consent</code>]</p>
+          <div class="ks-row">
+            <tw-button id="cookie-storage-apply" variant="stroke">Apply</tw-button>
+            <span id="cookie-storage-status" class="ks-meta" aria-live="polite"></span>
+          </div>
+        </div>
+        <textarea
+          id="cookie-storage-json"
+          class="ks-code ks-cookie-storage__editor"
+          rows="12"
+          spellcheck="false"
+          aria-label="Cookie consent localStorage JSON"
+        ></textarea>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-cookie-consent
+  id="cookie-demo"
+  service-ids="analytics,ads,personalization"
+>
+  <p>当サイトは Cookie を利用します。</p>
+  <div class="cookie-consent-actions">
+    <tw-button data-tw-cookie-accept-all>すべて承諾</tw-button>
+    <a href="#cookie-services" data-tw-cookie-settings>
+      <tw-button variant="stroke">設定する</tw-button>
+    </a>
+  </div>
+</tw-cookie-consent>
+
+<label>
+  <input type="checkbox" data-cookie-service="analytics" />
+  analytics
+</label>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const host = document.getElementById("cookie-demo");
+const KEY = "tw-cookie-consent";
+
+document.getElementById("cookie-reset")?.addEventListener("click", () => {
+  localStorage.removeItem(KEY);
+  location.reload();
+});
+
+document.querySelectorAll("[data-cookie-service]").forEach((input) => {
+  input.addEventListener("change", () => {
+    host.setServiceConsent(input.dataset.cookieService, input.checked);
+    // refresh JSON view from localStorage…
+  });
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwCookieConsent } from "@b4moss/the-wheels";
+
+const host = document.getElementById("cookie-demo") as TwCookieConsent;
+const KEY = "tw-cookie-consent";
+
+document.getElementById("cookie-reset")?.addEventListener("click", () => {
+  localStorage.removeItem(KEY);
+  location.reload();
+});
+
+document.querySelectorAll<HTMLInputElement>("[data-cookie-service]").forEach((input) => {
+  input.addEventListener("change", () => {
+    const id = input.dataset.cookieService;
+    if (!id) return;
+    host.setServiceConsent(id, input.checked);
+  });
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/cookie-consent.js"></script>
+{% endblock %}
