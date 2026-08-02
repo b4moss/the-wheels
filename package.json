@@ -1,0 +1,19 @@
+{
+  "name": "the-wheels-reconstruct",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "The Wheels monorepo (reconstruct)",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:kitchen-sink": "npm run dev -w @b4moss/the-wheels-kitchen-sink",
+    "build:style": "npm run build -w @b4moss/the-wheels-style",
+    "build:kitchen-sink": "npm run build -w @b4moss/the-wheels-kitchen-sink"
+  }
+}
