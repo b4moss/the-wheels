@@ -69,16 +69,37 @@
 
 実装マイルストーン: roadmap **v0.10.0**（CI 整備）。`release` dry-run / npm CD の本実装はその後続。
 
+### ワークフロー
+
+- PR CI: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
+  - トリガー: `develop` / `dev-v*` への `pull_request`
+  - Node.js 22 / `npm ci`
+  - `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`
+  - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
+
 ### CI が走るタイミング
 
 | 対象 | タイミング | 内容 |
 | --- | --- | --- |
 | `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI（テスト・ビルド等）。**通らない PR は受け付けない** |
-| `release` への PR | PR 時 | **dry-run**（公開前確認。実際の npm publish はしない） |
+| `release` への PR | PR 時 | **dry-run**（公開前確認。実際の npm publish はしない）。**v0.10.0 では未実装** |
 | `main` への PR / マージ | — | CI は走らせない |
-| `release` へのマージ後 | CD | npm 等へのリリース |
+| `release` へのマージ後 | CD | npm 等へのリリース。**v0.10.0 では未実装** |
 
 - `develop` までに、対象変更について最低 1 回 CI が通ったことをもって、自動テストは行われたものとする
+
+### 【PO作業】ブランチ保護（required checks）
+
+「通らない PR は受け付けない」を GitHub 上で強制するためのチェックリスト。設定操作は PO。
+
+1. GitHub → Settings → Branches → Branch protection rules
+2. `develop` にルールを追加（または更新）
+   - Require a pull request before merging
+   - Require status checks to pass before merging
+   - 必須チェックに CI のジョブ名（現状: **verify**）を指定
+   - （任意）Require branches to be up to date before merging
+3. `dev-v*` にも同様の保護を付ける（ルールが glob 非対応なら、現行の `dev-vX.Y.Z` ごとに追加）
+4. `main` / `release` には、この PR CI を required にしない（方針どおり CI 対象外／未実装）
 
 ### CD
 
