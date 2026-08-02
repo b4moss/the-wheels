@@ -1,0 +1,72 @@
+{% set current = "svg-loader" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}SVGLoader — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>SVGLoader</h1>
+  <p class="ks-meta">fetch → Light DOM 注入 / 失敗時プレースホルダ / 見た目属性</p>
+
+  <section>
+    <h2>基本</h2>
+    <p class="ks-row">
+      <tw-svg-loader
+        id="icon-check"
+        width="32"
+        height="32"
+        stroke-color="var(--tw-text-main)"
+      ></tw-svg-loader>
+    </p>
+  </section>
+
+  <section>
+    <h2>flip / rotate</h2>
+    <p class="ks-row">
+      <tw-svg-loader
+        id="icon-chevron"
+        width="32"
+        height="32"
+        stroke-color="var(--tw-text-main)"
+      ></tw-svg-loader>
+      <tw-svg-loader
+        id="icon-chevron-rot"
+        width="32"
+        height="32"
+        rotate="180"
+        stroke-color="var(--tw-text-main)"
+      ></tw-svg-loader>
+      <tw-svg-loader
+        id="icon-menu"
+        width="32"
+        height="32"
+        flip="horizontal"
+        stroke-color="var(--tw-text-main)"
+      ></tw-svg-loader>
+    </p>
+  </section>
+
+  <section>
+    <h2>失敗時</h2>
+    <p class="ks-row">
+      <tw-svg-loader
+        src="/this-file-does-not-exist.svg"
+        width="32"
+        height="32"
+      ></tw-svg-loader>
+    </p>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    import "@b4moss/the-wheels";
+    import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+    import chevronUrl from "@b4moss/the-wheels-components/assets/chevron.svg?url";
+    import menuUrl from "@b4moss/the-wheels-components/assets/menu.svg?url";
+
+    document.getElementById("icon-check")?.setAttribute("src", checkUrl);
+    document.getElementById("icon-chevron")?.setAttribute("src", chevronUrl);
+    document.getElementById("icon-chevron-rot")?.setAttribute("src", chevronUrl);
+    document.getElementById("icon-menu")?.setAttribute("src", menuUrl);
+  </script>
+{% endblock %}

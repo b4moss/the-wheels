@@ -1,0 +1,63 @@
+{% set current = "vertical-nav" %}
+{% set shell_class = "container" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Vertical Nav — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Vertical Nav</h1>
+  <p class="ks-meta">Item ラッパー · aria-current · layout-sidebar デモ</p>
+
+  <div class="layout-sidebar">
+    <aside class="sidebar">
+      <nav aria-label="demo">
+        <ul style="list-style: none; margin: 0; padding: 0; max-width: none">
+          <li style="max-width: none; margin: 0">
+            <tw-vertical-nav>
+              <a href="#home" aria-current="page">
+                <tw-svg-loader
+                  id="nav-home-icon"
+                  width="18"
+                  height="18"
+                ></tw-svg-loader>
+                Home
+              </a>
+            </tw-vertical-nav>
+          </li>
+          <li style="max-width: none; margin: 0">
+            <tw-vertical-nav>
+              <a href="#docs">Documents</a>
+            </tw-vertical-nav>
+          </li>
+          <li style="max-width: none; margin: 0">
+            <tw-vertical-nav>
+              <a href="#settings">Settings</a>
+            </tw-vertical-nav>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section>
+      <h2>メイン</h2>
+      <p>
+        リストは素の HTML、項目だけが <code>tw-vertical-nav</code> です。
+        現在地は slot 内の <code>aria-current="page"</code> で指定します。
+      </p>
+      <p class="ks-focus-row">
+        <tw-avatar name="山田" width="48" height="48"></tw-avatar>
+        <span>ナビとアバターの併記例</span>
+      </p>
+    </section>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    import "@b4moss/the-wheels";
+    import menuUrl from "@b4moss/the-wheels-components/assets/menu.svg?url";
+
+    const icon = document.querySelector("#nav-home-icon");
+    if (icon) icon.setAttribute("src", menuUrl);
+  </script>
+{% endblock %}

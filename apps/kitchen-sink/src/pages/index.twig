@@ -1,0 +1,202 @@
+{% set current = "home" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}The Wheels{% endblock %}
+
+{% block body %}
+  <div class="ks-home">
+    {% include "@partials/nav.twig" %}
+
+    <main id="main">
+      <div class="layout-container">
+        <div id="hero-container">
+          <section id="hero">
+            <section class="title-group">
+              <hgroup>
+                <h1 class="title">
+                  <span class="title-lead">Welcome to</span>
+                  <span class="main-title">The Wheels</span>
+                </h1>
+                <p class="caption">by <strong>Bicycle for mind LLC</strong></p>
+              </hgroup>
+              <div class="lead first">
+                <p>
+                  Multiple purpose designsystem<br />
+                  for human society.
+                </p>
+                <p class="caption">
+                  You don’t need to reinvent wheels anymore to success.
+                </p>
+              </div>
+            </section>
+            <div class="lead second">
+              <p>
+                <b
+                  >The Wheelsは、<a href="https://b4m.co.jp/" target="_blank" rel="noopener noreferrer"
+                    >合同会社 知的・自転車が開発</a
+                  >
+                  する<br />スタイルと Web Components をまとめたデザインシステムです</b
+                >
+              </p>
+              <p>
+                このサイト（kitchen-sink）は導入手順とデモへの導線です。コンポーネントのカタログ確認は
+                Storybook（リポジトリルートで <code>npm run dev:storybook</code>）を使います。ソースは
+                <a
+                  href="https://github.com/b4m-oss/the-wheels-dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >オープンソースとして公開され、MIT License に基づいて配布</a
+                >されています。
+              </p>
+            </div>
+          </section>
+          <figure id="main-visual">
+            <img
+              width="522"
+              height="477"
+              src="/src/assets/img/main-visual.png"
+              srcset="
+                /src/assets/img/main-visual.png    1x,
+                /src/assets/img/main-visual@2x.png 2x
+              "
+              alt="自転車の始祖と言われるドライジーネの画像"
+            />
+            <figcaption>
+              <p>
+                自転車の始祖と言われるドライジーネ。<br />
+                ドライジーネの発明があったからこそ、<br />
+                今、私たちは長距離を軽やかに移動することができる。
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <nav class="ks-home-cta twls-container horizontal" aria-label="主要導線">
+          <a href="/getting-started/" class="ks-button">Getting Started</a>
+          <a href="/components/" class="ks-button ks-button--ghost">Components</a>
+        </nav>
+
+        <nav aria-label="コンテンツ一覧">
+          <section class="twls-index-nav-container">
+            <h2 class="heading">はじめに</h2>
+            <div class="twls-index-nav-list">
+              {% include "@partials/card-button.twig" with {
+                href: "/getting-started/",
+                title: "Getting Started",
+                caption: "インストール、CSS、umbrella JS、setPrefix の導入手順",
+                ctaLabel: "詳細を見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/components/",
+                title: "Components",
+                caption: "kitchen-sink 上のデモへのインデックス",
+                ctaLabel: "詳細を見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/getting-started/",
+                title: "Storybook",
+                caption: "カタログは Storybook。説明・デモ導線はこのサイト",
+                ctaLabel: "案内を見る"
+              } %}
+            </div>
+          </section>
+
+          <section class="twls-index-nav-container">
+            <h2 class="heading">スタイル確認</h2>
+            <div class="twls-index-nav-list">
+              {% include "@partials/card-button.twig" with {
+                href: "/typography/",
+                title: "Typography",
+                caption: "見出し・本文・40ch・フォーカスの確認",
+                ctaLabel: "詳細を見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/tokens/",
+                title: "Tokens",
+                caption: "色と数値トークンの一覧",
+                ctaLabel: "詳細を見る"
+              } %}
+            </div>
+          </section>
+
+          <section class="twls-index-nav-container">
+            <h2 class="heading">Web Components</h2>
+            <div class="twls-index-nav-list">
+              {% include "@partials/card-button.twig" with {
+                href: "/svg-loader/",
+                title: "SVGLoader",
+                caption: "SVG fetch・プレースホルダ",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/spinner/",
+                title: "Spinner",
+                caption: "同梱アニメーション SVG",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/button/",
+                title: "Button",
+                caption: "variant / slot / disable-on-click",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/dropdown/",
+                title: "Dropdown",
+                caption: "trigger / panel / placement",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/action-menu/",
+                title: "ActionMenu",
+                caption: "more-vertical / src / カスタム trigger",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/accordion/",
+                title: "Accordion",
+                caption: "details / chevron / グループ一斉開閉",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/modal/",
+                title: "Modal",
+                caption: "dialog / showModal / サイズ固定",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/avatar/",
+                title: "Avatar",
+                caption: "書記素イニシャル · コントラスト · 画像",
+                ctaLabel: "デモを見る"
+              } %}
+              {% include "@partials/card-button.twig" with {
+                href: "/vertical-nav/",
+                title: "Vertical Nav",
+                caption: "Item · aria-current · layout-sidebar",
+                ctaLabel: "デモを見る"
+              } %}
+            </div>
+          </section>
+        </nav>
+      </div>
+    </main>
+
+    <footer>
+      <section id="global-footer">
+        <div class="inner">
+          <p>
+            All rights are reserved by
+            <a href="https://b4m.co.jp/" target="_blank" rel="noopener noreferrer">b4m LLC.</a>
+          </p>
+          <p>
+            Source codes are open source<br class="hide-tablet" />with MIT License.
+            <a href="https://github.com/b4m-oss/the-wheels-dev" target="_blank" rel="noopener noreferrer"
+              >See details at our GitHub.</a
+            >
+          </p>
+        </div>
+      </section>
+    </footer>
+  </div>
+{% endblock %}

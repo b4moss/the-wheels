@@ -1,0 +1,77 @@
+{% set current = "modal" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Modal — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Modal</h1>
+  <p class="ks-meta">showModal · × / backdrop / data-tw-modal-close · 長文スクロール</p>
+
+  <section>
+    <h2>基本</h2>
+    <p class="ks-row">
+      <tw-button type="button" id="open-modal">モーダルを開く</tw-button>
+    </p>
+
+    <tw-modal id="demo-modal">
+      <h2 slot="header">確認</h2>
+      <div slot="content">
+        <p>× ボタン、backdrop、フッターの閉じる、Escape で閉じられます。</p>
+        <p>
+          初回表示後にサイズが固定され、以降の内容増減は content
+          内スクロールで吸収します。
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat
+          nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Pellentesque habitant morbi tristique senectus et netus et
+          malesuada fames ac turpis egestas. Vestibulum tortor quam,
+          feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+          libero sit amet quam egestas semper. Aenean ultricies mi vitae
+          est. Mauris placerat eleifend leo. Quisque sit amet est et
+          sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+          sed, commodo vitae, ornare sit amet, wisi.
+        </p>
+        <p>
+          Aenean fermentum, elit eget tincidunt condimentum, eros ipsum
+          rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim
+          in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque
+          id cursus faucibus, tortor neque egestas augue, eu vulputate
+          magna eros eu erat. Aliquam erat volutpat.
+        </p>
+        <p>
+          Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel,
+          wisi. Morbi auctor lorem non justo. Nam lacus libero, pretium at,
+          lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed
+          accumsan bibendum, erat ligula aliquet magna, vitae ornare odio
+          metus a mi.
+        </p>
+      </div>
+      <div slot="footer">
+        <tw-button type="button" variant="ghost" data-tw-modal-close
+          >キャンセル</tw-button
+        >
+        <tw-button type="button" data-tw-modal-close>OK</tw-button>
+      </div>
+    </tw-modal>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    import "@b4moss/the-wheels";
+  </script>
+  <script type="module">
+    const modal = document.getElementById("demo-modal");
+    document.getElementById("open-modal")?.addEventListener("click", () => {
+      modal?.showModal();
+    });
+  </script>
+{% endblock %}

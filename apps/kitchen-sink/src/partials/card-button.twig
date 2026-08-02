@@ -1,0 +1,13 @@
+<a class="twls-card-button" href="{{ href }}">
+  <div class="label">
+    <p>
+      <b>{{ title }}</b>
+    </p>
+    {% if caption %}
+      <p class="caption">{{ caption }}</p>
+    {% endif %}
+  </div>
+  <footer>
+    <p>{{ ctaLabel|default("詳細を見る") }}</p>
+  </footer>
+</a>

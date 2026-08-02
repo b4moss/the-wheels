@@ -1,0 +1,51 @@
+{% set current = "typography" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Typography — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Typography</h1>
+  <p class="ks-meta">見出し・本文・強調・リスト・長文幅（40ch）・focus</p>
+
+  <section>
+    <h2>見出しと本文</h2>
+    <p>
+      本文は Inter と Noto Sans JP のスタックを使います。行の長さはおおよそ
+      40 文字以内になるよう、<code>max-width: 40ch</code> で抑えています。
+      この段落が折り返す位置を確認してください。
+    </p>
+    <p>
+      <strong>強調（strong）</strong>はハイライト色、
+      <em>注釈（em）</em>はキャプション色で小さく表示されます。
+      <a href="#focus">インラインリンク</a>の見た目も合わせて確認できます。
+    </p>
+  </section>
+
+  <section>
+    <h2>リスト</h2>
+    <ul>
+      <li>箇条書きも本文と同じタイポ規約です</li>
+      <li>max-width と行間が揃っているかを見ます</li>
+      <li>日本語と Latin が混在しても破綻しないこと</li>
+    </ul>
+    <ol>
+      <li>番号付きリストの一行目</li>
+      <li>二行目も同じスタイル</li>
+    </ol>
+  </section>
+
+  <section id="focus">
+    <h2>Focus</h2>
+    <p>Tab キーでフォーカス環（outline）を確認してください。</p>
+    <p class="ks-focus-row">
+      <a href="#focus">フォーカス可能なリンク</a>
+      <button type="button">フォーカス可能なボタン</button>
+    </p>
+  </section>
+
+  <section>
+    <h2>補助クラス</h2>
+    <p class="heading-1">.heading-1</p>
+    <p class="heading-2">.heading-2</p>
+  </section>
+{% endblock %}

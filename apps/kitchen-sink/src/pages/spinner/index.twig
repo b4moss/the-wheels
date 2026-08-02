@@ -1,0 +1,31 @@
+{% set current = "spinner" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Spinner — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Spinner</h1>
+  <p class="ks-meta">同梱 spinner.svg（SVG アニメーション）/ デフォルト 1em</p>
+
+  <section>
+    <h2>デフォルト（1em）</h2>
+    <p style="font-size: 2.4rem">
+      読み込み中 <tw-spinner stroke-color="var(--tw-text-main)"></tw-spinner>
+    </p>
+  </section>
+
+  <section>
+    <h2>サイズ指定</h2>
+    <p class="ks-row">
+      <tw-spinner width="16" height="16" stroke-color="var(--tw-text-main)"></tw-spinner>
+      <tw-spinner width="32" height="32" stroke-color="var(--tw-text-main)"></tw-spinner>
+      <tw-spinner width="48" height="48" stroke-color="var(--tw-alert)"></tw-spinner>
+    </p>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    import "@b4moss/the-wheels";
+  </script>
+{% endblock %}

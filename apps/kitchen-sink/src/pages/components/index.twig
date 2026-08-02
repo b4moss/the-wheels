@@ -1,0 +1,32 @@
+{% set current = "components" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Components — The Wheels{% endblock %}
+
+{% block content %}
+  <h1>Components</h1>
+  <p class="ks-meta">デモへのインデックス · Web Components とスタイル確認</p>
+
+  <section>
+    <h2>Web Components</h2>
+    <ul>
+      <li><a href="/svg-loader/">SVGLoader</a> — SVG fetch・プレースホルダ</li>
+      <li><a href="/spinner/">Spinner</a> — 同梱アニメーション SVG</li>
+      <li><a href="/button/">Button</a> — variant / slot / disable-on-click</li>
+      <li><a href="/dropdown/">Dropdown</a> — trigger / panel / placement</li>
+      <li><a href="/action-menu/">ActionMenu</a> — more-vertical / src / カスタム trigger</li>
+      <li><a href="/accordion/">Accordion</a> — details / chevron / グループ一斉開閉</li>
+      <li><a href="/modal/">Modal</a> — dialog / showModal / サイズ固定</li>
+      <li><a href="/avatar/">Avatar</a> — 書記素イニシャル · コントラスト · 画像</li>
+      <li><a href="/vertical-nav/">Vertical Nav</a> — Item · aria-current · layout-sidebar</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>スタイル確認</h2>
+    <ul>
+      <li><a href="/typography/">Typography</a> — 見出し・本文・40ch・focus</li>
+      <li><a href="/tokens/">Tokens</a> — 色と数値トークン</li>
+    </ul>
+  </section>
+{% endblock %}

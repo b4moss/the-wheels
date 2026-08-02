@@ -1,0 +1,65 @@
+{% set current = "button" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Button — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Button</h1>
+  <p class="ks-meta">variant / slot / disable-on-click / reset()</p>
+
+  <section>
+    <h2>variant</h2>
+    <p class="ks-row">
+      <tw-button>default</tw-button>
+      <tw-button variant="stroke">stroke</tw-button>
+      <tw-button variant="ghost">ghost</tw-button>
+    </p>
+  </section>
+
+  <section>
+    <h2>icon slot</h2>
+    <p class="ks-row">
+      <tw-button>
+        <tw-svg-loader
+          id="btn-icon"
+          slot="icon-left"
+          width="16"
+          height="16"
+          stroke-color="currentColor"
+        ></tw-svg-loader>
+        保存する
+      </tw-button>
+    </p>
+  </section>
+
+  <section>
+    <h2>disabled</h2>
+    <p class="ks-row">
+      <tw-button disabled>disabled</tw-button>
+      <tw-button variant="stroke" disabled>stroke disabled</tw-button>
+      <tw-button variant="ghost" disabled>ghost disabled</tw-button>
+    </p>
+  </section>
+
+  <section>
+    <h2>disable-on-click</h2>
+    <p class="ks-row">
+      <tw-button id="click-once" disable-on-click>一度だけ押せる</tw-button>
+      <button type="button" id="reset-btn">reset()</button>
+    </p>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    import "@b4moss/the-wheels";
+    import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
+
+    const icon = document.getElementById("btn-icon");
+    if (icon) icon.setAttribute("src", checkUrl);
+
+    document.getElementById("reset-btn")?.addEventListener("click", () => {
+      document.getElementById("click-once")?.reset();
+    });
+  </script>
+{% endblock %}

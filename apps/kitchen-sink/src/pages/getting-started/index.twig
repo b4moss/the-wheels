@@ -1,0 +1,47 @@
+{% set current = "getting-started" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Getting Started — The Wheels{% endblock %}
+
+{% block content %}
+  <h1>Getting Started</h1>
+  <p class="ks-meta">install · style · umbrella JS · setPrefix</p>
+
+  <section>
+    <h2>インストール</h2>
+    <pre class="ks-code"><code>npm install @b4moss/the-wheels</code></pre>
+    <p>
+      未公開の間は、このリポジトリを workspace / <code>file:</code> 参照で利用してください。
+    </p>
+  </section>
+
+  <section>
+    <h2>CSS（全部入り）</h2>
+    <pre class="ks-code"><code>@import "@b4moss/the-wheels/style";</code></pre>
+  </section>
+
+  <section>
+    <h2>JavaScript（umbrella）</h2>
+    <p>コンポーネントは import 時にカスタム要素として自動登録されます。</p>
+    <pre class="ks-code"><code>import { TwButton, TwAvatar } from "@b4moss/the-wheels";</code></pre>
+    <p>
+      プレフィックスを変える場合は、<strong>コンポーネントを import する前に</strong>
+      <code>setPrefix</code> を呼んでください。
+    </p>
+    <pre class="ks-code"><code>import { setPrefix } from "@b4moss/the-wheels";
+
+setPrefix("app"); // タグは app-button など
+
+// setPrefix のあとにコンポーネントを読み込む
+import { TwButton } from "@b4moss/the-wheels";</code></pre>
+  </section>
+
+  <section>
+    <h2>Storybook</h2>
+    <p>
+      コンポーネントのカタログ確認は Storybook です。説明・デモ導線はこの kitchen-sink、
+      カタログは Storybook、と役割を分けています。
+    </p>
+    <pre class="ks-code"><code>npm run dev:storybook</code></pre>
+  </section>
+{% endblock %}

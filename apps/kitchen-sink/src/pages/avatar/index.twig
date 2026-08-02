@@ -1,0 +1,39 @@
+{% set current = "avatar" %}
+{% extends "@layouts/base.twig" %}
+
+{% block title %}Avatar — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Avatar</h1>
+  <p class="ks-meta">書記素イニシャル · コントラスト · 画像モード</p>
+
+  <section>
+    <h2>イニシャル</h2>
+    <p class="ks-focus-row">
+      <tw-avatar name="山田太郎"></tw-avatar>
+      <tw-avatar name="Alice" color="#3b3b3b"></tw-avatar>
+      <tw-avatar name="😀テスト" color="#bc2f2f"></tw-avatar>
+      <tw-avatar name="日本" color="#000000" width="64" height="64"></tw-avatar>
+    </p>
+  </section>
+
+  <section>
+    <h2>画像（枠としての背景）</h2>
+    <p class="ks-focus-row">
+      <tw-avatar
+        image-path="https://picsum.photos/seed/wheels/128"
+        alt="Demo user"
+        name="山"
+        color="#3b3b3b"
+        width="64"
+        height="64"
+      ></tw-avatar>
+    </p>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module">
+    import "@b4moss/the-wheels";
+  </script>
+{% endblock %}
