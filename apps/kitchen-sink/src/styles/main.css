@@ -132,3 +132,11 @@
   gap: 1.6rem;
   max-width: none;
 }
+
+.ks-disjoint {
+  margin: 2.4rem 0;
+  padding: 1.6rem;
+  background: var(--tw-bg-highlight);
+  border-radius: calc(var(--tw-global-radius) / 10 * 1rem);
+  max-width: none;
+}

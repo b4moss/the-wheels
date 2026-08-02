@@ -12,3 +12,10 @@ export {
   MORE_VERTICAL_SRC,
   TwActionMenu,
 } from "./action_menu/tw-action-menu.js";
+export {
+  closeAccordionsByGroup,
+  ensureAccordionGroupDelegation,
+  openAccordionsByGroup,
+} from "./accordion/accordion-group.js";
+export { CHEVRON_SRC, TwAccordion } from "./accordion/tw-accordion.js";
+export { CLOSE_SRC, TwModal } from "./modal/tw-modal.js";
