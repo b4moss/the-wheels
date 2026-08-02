@@ -16,6 +16,10 @@ describe("auto-register on module import", () => {
     const { TwAvatar } = await import("../avatar/tw-avatar.js");
     const { TwVerticalNav } = await import("../vertical_nav/tw-vertical-nav.js");
     const { TwTabs } = await import("../tabs/tw-tabs.js");
+    const { TwInfiniteScroll } = await import(
+      "../infinite_scroll/tw-infinite-scroll.js"
+    );
+    const { TwCombobox } = await import("../combobox/tw-combobox.js");
 
     expect(customElements.get("tw-svg-loader")).toBeTruthy();
     expect(customElements.get("tw-spinner")).toBeTruthy();
@@ -27,6 +31,8 @@ describe("auto-register on module import", () => {
     expect(customElements.get("tw-avatar")).toBeTruthy();
     expect(customElements.get("tw-vertical-nav")).toBeTruthy();
     expect(customElements.get("tw-tabs")).toBeTruthy();
+    expect(customElements.get("tw-infinite-scroll")).toBeTruthy();
+    expect(customElements.get("tw-combobox")).toBeTruthy();
     // First registration should keep the original ctor when available.
     expect(
       customElements.get("tw-svg-loader") === TwSvgLoader ||
@@ -41,6 +47,8 @@ describe("auto-register on module import", () => {
     expect(TwAvatar).toBeTruthy();
     expect(TwVerticalNav).toBeTruthy();
     expect(TwTabs).toBeTruthy();
+    expect(TwInfiniteScroll).toBeTruthy();
+    expect(TwCombobox).toBeTruthy();
   });
 
   it("registers app-* tags when setPrefix runs before import", async () => {
@@ -56,6 +64,8 @@ describe("auto-register on module import", () => {
     await import("../avatar/tw-avatar.js");
     await import("../vertical_nav/tw-vertical-nav.js");
     await import("../tabs/tw-tabs.js");
+    await import("../infinite_scroll/tw-infinite-scroll.js");
+    await import("../combobox/tw-combobox.js");
 
     expect(customElements.get("app-svg-loader")).toBeTruthy();
     expect(customElements.get("app-spinner")).toBeTruthy();
@@ -67,6 +77,8 @@ describe("auto-register on module import", () => {
     expect(customElements.get("app-avatar")).toBeTruthy();
     expect(customElements.get("app-vertical-nav")).toBeTruthy();
     expect(customElements.get("app-tabs")).toBeTruthy();
+    expect(customElements.get("app-infinite-scroll")).toBeTruthy();
+    expect(customElements.get("app-combobox")).toBeTruthy();
   });
 
   it("keeps existing tw-* tags when setPrefix changes later", async () => {

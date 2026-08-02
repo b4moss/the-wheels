@@ -205,32 +205,54 @@ Git / GitHub 戦略（[git.md](./git.md)）に沿った CI を、次の実装と
 
 ---
 
-## v0.11.0 — SaaS スキャフォールド設計
+## v0.11.0 — 追加コンポーネント
 
-設計ドキュメントが成果物。アプリ実装コードは含めない。（旧 v0.10.0）
+CI の次に、コンポーネント拡充を先に進める。候補は「将来項目」から取り上げ、版内でテスト仕様を切って実装する。
 
 ### 含むもの
 
-- 配置案（例: 将来 `apps/saas-scaffold`。本体パッケージとは版を分離しうる）
-- レイアウト3種の責務（シンプル / ダッシュボード / 3column）
-- 必要ページとレイアウトの対応表（ログイン、パスワード再発行、ダッシュボード、設定＋タブ、Sortable 等）
-- the-wheels / yoshinani-form / scaffold の依存方向
-- 不足コンポーネント・機能の洗い出し → 「将来項目」または後続版へ転記
-- Sortable.js 等は scaffold 側依存（コア WC に入れない）と明記
+- **Combobox** — Dropdown ベースの拡張（仕様: [combobox.md](./specs/components/combobox.md)、テスト: [v0.11.0.md](./specs/tests/v0.11.0.md)）
+- **InfiniteScroll** — 上下無限スクロール基盤（Combobox と同版・後接続。仕様: [infinite_scroll.md](./specs/components/infinite_scroll.md)）
+- 各 WC の style / kitchen-sink / Storybook への反映
+- Vitest（TDD）
 
 ### 含まないもの
 
-- scaffold の実装、不足 WC の実装（設計と転記のみ）
+- **UserMenu** / **CookieConsent** — 本版完了後に仕様を詰め、後続版で実装
+- Tabs の追加改修（`TwTabs` 最小は先行済み）
+- a11y の本検討（無期限延期・将来項目）
+- SaaS スキャフォールド実装
 
-### 補足
+### 依存
 
-- v0.12.0（form subtree）と直列必須ではないが、境界設計が form に効くため **11 → 12 を推奨**。並行・入れ替えは PO 判断
+- v0.10.0（CI）まで完了していること
 
 ---
 
-## v0.12.0 — yoshinani-form subtree 取り込み
+## v0.12.0 — Playwright / Storybook テストシナリオ
 
-（旧 v0.11.0）
+自動テストの厚みを先に上げる。a11y 本検討より優先。
+
+### 含むもの
+
+- Playwright: kitchen-sink の主要導線の最小〜実用セット（開閉・ナビ・代表コンポーネント）
+- Storybook: 主要ストーリーに対するテストシナリオ（interaction / play または同等。自動 VRT は任意のまま）
+- CI（v0.10.0）からの実行配線（PR で落ちたらマージ不可、の運用に載せる）
+
+### 含まないもの
+
+- a11y 本検討
+- Chromatic 等の有料 VRT 必須化（任意）
+
+### 依存
+
+- v0.11.0 の追加コンポーネントが一通り入っていることが望ましい（シナリオ対象が増える）。並行は PO 判断
+
+---
+
+## v0.13.0 — yoshinani-form subtree 取り込み
+
+form を先にモノレポへ載せる（旧「v0.11 / v0.12 入れ替え」後の form 側）。
 
 ### 含むもの
 
@@ -249,31 +271,40 @@ Git / GitHub 戦略（[git.md](./git.md)）に沿った CI を、次の実装と
 
 ---
 
-## v0.13.0 — a11y の本検討
+## v0.14.0 — SaaS スキャフォールド設計
 
-旧計画の「v0.8.0 a11y」相当。DX・取り込みの後に実施する。（旧 v0.12.0）
+設計ドキュメントが成果物。アプリ実装コードは含めない。form 取り込み後に境界を固める。
 
 ### 含むもの
 
-- 各 WC のキーボード操作・フォーカス・ARIA の方針決定と実装
-- 仕様書（各 `docs/specs/components/*.md`）への反映
-- 必要ならカスタムイベント方針の再確認（`getEventName` の実利用開始）
+- 配置案（例: 将来 `apps/saas-scaffold`。本体パッケージとは版を分離しうる）
+- レイアウト3種の責務（シンプル / ダッシュボード / 3column）
+- 必要ページとレイアウトの対応表（ログイン、パスワード再発行、ダッシュボード、設定＋タブ、Sortable 等）
+- the-wheels / yoshinani-form / scaffold の依存方向
+- 不足コンポーネント・機能の洗い出し → 後続版または将来項目へ転記
+- Sortable.js 等は scaffold 側依存（コア WC に入れない）と明記
 
-### 前提
+### 含まないもの
 
-- セマンティックな内部描画は各版で済んでいる前提。ここで「追加属性を最小にする」方針を具体化する
+- scaffold の実装（設計と転記のみ）
+
+### 補足
+
+- v0.13.0（form subtree）の後が推奨。並行・入れ替えは PO 判断
 
 ---
 
-## v0.14.0 — 安定化・品質
-
-旧計画の「v0.9.0 安定化」相当。（旧 v0.13.0）
+## v0.15.0 — 安定化・品質
 
 ### 含むもの
 
 - 分岐カバレッジの底上げ（v0.n 目標 50% からの引き上げを検討）
-- Playwright E2E の最小セット（kitchen-sink の主要導線）
+- Playwright / Storybook シナリオの穴埋め（主戦場は v0.12.0。ここで不足分を足す）
 - API の破壊的変更の棚卸しと、1.0 に向けた凍結候補リスト
+
+### 含まないもの
+
+- a11y 本検討（無期限延期のまま）
 
 ---
 
@@ -281,33 +312,38 @@ Git / GitHub 戦略（[git.md](./git.md)）に沿った CI を、次の実装と
 
 ### 含むもの（目安）
 
-- MVP コンポーネント一式が仕様どおり揃っている
+- MVP コンポーネント一式が仕様どおり揃っている（v0.11.0 の追加分を含む）
 - style / components / the-wheels の公開面が安定
 - README / 基本ドキュメントが利用可能な水準
 - kitchen-sink がドキュメントサイトとして一通り使えること（v0.8〜v0.9）
-- CI が `develop` / `dev-v*` の PR で運用されていること（v0.10.0）
+- CI および Playwright / Storybook シナリオが PR で運用されていること（v0.10〜v0.12）
 - 対応ブラウザ（最新2メジャー）での動作確認済み
 - （PO 判断で）npm 公開
 
 ### この版で必須にしない
 
-- SaaS スキャフォールドの**実装**（設計は v0.11.0）
-- yoshinani-form の the-wheels 公式バンドル／深い統合（subtree 済みならリポ内にある状態で可。README 案内は PO 判断）
+- SaaS スキャフォールドの**実装**（設計は v0.14.0）
+- yoshinani-form の the-wheels 公式バンドル／深い統合（subtree 済みならリポ内にある状態で可）
+- **a11y 本検討**（無期限延期）
 - Card / ContentSection（必要になったら別バージョンで検討）
-- 下記「将来項目」のコンポーネント（バージョン未定）
+- 下記「将来項目」のうち未実施のもの
 
 ---
 
 ## 将来項目
 
-バージョン未定。詳細仕様は後日。メモのみ。v0.11.0 設計で優先が上がったら版を切る。
+バージョン未定。詳細仕様は後日。メモのみ。
 
-- **UserMenu** — Avatar と Dropdown を組み合わせたもの
-- **Combobox** — Dropdown をベースに拡張
-- **CookieConsent** — 詳細は後ほど
-- **Tabs 等** — SaaS 設計の不足リスト由来（洗い出し後に追加）。※ `TwTabs` の最小実装は v0.9 系で先行あり。不足分は設計後に版を切る
-- **SaaS scaffold 実装** — v0.11.0 設計の後続（例: v1.1 または `apps/` サイド）
-- **form × scaffold の本統合** — v0.12.0 の後続
+### 無期限延期
+
+- **a11y 本検討** — キーボード／フォーカス／ARIA の方針決定と実装、仕様書への本反映。先に追加コンポーネントと自動テストシナリオを優先するため、再開時期は未定
+
+### その他
+
+- **UserMenu / CookieConsent** — v0.11.0 完了後に仕様化して後続版で実装
+- **Combobox / InfiniteScroll** — v0.11.0 で実装（完了後は本項から外す）
+- **SaaS scaffold 実装** — v0.14.0 設計の後続（例: v1.1 または `apps/` サイド）
+- **form × scaffold の本統合** — v0.13.0 取り込みの後続
 - **ドキュメント用 別 SSG / CMS** — wishlist。後日
 - **release dry-run / npm CD の本実装** — git.md。v0.10.0 の必須外の残り
 
@@ -318,9 +354,10 @@ Git / GitHub 戦略（[git.md](./git.md)）に沿った CI を、次の実装と
 - TypeScript: `strict: true`
 - 配布: ESM 主 + CJS dual package
 - npm 公開: PO がタイミングを見計らう
-- TDD: ロジックは Vitest。スタイル自動テストは行わず、見た目は Storybook で手動確認（自動 VRT は任意）
+- TDD: ロジックは Vitest。見た目は Storybook 手動確認が基本。Playwright / Storybook シナリオは v0.12.0 で厚くする（自動 VRT は任意）
 - kitchen-sink: 動作確認に加え、ドキュメントサイト体裁のホスト（v0.9.0〜）
 - Git / CI: [git.md](./git.md)（v0.10.0 で CI 整備）
+- a11y 本検討: 無期限延期（将来項目）
 - ライセンス: MIT
 
 ---
@@ -338,15 +375,16 @@ v0.1.0 style
                            └─ v0.8.0 Twig
                                  └─ v0.9.0 ドキュメント体裁
                                        └─ v0.10.0 CI 整備
-                                             ├─ v0.11.0 SaaS 設計 ──→（不足 WC は将来項目へ）
-                                             ├─ v0.12.0 form subtree
-                                             └─ v0.13.0 a11y
-                                                   └─ v0.14.0 安定化
-                                                         └─ v1.0.0
-                                                               └─（後続）SaaS 実装 / form 深い統合 / 将来 WC
+                                             └─ v0.11.0 追加コンポーネント
+                                                   └─ v0.12.0 Playwright / Storybook シナリオ
+                                                         ├─ v0.13.0 form subtree
+                                                         └─ v0.14.0 SaaS 設計
+                                                               └─ v0.15.0 安定化
+                                                                     └─ v1.0.0
+                                                                           └─（後続）SaaS 実装 / form 深い統合 / a11y（延期解除時）
 ```
 
-`v0.11` と `v0.12` は直列必須ではない（推奨は 11 → 12）。
+`v0.13` と `v0.14` は直列必須ではない（推奨は 13 → 14）。
 
 ----
 

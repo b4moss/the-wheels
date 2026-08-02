@@ -1,0 +1,81 @@
+{% set current = "combobox" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Combobox — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Combobox</h1>
+  <p class="ks-meta">static / async / hybrid · Dropdown 合成 · InfiniteScroll ページング</p>
+
+  {% set preview %}
+    <section>
+      <h2>static</h2>
+      <div class="ks-row">
+        <tw-combobox id="cb-static" placeholder="果物を検索…">
+          <tw-button slot="trigger" variant="stroke">選択</tw-button>
+        </tw-combobox>
+        <span id="cb-static-value" class="ks-meta"></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>async（debounce=300）</h2>
+      <div class="ks-row">
+        <tw-combobox id="cb-async" mode="async" placeholder="サーバー検索…" sort-key="updated_at">
+          <tw-button slot="trigger" variant="stroke">非同期</tw-button>
+          <div slot="footer"><small class="ks-meta">下端スクロールで追加</small></div>
+        </tw-combobox>
+      </div>
+    </section>
+
+    <section>
+      <h2>hybrid + multiple</h2>
+      <div class="ks-row">
+        <tw-combobox id="cb-hybrid" mode="hybrid" multiple max-selected="3" debounce="150" placeholder="併用…" sort-key="updated_at">
+          <tw-button slot="trigger" variant="ghost">複数選択</tw-button>
+          <div slot="subarea"><small class="ks-meta">静的＋非同期をマージ</small></div>
+        </tw-combobox>
+      </div>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-combobox id="cb-static" placeholder="果物を検索…">
+  <tw-button slot="trigger" variant="stroke">選択</tw-button>
+</tw-combobox>
+
+<tw-combobox id="cb-async" mode="async" placeholder="サーバー検索…" sort-key="updated_at">
+  <tw-button slot="trigger" variant="stroke">非同期</tw-button>
+</tw-combobox>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const staticCb = document.getElementById("cb-static");
+staticCb.options = [
+  { value: 1, label: "Apple" },
+  { value: 2, label: "Banana" },
+  { value: 3, label: "Cherry" },
+];
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwCombobox } from "@b4moss/the-wheels";
+
+const staticCb = document.getElementById("cb-static") as TwCombobox;
+staticCb.options = [
+  { value: 1, label: "Apple" },
+  { value: 2, label: "Banana" },
+];
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/combobox.js"></script>
+{% endblock %}

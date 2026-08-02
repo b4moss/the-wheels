@@ -1,0 +1,63 @@
+{% set current = "infinite-scroll" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}InfiniteScroll — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>InfiniteScroll</h1>
+  <p class="ks-meta">上下ページング · sort-key マージ · max-items ウィンドウ</p>
+
+  {% set preview %}
+    <section>
+      <h2>フィード風リスト</h2>
+      <div class="ks-row" style="width:min(100%,24rem)">
+        <tw-infinite-scroll
+          id="is-demo"
+          sort-key="updated_at"
+          sort-direction="desc"
+          max-items="20"
+        ></tw-infinite-scroll>
+      </div>
+      <p class="ks-meta">下端・上端付近で追加取得。ウィンドウは最大 20 件。</p>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-infinite-scroll
+  id="is-demo"
+  sort-key="updated_at"
+  sort-direction="desc"
+  max-items="20"
+></tw-infinite-scroll>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const el = document.getElementById("is-demo");
+el.loadItems = async ({ direction, page }) => {
+  /* fetch page… */
+  return { items: [/* … */], hasMore: true, nextPage: Number(page) + 1 };
+};
+el.refresh();
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwInfiniteScroll } from "@b4moss/the-wheels";
+
+const el = document.getElementById("is-demo") as TwInfiniteScroll;
+el.loadItems = async ({ direction, page }) => {
+  return { items: [], hasMore: false };
+};
+await el.refresh();
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/infinite-scroll.js"></script>
+{% endblock %}

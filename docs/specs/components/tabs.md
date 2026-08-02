@@ -3,7 +3,7 @@
 - Web Component として実装する（Light DOM）
 - JS クラス名: `TwTabs`
 - ホストにタブリストとパネルを描画し、クリックで表示パネルを切り替える
-- a11y の詳細は v0.13.0 で検討。当面は `role` / `aria-selected` / 矢印キー程度の軽量対応とする
+- a11y の詳細は無期限延期（将来項目）。当面は `role` / `aria-selected` / 矢印キー程度の軽量対応とする
 
 ## slot
 
