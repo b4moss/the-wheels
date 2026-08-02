@@ -1,7 +1,7 @@
 {
   "name": "the-wheels-reconstruct",
   "private": true,
-  "version": "0.5.0",
+  "version": "0.6.0",
   "type": "module",
   "description": "The Wheels monorepo (reconstruct)",
   "engines": {
@@ -14,7 +14,15 @@
   "scripts": {
     "dev:kitchen-sink": "npm run dev -w @b4moss/the-wheels-kitchen-sink",
     "build:style": "npm run build -w @b4moss/the-wheels-style",
+    "build:components": "npm run build -w @b4moss/the-wheels-components",
+    "build:the-wheels": "npm run build -w @b4moss/the-wheels",
     "build:kitchen-sink": "npm run build -w @b4moss/the-wheels-kitchen-sink",
-    "test:components": "npm run test -w @b4moss/the-wheels-components"
+    "test:components": "npm run test -w @b4moss/the-wheels-components",
+    "test:package": "npm run build:components && npm run build:the-wheels && vitest run --config vitest.package.config.ts"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.11.1",
+    "typescript": "~5.6.2",
+    "vitest": "^4.1.10"
   }
 }
