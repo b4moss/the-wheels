@@ -237,7 +237,7 @@ v0.11.0 で外したアカウント系・同意バナーを入れる。既存の
 
 - **UserMenu** — Dropdown 合成。仕様: [user_menu.md](./specs/components/user_menu.md)
 - **CookieConsent** — 下部 snackbar 風バナー＋ localStorage。仕様: [cookie_consent.md](./specs/components/cookie_consent.md)
-- **Snackbar レイヤ（共有）** — 将来 Toast 向け。仕様: [snackbar_layer.md](./specs/components/snackbar_layer.md)（Toast WC 自体は含まない）
+- **Snackbar レイヤ（共有）** — Toast（v0.14.0）向け。仕様: [snackbar_layer.md](./specs/components/snackbar_layer.md)（Toast WC 自体は含まない）
 - 各 WC の style / kitchen-sink / Storybook
 - Vitest（TDD）。テスト仕様: [v0.12.0.md](./specs/tests/v0.12.0.md)
 
@@ -283,9 +283,75 @@ v0.11.0 で外したアカウント系・同意バナーを入れる。既存の
 
 ---
 
-## v0.14.0 — yoshinani-form subtree 取り込み
+## v0.14.0 — Toast / Pagination
 
-form を先にモノレポへ載せる（旧 v0.13.0）。
+Snackbar レイヤ（v0.12.0）の上に Toast を載せ、汎用の Pagination も同版で入れる。
+
+### 含むもの
+
+- **Toast** — 共有 Snackbar レイヤを利用。自動消去・バリアント等は版内仕様で詰める
+- **Pagination** — ページ番号／件数など（InfiniteScroll とは別）。参照実装があれば `docs/references/` に置く
+- style / kitchen-sink / Storybook / Vitest（TDD）。版内でテスト仕様を切る
+
+### 含まないもの
+
+- FilePond / ExpandablePane / StepNav
+- form subtree、SaaS 設計・実装
+- a11y 本検討
+
+### 依存
+
+- v0.12.0（Snackbar レイヤ）および v0.13.0（E2E 基盤）まで完了していること
+
+---
+
+## v0.15.0 — ExpandablePane（展開小窓）
+
+利用規約などを小さく見せ、必要なら高さを拡張する UI。
+
+### 含むもの
+
+- インラインスクロールの小窓
+- 展開モード: 全部 / 既定値 / ユーザー指定（詳細は版内仕様）
+- style / kitchen-sink / Storybook / Vitest
+
+### 含まないもの
+
+- Accordion の高さ制限（任意の enhance／将来メモ。本版必須外）
+- FilePond、StepNav、form / SaaS
+
+### 依存
+
+- v0.14.0 まで完了していること（並行は PO 判断）
+
+---
+
+## v0.16.0 — FilePond（ファイルアップロード UI）
+
+DnD によるファイル選択・プレビュー・フロント検証。アップロード API 自体は WC 外。
+
+### 含むもの
+
+- DnD / ファイル選択
+- 最大個数
+- プレビュー
+- フロントでの容量チェック・MIME TYPE チェック
+- style / kitchen-sink / Storybook / Vitest
+
+### 含まないもの
+
+- サーバーアップロード実装
+- StepNav、form 深い統合、SaaS 実装
+
+### 依存
+
+- v0.15.0 まで完了していることが望ましい
+
+---
+
+## v0.17.0 — yoshinani-form subtree 取り込み
+
+form をモノレポへ載せる。深い統合はしない。
 
 ### 含むもの
 
@@ -302,11 +368,35 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 
 - 取り込み元 remote URL・ブランチ／タグ、入れ先パス、旧リポの archive 方針
 
+### 依存
+
+- WC 追加（v0.14〜v0.16）が進んでいることが望ましい。remote 準備ができ次第着手可（並行は PO 判断）
+
 ---
 
-## v0.15.0 — SaaS スキャフォールド設計
+## v0.18.0 — StepNav
 
-設計ドキュメントが成果物。アプリ実装コードは含めない。form 取り込み後に境界を固める。（旧 v0.14.0）
+重要項目入力フォーム等向けのステップナビゲーション。
+
+### 含むもの
+
+- StepNav WC（または同等）。the-wheels 置きか form 置きかは **版着手時に確定**（SaaS 設計より前のため、一問一答で境界を固定する）
+- style / kitchen-sink（または form 側デモ）/ Vitest
+
+### 含まないもの
+
+- SaaS scaffold 実装
+- form の umbrella 深い統合
+
+### 依存
+
+- v0.17.0（form subtree）まで完了していることが望ましい（form 連携を見るため）
+
+---
+
+## v0.19.0 — SaaS スキャフォールド設計
+
+設計ドキュメントが成果物。アプリ実装コードは含めない。
 
 ### 含むもの
 
@@ -323,23 +413,24 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 
 ### 補足
 
-- v0.14.0（form subtree）の後が推奨。並行・入れ替えは PO 判断
+- v0.17.0（form）および v0.18.0（StepNav）の後が推奨
 
 ---
 
-## v0.16.0 — 安定化・品質
+## v0.20.0 — 安定化・品質
 
-（旧 v0.15.0）
+機能追加のあと、1.0 直前に回す（急がない。本当に最後の最後）。
 
 ### 含むもの
 
 - 分岐カバレッジの底上げ（v0.n 目標 50% からの引き上げを検討）
-- Playwright / Storybook シナリオの穴埋め（Playwright 主戦場は v0.13.0。Storybook play や不足分はここで足してよい）
+- Playwright の穴埋め、Storybook play（任意）
 - API の破壊的変更の棚卸しと、1.0 に向けた凍結候補リスト
 
 ### 含まないもの
 
 - a11y 本検討（無期限延期のまま）
+- 新規大型 WC の追加（不足は別版）
 
 ---
 
@@ -347,17 +438,17 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 
 ### 含むもの（目安）
 
-- MVP コンポーネント一式が仕様どおり揃っている（v0.11.0〜v0.12.0 の追加分を含む）
+- MVP コンポーネント一式が仕様どおり揃っている（v0.11〜v0.18 相当のコア追加を含む想定。FilePond 等の必須範囲は PO 判断）
 - style / components / the-wheels の公開面が安定
 - README / 基本ドキュメントが利用可能な水準
 - kitchen-sink がドキュメントサイトとして一通り使えること（v0.8〜v0.9）
-- CI および Playwright E2E が PR で運用されていること（v0.10〜v0.13）。Storybook play は任意／後続
+- CI および Playwright E2E が PR で運用されていること（v0.10〜v0.13+）
 - 対応ブラウザ（最新2メジャー）での動作確認済み
 - （PO 判断で）npm 公開
 
 ### この版で必須にしない
 
-- SaaS スキャフォールドの**実装**（設計は v0.15.0）
+- SaaS スキャフォールドの**実装**（設計は v0.19.0）
 - yoshinani-form の the-wheels 公式バンドル／深い統合（subtree 済みならリポ内にある状態で可）
 - **a11y 本検討**（無期限延期）
 - Card / ContentSection（必要になったら別バージョンで検討）
@@ -371,13 +462,14 @@ form を先にモノレポへ載せる（旧 v0.13.0）。
 
 ### 無期限延期
 
-- **a11y 本検討** — キーボード／フォーカス／ARIA の方針決定と実装、仕様書への本反映。先に追加コンポーネントと自動テストシナリオを優先するため、再開時期は未定
+- **a11y 本検討** — キーボード／フォーカス／ARIA の方針決定と実装、仕様書への本反映。先に追加コンポーネントと自動テストを優先するため、再開時期は未定
 
 ### その他
 
-- **Toast** — Snackbar レイヤ（v0.12.0）の上に載せる。版未定
-- **SaaS scaffold 実装** — v0.15.0 設計の後続（例: v1.1 または `apps/` サイド）
-- **form × scaffold の本統合** — v0.14.0 取り込みの後続
+- **SaaS scaffold 実装** — v0.19.0 設計の後続（例: v1.1 または `apps/` サイド）
+- **form × scaffold / umbrella の深い統合** — v0.17.0 取り込みの後続
+- **Accordion 高さ制限** — ExpandablePane（v0.15）とは別。enhance 候補
+- **Storybook play / interaction** — v0.13 では入れない。安定化前後で任意
 - **ドキュメント用 別 SSG / CMS** — wishlist。後日
 - **release dry-run / npm CD の本実装** — git.md。v0.10.0 の必須外の残り
 
@@ -412,14 +504,18 @@ v0.1.0 style
                                              └─ v0.11.0 Combobox / InfiniteScroll
                                                    └─ v0.12.0 UserMenu / CookieConsent
                                                          └─ v0.13.0 Playwright E2E
-                                                               ├─ v0.14.0 form subtree
-                                                               └─ v0.15.0 SaaS 設計
-                                                                     └─ v0.16.0 安定化
-                                                                           └─ v1.0.0
-                                                                             └─（後続）SaaS 実装 / form 深い統合 / Toast / a11y（延期解除時）
+                                                               └─ v0.14.0 Toast + Pagination
+                                                                     └─ v0.15.0 ExpandablePane
+                                                                           └─ v0.16.0 FilePond
+                                                                                 └─ v0.17.0 form subtree
+                                                                                       └─ v0.18.0 StepNav
+                                                                                             └─ v0.19.0 SaaS 設計
+                                                                                                   └─ v0.20.0 安定化
+                                                                                                         └─ v1.0.0
+                                                                                                               └─（後続）SaaS 実装 / form 深い統合 / a11y（延期解除時）
 ```
 
-`v0.14` と `v0.15` は直列必須ではない（推奨は 14 → 15）。
+安定化（v0.20）は機能追加のあと・1.0 直前。急がない。
 
 ----
 

@@ -130,7 +130,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
   └─ @b4moss/the-wheels-components   # style 非依存（Light DOM）
 ```
 
-- 公開単位は最初からこの3つまでとする（form は v0.14.0 で subtree 予定。umbrella 必須バンドルとは切り分ける）。
+- 公開単位は最初からこの3つまでとする（form は v0.17.0 で subtree 予定。umbrella 必須バンドルとは切り分ける）。
 - `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）を提供する。
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する。
 - kitchen-sink は動作確認場であり、v0.9.0 以降はドキュメントサイト体裁のホストでもある。
@@ -173,8 +173,9 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 ##### 今回対象外（初期 MVP 外。版は roadmap 参照）
 
 - Card / ContentSection
-- Combobox / InfiniteScroll → **v0.11.0**、UserMenu / CookieConsent → **v0.12.0**（Toast は将来）
-- フォーム系の深い統合（`yoshinani-form` は v0.14.0 で subtree。公式バンドルは必須外）
+- Combobox / InfiniteScroll → **v0.11.0**、UserMenu / CookieConsent → **v0.12.0**、Toast / Pagination → **v0.14.0**
+- ExpandablePane → **v0.15.0**、FilePond → **v0.16.0**、StepNav → **v0.18.0**
+- フォーム系の深い統合（`yoshinani-form` は v0.17.0 で subtree。公式バンドルは必須外）
 
 ##### 実装順（目安）
 
@@ -188,7 +189,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 6. v0.6.0 全部入り実用化 → v0.7.0 Storybook
 7. v0.8.0 Twig → v0.9.0 ドキュメント体裁 → v0.10.0 CI 整備
 8. v0.11.0 Combobox / InfiniteScroll → v0.12.0 UserMenu / CookieConsent
-9. v0.13.0 Playwright E2E → v0.14.0 form subtree → v0.15.0 SaaS 設計 → v0.16.0 安定化 → v1.0.0（a11y は無期限延期）
+9. v0.13.0 Playwright E2E → v0.14.0 Toast/Pagination → … → v0.17.0 form subtree → v0.18.0 StepNav → v0.19.0 SaaS 設計 → v0.20.0 安定化 → v1.0.0（a11y は無期限延期）
 
 仕様の詳細は `docs/specs/components/`、`docs/specs/style.md`、同梱アイコンは `docs/specs/icons.md` を参照。
 
@@ -209,7 +210,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 ## 特記事項
 
 - the-wheels コア（style / components / umbrella）ではフォームを扱わない
-- フォームは別プロダクト `yoshinani-form`。roadmap **v0.14.0** で git subtree によりモノレポへ取り込む
+- フォームは別プロダクト `yoshinani-form`。roadmap **v0.17.0** で git subtree によりモノレポへ取り込む
   - 取り込み後も、umbrella への深い統合や SaaS スキャフォールドとの本結合は後続（将来項目）
 - Git / CI: [git.md](./git.md)（CI 整備は roadmap **v0.10.0**）
 - a11y 本検討: roadmap 上は **無期限延期**（将来項目）
