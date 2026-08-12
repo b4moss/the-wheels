@@ -1,4 +1,4 @@
-# the-wheels-reconstruct
+# The Wheels
 
 The Wheels デザインシステム（スタイル + Web Components）の monorepo です。  
 社内プロジェクトから全部入りパッケージで試し導入できる状態を目指しています。
