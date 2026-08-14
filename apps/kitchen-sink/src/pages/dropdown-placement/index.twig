@@ -1,0 +1,133 @@
+{% set current = "dropdown-placement" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Dropdown placement — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Dropdown placement</h1>
+  <p class="ks-meta">Floating UI フィクスチャ · 四隅・中央 · placement · ActionMenu</p>
+
+  <section>
+    <h2>端・中央トリガー</h2>
+    <p class="ks-meta">viewport 端付近と中央から開閉・収まりを確認する。</p>
+    <div class="ks-placement-stage" data-tw-fixture="edge-stage">
+      <div class="ks-placement-anchor ks-placement-anchor--center" data-tw-edge="center">
+        <tw-dropdown id="dd-edge-center" placement="bottom-start" data-tw-fixture="dropdown">
+          <tw-button slot="trigger" variant="stroke" id="dd-edge-center-trigger">中央</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button" data-tw-fixture-item>中央・項目1</button>
+            <button type="button" data-tw-fixture-item>中央・項目2</button>
+          </div>
+        </tw-dropdown>
+      </div>
+
+      <div class="ks-placement-anchor ks-placement-anchor--top" data-tw-edge="top">
+        <tw-dropdown id="dd-edge-top" placement="bottom-start" data-tw-fixture="dropdown">
+          <tw-button slot="trigger" variant="stroke" id="dd-edge-top-trigger">上端</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button" data-tw-fixture-item>上端・項目1</button>
+            <button type="button" data-tw-fixture-item>上端・項目2</button>
+          </div>
+        </tw-dropdown>
+      </div>
+
+      <div class="ks-placement-anchor ks-placement-anchor--bottom" data-tw-edge="bottom">
+        <tw-dropdown id="dd-edge-bottom" placement="top-end" data-tw-fixture="dropdown">
+          <tw-button slot="trigger" variant="stroke" id="dd-edge-bottom-trigger">下端</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button" data-tw-fixture-item>下端・項目1</button>
+            <button type="button" data-tw-fixture-item>下端・項目2</button>
+          </div>
+        </tw-dropdown>
+      </div>
+
+      <div class="ks-placement-anchor ks-placement-anchor--left" data-tw-edge="left">
+        <tw-dropdown id="dd-edge-left" placement="left-start" data-tw-fixture="dropdown">
+          <tw-button slot="trigger" variant="stroke" id="dd-edge-left-trigger">左端</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button" data-tw-fixture-item>左端・項目1</button>
+            <button type="button" data-tw-fixture-item>左端・項目2</button>
+          </div>
+        </tw-dropdown>
+      </div>
+
+      <div class="ks-placement-anchor ks-placement-anchor--right" data-tw-edge="right">
+        <tw-dropdown id="dd-edge-right" placement="right-end" data-tw-fixture="dropdown">
+          <tw-button slot="trigger" variant="stroke" id="dd-edge-right-trigger">右端</tw-button>
+          <div slot="panel" class="ks-menu-panel">
+            <button type="button" data-tw-fixture-item>右端・項目1</button>
+            <button type="button" data-tw-fixture-item>右端・項目2</button>
+          </div>
+        </tw-dropdown>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>placement 指定</h2>
+    <div class="ks-row ks-placement-row" data-tw-fixture="placement-row">
+      <tw-dropdown id="dd-place-bottom-start" placement="bottom-start" data-tw-fixture="dropdown" data-tw-placement="bottom-start">
+        <tw-button slot="trigger" variant="stroke" id="dd-place-bottom-start-trigger">bottom-start</tw-button>
+        <div slot="panel" class="ks-menu-panel">
+          <button type="button" data-tw-fixture-item>bs-1</button>
+          <button type="button" data-tw-fixture-item>bs-2</button>
+        </div>
+      </tw-dropdown>
+
+      <tw-dropdown id="dd-place-top-end" placement="top-end" data-tw-fixture="dropdown" data-tw-placement="top-end">
+        <tw-button slot="trigger" variant="stroke" id="dd-place-top-end-trigger">top-end</tw-button>
+        <div slot="panel" class="ks-menu-panel">
+          <button type="button" data-tw-fixture-item>te-1</button>
+          <button type="button" data-tw-fixture-item>te-2</button>
+        </div>
+      </tw-dropdown>
+
+      <tw-dropdown id="dd-place-left-start" placement="left-start" data-tw-fixture="dropdown" data-tw-placement="left-start">
+        <tw-button slot="trigger" variant="stroke" id="dd-place-left-start-trigger">left-start</tw-button>
+        <div slot="panel" class="ks-menu-panel">
+          <button type="button" data-tw-fixture-item>ls-1</button>
+          <button type="button" data-tw-fixture-item>ls-2</button>
+        </div>
+      </tw-dropdown>
+
+      <tw-dropdown id="dd-place-right-end" placement="right-end" data-tw-fixture="dropdown" data-tw-placement="right-end">
+        <tw-button slot="trigger" variant="stroke" id="dd-place-right-end-trigger">right-end</tw-button>
+        <div slot="panel" class="ks-menu-panel">
+          <button type="button" data-tw-fixture-item>re-1</button>
+          <button type="button" data-tw-fixture-item>re-2</button>
+        </div>
+      </tw-dropdown>
+
+      <tw-dropdown id="dd-place-invalid" placement="not-a-real-placement" data-tw-fixture="dropdown" data-tw-placement="invalid">
+        <tw-button slot="trigger" variant="ghost" id="dd-place-invalid-trigger">invalid</tw-button>
+        <div slot="panel" class="ks-menu-panel">
+          <button type="button" data-tw-fixture-item>inv-1</button>
+          <button type="button" data-tw-fixture-item>inv-2</button>
+        </div>
+      </tw-dropdown>
+    </div>
+  </section>
+
+  <section>
+    <h2>ActionMenu（端）</h2>
+    <div class="ks-placement-stage ks-placement-stage--short" data-tw-fixture="action-menu-stage">
+      <div class="ks-placement-anchor ks-placement-anchor--top-left" data-tw-edge="top-left">
+        <tw-action-menu id="am-edge-top-left" placement="bottom-start" data-tw-fixture="action-menu">
+          <button type="button" data-tw-fixture-item>編集</button>
+          <button type="button" data-tw-fixture-item>複製</button>
+          <button type="button" data-tw-fixture-item>削除</button>
+        </tw-action-menu>
+      </div>
+      <div class="ks-placement-anchor ks-placement-anchor--bottom-right" data-tw-edge="bottom-right">
+        <tw-action-menu id="am-edge-bottom-right" placement="top-end" data-tw-fixture="action-menu">
+          <button type="button" data-tw-fixture-item>共有</button>
+          <button type="button" data-tw-fixture-item>エクスポート</button>
+        </tw-action-menu>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/register.js"></script>
+{% endblock %}

@@ -20,11 +20,17 @@
     "build:kitchen-sink": "npm run build -w @b4moss/the-wheels-kitchen-sink",
     "build:storybook": "npm run build -w @b4moss/the-wheels-storybook",
     "test:components": "npm run test -w @b4moss/the-wheels-components",
-    "test:package": "npm run build:components && npm run build:the-wheels && vitest run --config vitest.package.config.ts"
+    "test:package": "npm run build:components && npm run build:the-wheels && vitest run --config vitest.package.config.ts",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^22.20.1",
     "happy-dom": "^20.11.1",
     "typescript": "~5.6.2",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
   }
 }

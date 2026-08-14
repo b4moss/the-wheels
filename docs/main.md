@@ -193,8 +193,8 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 5. v0.5.0 Avatar / Vertical Nav
 6. v0.6.0 全部入り実用化 → v0.7.0 Storybook
 7. v0.8.0 Twig → v0.9.0 ドキュメント体裁 → v0.10.0 CI 整備
-8. v0.11.0 Combobox / InfiniteScroll → v0.12.0 UserMenu / CookieConsent（**ここまで済。現行 0.12.0**）
-9. v0.13.0 Playwright / Storybook シナリオ → v0.14.0 form subtree → v0.15.0 SaaS 設計 → v0.16.0 安定化 → v1.0.0（a11y は無期限延期）
+8. v0.11.0 Combobox / InfiniteScroll → v0.12.0 UserMenu / CookieConsent
+9. v0.13.0 Playwright E2E → v0.14.0 form subtree → v0.15.0 SaaS 設計 → v0.16.0 安定化 → v1.0.0（a11y は無期限延期）
 
 仕様の詳細は `docs/specs/components/`、`docs/specs/style.md`、同梱アイコンは `docs/specs/icons.md` を参照。
 
