@@ -45,12 +45,12 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 - PR CI: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
   - トリガー: `develop` / `dev-v*` への `pull_request`
-  - Node.js 22 / `npm ci`
+  - Node.js 22 / `npm ci`（作業ディレクトリは `dev/`）
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
   - ジョブは `verify` と `e2e` を並列（`e2e` は `verify` を待たない。成果物も共有しない）
-    - `verify`: `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`
-    - `e2e`: `build:style` → `build:components` → `build:the-wheels` → `build:kitchen-sink` のあと Playwright（Chromium）。対象サーバは kitchen-sink の **`preview`**（ホスト `127.0.0.1`、ポート **5173**）
-    - ローカルの `npm run test:e2e` は kitchen-sink の **`dev`** を対象にする
+    - `verify`: `dev/` で `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`
+    - `e2e`: `dev/` で `build:style` → `build:components` → `build:the-wheels` → `build:kitchen-sink` のあと Playwright（Chromium）。対象サーバは kitchen-sink の **`preview`**（ホスト `127.0.0.1`、ポート **5173**）
+    - ローカルの `npm run test:e2e`（`dev/` で実行）は kitchen-sink の **`dev` サーバ** を対象にする
     - 変更パスがすべて `docs/**` または `*.md`（ルートの `README.md` 含む）なら `e2e` をスキップする
 
 | 対象 | タイミング | 内容 |

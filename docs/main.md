@@ -70,16 +70,19 @@
 
 ```text
 the-wheels-reconstruct/          # Git repo
-├── package.json                 # workspaces root
 ├── docs/
-├── packages/
-│   ├── style/                   # @b4moss/the-wheels-style
-│   ├── components/              # @b4moss/the-wheels-components
-│   │   └── assets/              # 同梱 SVG（icons.md）
-│   └── the-wheels/              # @b4moss/the-wheels（全部入り）
-└── apps/
-    ├── kitchen-sink/            # 動作確認 + ドキュメントサイト（Vituum / Twig）
-    └── storybook/               # コンポーネントカタログ
+├── user-docs/
+└── dev/                         # npm workspaces root
+    ├── package.json
+    ├── e2e/                     # Playwright
+    ├── packages/
+    │   ├── style/               # @b4moss/the-wheels-style
+    │   ├── components/          # @b4moss/the-wheels-components
+    │   │   └── assets/          # 同梱 SVG（icons.md）
+    │   └── the-wheels/          # @b4moss/the-wheels（全部入り）
+    └── apps/
+        ├── kitchen-sink/        # 動作確認 + ドキュメントサイト（Vituum / Twig）
+        └── storybook/           # コンポーネントカタログ
 ```
 
 ### パッケージ関係

@@ -12,7 +12,7 @@
 
 ## ソース構成
 
-`packages/style/src` は layer / 関心ごとに分割する。
+`dev/packages/style/src` は layer / 関心ごとに分割する。
 
 - 例: `reset.css`, `tokens.css`, `typography.css`, `focus.css`, `breakpoints.css`, `index.css`
 

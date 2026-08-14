@@ -16,7 +16,7 @@
 - **SaaS スキャフォールド設計 / 実装** — WC 一式の後でよい。form なしでも設計は進められる
 - **ドキュメント用 別 SSG / CMS**
 - **release dry-run / npm CD の本実装** — 方針の上書きは [git.md](../../git.md)
-- **FV 画像差し替え** — 現行は `apps/kitchen-sink/src/assets/img/main-visual.png`（ドライジーネ）。現行アセットのまま運用する
+- **FV 画像差し替え** — 現行は `dev/apps/kitchen-sink/src/assets/img/main-visual.png`（ドライジーネ）。現行アセットのまま運用する
 - **Accordion の高さ制限** — 要実装。v0.15.0 の展開小窓とは別。版が決まったら Accordion 仕様へ足す
 - **FilePond の PDF 1枚目プレビュー** — 画像プレビューは v0.14.0。PDF は **v1.0.0 より後**
 
