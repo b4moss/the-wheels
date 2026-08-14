@@ -12,7 +12,6 @@
 - `width` (px)
 - `height` (px)
 - `padding` (px)
-  - 本来はスタイル側の責務だが、実装時の調整しやすさのため例外として props で持つ
 - `stroke-width`（JS: `strokeWidth`）(px)
 - `fill-color`（JS: `fillColor`）: hex または CSS variable
 - `stroke-color`（JS: `strokeColor`）: hex または CSS variable

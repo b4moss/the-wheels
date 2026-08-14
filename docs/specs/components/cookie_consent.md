@@ -4,7 +4,6 @@
 - JS クラス名: `TwCookieConsent`
 - タグ例: `tw-cookie-consent`
 - a11y の詳細は無期限延期（将来項目）。当面は必要最小限のみ
-- 実装版: **v0.12.0**
 
 ## 目的
 
@@ -14,7 +13,11 @@
 
 ## 組み合わせ
 
+<<<<<<< HEAD
 - **下部固定レイヤ（共有モジュール）** — Toast（v0.14.0）と show/hide・配置ロジックを共有する。v0.12.0 ではレイヤのみ先行し、Toast WC 自体は作らない（名称は実装時に固定。例: snackbar layer）
+=======
+- **下部固定レイヤ（共有モジュール）** — 将来の Toast と show/hide・配置ロジックを共有する。Toast WC 自体は作らない（[snackbar_layer.md](./snackbar_layer.md)）
+>>>>>>> develop
 
 ## UI（バナー）
 
@@ -92,7 +95,7 @@
 ## 含まないもの
 
 - サービス一覧チェックボックス UI
-- Toast WC 本体（共有レイヤのみ）
+- Toast WC 本体（共有レイヤのみ。WC は [plans/v0.17.0](../../plans/v0.17.0/toast.md)）
 - a11y 本検討
 - 拒否専用ボタン（「すべて拒否」は必須としない）
 
