@@ -15,9 +15,9 @@
 - Storybook
   - コンポーネント・カタログと手動の見た目確認に使う
   - 自動ビジュアルリグレッション（VRT）はまだ行わない
-  - テストシナリオ（interaction 等）は v0.13.0 で追加
+  - テストシナリオ（interaction / play）は **v0.13.0 では入れない**（後続版）
 - Playwright
-  - E2Eテスト -> 振る舞いがブラウザ上で正しく機能するか -> v0.13.0 でシナリオを追加（それまで本格導入しない）
+  - E2Eテスト -> kitchen-sink 上で振る舞いが正しいか -> **v0.13.0**（開閉・Combobox・CookieConsent・Floating UI 手厚め。HTTP 200 smoke は不要）
 - スタイル（CSS）
   - 自動テストは行わない
   - 見た目の確認は Storybook 上の手動レビューとする（自動 VRT は未実施）
