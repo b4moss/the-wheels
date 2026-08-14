@@ -49,7 +49,7 @@
 
 例:
 ```markdown
-# v0.1.0 テスト仕様
+# vX.Y.Z テスト仕様
 
 ## Avatar
 

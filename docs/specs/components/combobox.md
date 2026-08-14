@@ -16,13 +16,7 @@
 ## 組み合わせ
 
 - **Dropdown**（開閉・領域外クリック・Floating UI 配置）を土台に拡張する
-- **InfiniteScroll**（[infinite_scroll.md](./infinite_scroll.md)）— 上下無限スクロール・ウィンドウ・sortKey マージ。`async` / `hybrid` ではリスト領域に当初から載せる
-
-## v0.11.0 内の進め方
-
-1. Combobox（検索・`mode`・`loadOptions`・debounce・選択値・スロット／`renderOption`）を入れる
-2. 同版内で InfiniteScroll 基盤を実装する
-3. Combobox の `async` / `hybrid` リスト領域は InfiniteScroll に載せる（上下ページング・ウィンドウ）。`static` は単純リストのまま
+- **InfiniteScroll**（[infinite_scroll.md](./infinite_scroll.md)）— 上下無限スクロール・ウィンドウ・sortKey マージ。`async` / `hybrid` ではリスト領域に載せる
 
 ## mode
 
@@ -110,7 +104,7 @@ el.loadOptions = async (ctx) => {
 ### mode ごとのリスト実装
 
 - `static`: 取得済み／フィルタ済み配列を単純リスト表示する（InfiniteScroll は使わない）
-- `async` / `hybrid`: **当初から** リスト領域に InfiniteScroll を載せる（単純リスト段階を経ない）
+- `async` / `hybrid`: リスト領域に InfiniteScroll を載せる
 - Combobox は内側 InfiniteScroll の `autoLoad` を **false** にする（Combobox 側の debounce／`loadOptions` オーケストレーションと二重 fetch しないため）。詳細は [infinite_scroll.md](./infinite_scroll.md)
 
 ### InfiniteScroll への委譲（async / hybrid）
@@ -124,7 +118,7 @@ el.loadOptions = async (ctx) => {
 - AND / OR やタグ UI・絞り込み論理は **利用側の責務**
 - スロット位置は検索フィールドとリストのあいだを想定する
 
-## slot（案）
+## slot
 
 | 名前 | 役割 |
 |---|---|
@@ -160,7 +154,7 @@ el.loadOptions = async (ctx) => {
 | InfiniteScroll | 上下 fetch トリガ、ウィンドウ、sortKey マージ、がたつき抑制（`autoLoad` 既定 true。Combobox 利用時は false） |
 | 利用側 | fetch 実装、サブフィルタ、トリガー／行／タグの見た目、`sortKey`・窓サイズ・debounce の指定、`renderOption` |
 
-## 含まないもの（v0.11.0）
+## 含まないもの
 
 - a11y の本検討
 - 組み込みのカテゴリ AND/OR UI
