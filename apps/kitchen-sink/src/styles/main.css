@@ -607,6 +607,75 @@
   color: var(--tw-text-highlight);
 }
 
+/* Floating UI placement fixture (/dropdown-placement/) */
+.ks-placement-stage {
+  position: relative;
+  width: 100%;
+  height: min(70vh, 36rem);
+  min-height: 28rem;
+  margin: 0 0 2.4rem;
+  border: 1px dashed var(--tw-bg-button-optional);
+  border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+  background: var(--tw-bg-highlight);
+  max-width: none;
+}
+
+.ks-placement-stage--short {
+  height: min(40vh, 22rem);
+  min-height: 18rem;
+}
+
+.ks-placement-anchor {
+  position: absolute;
+  z-index: 1;
+}
+
+.ks-placement-anchor--center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ks-placement-anchor--top {
+  top: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ks-placement-anchor--bottom {
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ks-placement-anchor--left {
+  top: 50%;
+  left: 0.8rem;
+  transform: translateY(-50%);
+}
+
+.ks-placement-anchor--right {
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%);
+}
+
+.ks-placement-anchor--top-left {
+  top: 0.8rem;
+  left: 0.8rem;
+}
+
+.ks-placement-anchor--bottom-right {
+  right: 0.8rem;
+  bottom: 0.8rem;
+}
+
+.ks-placement-row {
+  padding: 4.8rem 1.6rem;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
 /* Terminal-like code blocks (site stays light; samples are dark) */
 .ks-code {
   --ks-code-fg: #c8c8c8;
