@@ -4,7 +4,7 @@ The Wheels デザインシステム（スタイル + Web Components）の monore
 社内プロジェクトから全部入りパッケージで試し導入できる状態を目指しています。
 
 現行 workspace: **0.12.0**（npm 未公開。リポジトリを workspace / `file:` 参照で利用）  
-直近のマイルストーン: **v0.11.0** Combobox / InfiniteScroll、**v0.12.0** UserMenu / CookieConsent。版の全体は [roadmap.md](docs/roadmap.md)。
+次のマイルストーン: **v0.13.0** Playwright E2E。版の全体は [roadmap.md](docs/roadmap.md)。
 
 ## パッケージ
 

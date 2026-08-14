@@ -5,7 +5,7 @@
 - タグ例: `tw-combobox`（接頭辞は総則どおり `setPrefix` で変更可）
 - 内部は可能な限りセマンティックな要素で描画する
 - a11y の詳細は無期限延期（将来項目）。当面は必要最小限のみ。追加属性は可能な限り不要にする
-- 参照実装（意図の資料）: [docs/references/combobox/](../../references/combobox/)
+- 参照実装（意図の資料）: [docs/resources/combobox/](../../resources/combobox/)
 
 ## 目的
 

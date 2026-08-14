@@ -90,7 +90,7 @@ the-wheels-reconstruct/          # Git repo
   └─ @b4moss/the-wheels-components   # style 非依存（Light DOM）
 ```
 
-- 公開単位はこの3つ（form は v0.14.0 で subtree 予定。umbrella 必須バンドルとは切り分ける）
+- 公開単位はこの3つ（form は [v0.14.0](./plans/v0.14.0/yoshinani-form.md) で subtree 予定。umbrella 必須バンドルとは切り分ける）
 - `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する
 
@@ -107,21 +107,18 @@ the-wheels-reconstruct/          # Git repo
 - UserMenu / CookieConsent
 - Snackbar レイヤ（共有モジュール。WC ではない）
 
-## まだ対象外（版は roadmap 参照）
+## まだ対象外
 
-- Card / ContentSection
-- Toast（Snackbar レイヤの上。版未定）
-- フォーム系の深い統合（`yoshinani-form` は v0.14.0 で subtree。公式バンドルは必須外）
+- Card / ContentSection、Toast、追加 WC 案など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
+- フォーム系の深い統合（`yoshinani-form` は [v0.14.0](./plans/v0.14.0/yoshinani-form.md) で subtree。公式バンドルは必須外）
 
-ロードマップは [roadmap.md](./roadmap.md)、PO メモは [wishlist.md](./wishlist.md)。
+## ドキュメントの読み方
 
-## テスト方針
-
-[テスト方針](./test.md) を参照。
-
-## Git / GitHub
-
-ブランチ・PR・タグ・CI/CD は [git.md](./git.md)。
+- 目的・現行仕様: 本ファイル / `docs/specs/`
+- これから: [roadmap.md](./roadmap.md)（ハブ）/ [plans/](./plans/README.md)
+- 守るルール: [charter/](./charter/README.md)
+- 本リポの git / テスト上書き: [git.md](./git.md) / [test.md](./test.md)
+- PO メモ: [wishlist.md](./wishlist.md)
 
 ## 関数・メソッドの分割方針
 
@@ -132,9 +129,9 @@ the-wheels-reconstruct/          # Git repo
 ## 特記事項
 
 - the-wheels コア（style / components / umbrella）ではフォームを扱わない
-- フォームは別プロダクト `yoshinani-form`。roadmap **v0.14.0** で git subtree によりモノレポへ取り込む
-  - 取り込み後も、umbrella への深い統合や SaaS スキャフォールドとの本結合は後続（将来項目）
-- a11y 本検討: roadmap 上は **無期限延期**（将来項目）
+- フォームは別プロダクト `yoshinani-form`。[v0.14.0](./plans/v0.14.0/yoshinani-form.md) で git subtree によりモノレポへ取り込む
+  - 取り込み後も、umbrella への深い統合や SaaS スキャフォールドとの本結合は後続（[unscheduled](./plans/unscheduled/future-intents.md)）
+- a11y 本検討: **無期限延期**（[unscheduled](./plans/unscheduled/future-intents.md)）
 
 ----
 
