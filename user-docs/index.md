@@ -49,6 +49,7 @@ import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
 コンポーネント・カタログ（手動の見た目確認用）。自動 VRT は入れていません。
 
 ```bash
+cd dev
 npm install
 npm run build:components
 npm run build:the-wheels
@@ -58,6 +59,7 @@ npm run dev:storybook
 静的ビルド:
 
 ```bash
+cd dev
 npm run build:storybook
 ```
 
@@ -76,6 +78,7 @@ preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/th
 | `/button/` など | 各コンポーネントの目視デモ |
 
 ```bash
+cd dev
 npm install
 npm run build:components
 npm run build:the-wheels
@@ -85,6 +88,7 @@ npm run dev:kitchen-sink
 静的ビルド:
 
 ```bash
+cd dev
 npm run build:kitchen-sink
 ```
 

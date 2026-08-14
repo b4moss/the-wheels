@@ -28,7 +28,11 @@ npm install @b4moss/the-wheels
 
 ## 開発コマンド
 
+npm workspace のルートは `dev/` です。
+
 ```bash
+cd dev
+npm install
 npm run build:style # スタイルのみ生成
 npm run build:components # コンポーネントのみ生成
 npm run build:the-wheels # 全部入り生成
@@ -36,6 +40,7 @@ npm run build:kitchen-sink # キッチンシンクのみ生成
 npm run build:storybook # Storybookのみ生成
 npm run test:components # コンポーネントのみテスト
 npm run test:package # パッケージテスト
+npm run test:e2e # Playwright E2E（kitchen-sink）
 npm run dev:kitchen-sink # キッチンシンク起動
 npm run dev:storybook # Storybook起動
 ```
@@ -48,7 +53,7 @@ npm run dev:storybook # Storybook起動
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走ります。
 
-- `verify`: Vitest と主要 `build:*`
+- `verify`: `dev/` で Vitest と主要 `build:*`
 - `e2e`: Playwright（Chromium）。kitchen-sink の `preview` に対して実行。変更がすべて `docs/**` または `*.md` ならスキップ
 
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。

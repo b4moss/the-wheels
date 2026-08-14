@@ -17,7 +17,7 @@ const tablerRoot = tablerRootCandidates.find((candidate) =>
 
 if (!tablerRoot) {
   throw new Error(
-    "Could not find @tabler/icons. Run npm install from the monorepo root.",
+    "Could not find @tabler/icons. Run npm install from the workspace root (dev/).",
   );
 }
 
