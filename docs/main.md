@@ -49,7 +49,7 @@
 - Light DOM。Shadow DOM は使わない
 - WC はスタイルを持たない（利用側が CSS を当てられるようにする）
 - 接頭辞はデフォルト `tw-`。import で自動登録。変えるときは import 前に `setPrefix`
-- `data-tw-*` は接頭辞変更しても固定。将来のカスタムイベント名は接頭辞に追従（`getEventName`）。当面イベントは出さない
+- `data-tw-*` は接頭辞変更しても固定。カスタムイベント名は接頭辞に追従（`getEventName`）。既定は出さない（例外は [all.md](./specs/components/all.md)）
 
 ## 技術スタック
 
@@ -90,7 +90,7 @@ the-wheels-reconstruct/          # Git repo
   └─ @b4moss/the-wheels-components   # style 非依存（Light DOM）
 ```
 
-- 公開単位はこの3つ（form は [v0.14.0](./plans/v0.14.0/yoshinani-form.md) で subtree 予定。umbrella 必須バンドルとは切り分ける）
+- 公開単位はこの3つ（`yoshinani-form` の取り込みは無期限見送り。umbrella 必須バンドルにもしない）
 - `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する
 
@@ -107,10 +107,12 @@ the-wheels-reconstruct/          # Git repo
 - UserMenu / CookieConsent
 - Snackbar レイヤ（共有モジュール。WC ではない）
 
-## まだ対象外
+## これから / 対象外
 
-- Card / ContentSection、Toast、追加 WC 案など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
-- フォーム系の深い統合（`yoshinani-form` は [v0.14.0](./plans/v0.14.0/yoshinani-form.md) で subtree。公式バンドルは必須外）
+出荷済み WC の **JS の振る舞いは概ね足りている**。スタイル・アニメーションは甘い。全件監査マイルストーンは置かない。新規はトークンを使い、既存は触った画面だけ直す。
+
+- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast / Card / ContentSection）→ [roadmap.md](./roadmap.md) / [plans/](./plans/README.md)
+- フォーム系の深い統合、SaaS スキャフォールド、a11y 本検討など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
 
 ## ドキュメントの読み方
 
@@ -129,8 +131,7 @@ the-wheels-reconstruct/          # Git repo
 ## 特記事項
 
 - the-wheels コア（style / components / umbrella）ではフォームを扱わない
-- フォームは別プロダクト `yoshinani-form`。[v0.14.0](./plans/v0.14.0/yoshinani-form.md) で git subtree によりモノレポへ取り込む
-  - 取り込み後も、umbrella への深い統合や SaaS スキャフォールドとの本結合は後続（[unscheduled](./plans/unscheduled/future-intents.md)）
+- フォームは別プロダクト `yoshinani-form`。本リポへの subtree 取り込みは **無期限見送り**（[unscheduled](./plans/unscheduled/future-intents.md)）
 - a11y 本検討: **無期限延期**（[unscheduled](./plans/unscheduled/future-intents.md)）
 
 ----

@@ -14,10 +14,11 @@
 
 ## この版で必須にしない
 
-- SaaS スキャフォールドの**実装**（設計は v0.15.0）
-- yoshinani-form の the-wheels 公式バンドル／深い統合（subtree 済みならリポ内にある状態で可）
+- SaaS スキャフォールドの設計・実装
+- `yoshinani-form` の取り込みおよび公式バンドル
 - **a11y 本検討**（無期限延期）
-- Card / ContentSection（必要になったら別バージョン。 [unscheduled](../unscheduled/future-intents.md)）
+- FilePond の PDF 1枚目プレビュー（v1.0.0 より後）
+- Accordion の高さ制限（版未定）
 - [unscheduled](../unscheduled/future-intents.md) のうち未実施のもの
 
 ----

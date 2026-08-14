@@ -13,9 +13,12 @@
 - Storybook
   - コンポーネント・カタログと手動の見た目確認
   - 自動 VRT は当面行わない
-  - interaction / play は **v0.13.0 では入れない**（後続。計画: [plans/v0.16.0](./plans/v0.16.0/stabilization.md)）
+  - interaction / play は **v0.13.0 では入れない**（後続。計画: [plans/v0.19.0](./plans/v0.19.0/stabilization.md)）
 - Playwright
   - kitchen-sink 上の E2E → **v0.13.0**（計画: [plans/v0.13.0/playwright-e2e.md](./plans/v0.13.0/playwright-e2e.md)、仕様: [tests/v0.13.0.md](./tests/v0.13.0.md)）
+  - アサートは振る舞いのみ（色・px・アニメ完了待ちは入れない）
+  - ローカルは kitchen-sink の `dev`、CI は `preview`
+  - CI は `verify` と `e2e` を分離。required は当面 `verify`（[git.md](./git.md)）
 - スタイル（CSS）
   - 自動テストは行わない
   - 見た目は Storybook の手動レビュー（自動 VRT は未実施）

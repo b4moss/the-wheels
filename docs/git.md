@@ -46,22 +46,26 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 - PR CI: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
   - トリガー: `develop` / `dev-v*` への `pull_request`
   - Node.js 22 / `npm ci`
-  - `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
+  - **v0.13.0 でジョブを分ける**（現状は `verify` 末尾で E2E も走る。計画: [plans/v0.13.0](./plans/v0.13.0/playwright-e2e.md)）
+    - `verify`: Vitest と主要 `build:*`（`build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`）
+    - `e2e`: Playwright（Chromium）のみ。対象サーバは kitchen-sink の **`preview`**
+    - 変更パスがすべて `docs/**` または `*.md`（ルートの `README.md` 含む）なら `e2e` をスキップする
 
 | 対象 | タイミング | 内容 |
 | --- | --- | --- |
-| `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**通らない PR は受け付けない** |
+| `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない** |
+| 同上（`e2e`） | PR 時 | 走る。失敗でそのジョブは落ちる。required にするかは安定後（【PO作業】） |
 | `release` への PR | PR 時 | **dry-run**（未実装） |
 | `main` への PR / マージ | — | CI は走らせない |
 | `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [plans/unscheduled/future-intents.md](./plans/unscheduled/future-intents.md)） |
 
-`develop` までに、対象変更について最低 1 回 CI が通ったことをもって、自動テストは行われたものとする。
+`develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、自動テストは行われたものとする。
 
 ### 【PO作業】ブランチ保護（required checks）
 
 1. GitHub → Settings → Branches → Branch protection rules
-2. `develop` に PR 必須 + status checks 必須。ジョブ名は現状 **verify**
+2. `develop` に PR 必須 + status checks 必須。ジョブ名は当面 **verify**（`e2e` は安定したら required に上げる）
 3. `dev-v*` にも同様（glob 非対応なら現行マイルストーンごとに追加）
 4. `main` / `release` には、この PR CI を required にしない
 

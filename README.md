@@ -144,4 +144,4 @@ npm run dev:storybook
 ## CI
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走り、上記の build / test を検証します。  
-ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
+v0.13.0 で `verify` と Playwright `e2e` を分ける（現状は同一ジョブ）。方針は [docs/git.md](docs/git.md)。

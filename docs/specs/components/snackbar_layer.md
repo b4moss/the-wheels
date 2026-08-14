@@ -12,7 +12,7 @@
 
 - 表示／非表示を切り替えられる
 - 既定の配置は **viewport 下部**
-- 複数同時表示のスタック規則は Toast 導入時に詰める（現行は CookieConsent 単体利用）
+- 複数同時表示のスタック規則は Toast 導入時に詰める（現行は CookieConsent 単体利用。計画: [plans/v0.17.0](../../plans/v0.17.0/toast.md)）
 
 ## 含まないもの
 
