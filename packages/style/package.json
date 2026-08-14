@@ -1,6 +1,6 @@
 {
   "name": "@b4moss/the-wheels-style",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "The Wheels style package (tokens, typography, reset)",
   "type": "module",
   "license": "MIT",

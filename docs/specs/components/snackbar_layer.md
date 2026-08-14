@@ -1,7 +1,13 @@
 # モジュール: Snackbar レイヤ（共有）仕様書
 
+<<<<<<< HEAD
+- CookieConsent（v0.12.0）および Toast（v0.14.0）が共有する、画面端固定の表示レイヤ
+- WC 単体として必須公開するか、内部モジュールに留めるかは実装時判断。少なくとも packages から再利用可能にする
+- Toast WC 自体は v0.12.0 では作らない（→ v0.14.0）
+=======
 - CookieConsent および将来の Toast が共有する、画面端固定の表示レイヤ
 - モジュール（`createSnackbarLayer`）。WC ではない。packages から再利用可能
+>>>>>>> develop
 
 ## 目的
 

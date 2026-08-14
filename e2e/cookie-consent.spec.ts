@@ -96,7 +96,7 @@ test.describe("CookieConsent", () => {
   test("settings dismisses banner but keeps pending", async ({ page }) => {
     await resetCookieConsentDemo(page);
 
-    await page.locator("[data-tw-cookie-settings]").click();
+    await page.locator("#cookie-demo [data-tw-cookie-settings]").click();
 
     await expect(
       page.locator("#cookie-demo [data-tw-snackbar-layer]"),
@@ -105,5 +105,13 @@ test.describe("CookieConsent", () => {
     const state = await readCookieConsentStorage(page);
     expect(state?.status).toBe("pending");
     expect(state?.bannerHidden).toBe(true);
+
+    await page.reload();
+    await expect(
+      page.locator("#cookie-demo [data-tw-snackbar-layer]"),
+    ).toBeHidden();
+    const afterReload = await readCookieConsentStorage(page);
+    expect(afterReload?.status).toBe("pending");
+    expect(afterReload?.bannerHidden).toBe(true);
   });
 });

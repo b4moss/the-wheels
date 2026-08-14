@@ -99,5 +99,20 @@ test.describe("Combobox", () => {
     await expect
       .poll(async () => options.count())
       .toBeGreaterThan(0);
+
+    await search.fill("");
+    await viewport.evaluate((el) => {
+      el.scrollTop = el.scrollHeight;
+    });
+    await expect(options.first()).toBeVisible();
+
+    await page.keyboard.press("Escape");
+    await expect(host).not.toHaveAttribute("open");
+    await trigger.click();
+    await expect(host).toHaveAttribute("open", "");
+    await expect
+      .poll(async () => viewport.evaluate((el) => el.scrollTop))
+      .toBe(0);
+    await expect(options.first()).toBeVisible();
   });
 });
