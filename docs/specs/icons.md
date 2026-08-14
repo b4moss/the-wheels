@@ -4,26 +4,18 @@
 
 ## 置き場
 
-- `packages/components/assets/`
+- `dev/packages/components/assets/`
 - `@b4moss/the-wheels-components` に同梱して配布する
 
 ## 入手
 
-1. まず npm 上の **MIT License** のアイコンセットから、必要なファイルだけ抽出する
+1. npm 上の **MIT License** のアイコンセットから、必要なファイルだけ抽出する
 2. 適当なものがなければ、PO が作成した SVG を配置する
-3. 由来・ライセンスは `packages/components/assets/ATTRIBUTION.md` に残す
+3. 由来・ライセンスは `dev/packages/components/assets/ATTRIBUTION.md` に残す
 
-### リサーチ結果（v0.1.0 時点）
+現行ソースは `@tabler/icons`（MIT、stroke アウトライン）。`@b4moss/the-wheels-components` の **devDependency**。配布物は `assets/` にコピーした SVG（利用側は Tabler を直接依存しなくてよい）。
 
-| 候補 | License | 採用 |
-|---|---|---|
-| `@tabler/icons` | **MIT** | **採用**（stroke アウトライン、必要アイコンが揃う） |
-| `heroicons` / `@heroicons/*` | MIT | 候補だったが、セット統一のため Tabler に一本化 |
-| `lucide-static` / Lucide | **ISC** | 不採用（MIT 限定方針のため） |
-
-- npm 依存: `@tabler/icons` を `@b4moss/the-wheels-components` の **devDependency** に追加
-- 配布物は `assets/` にコピーした SVG（利用側は Tabler を直接依存しなくてよい）
-- 再同期: `npm run sync:icons -w @b4moss/the-wheels-components`
+- 再同期: `dev/` で `npm run sync:icons -w @b4moss/the-wheels-components`
 - `spinner.svg` のみ、Tabler `loader-2` をベースに SVG 内 CSS 回転アニメーションを付与して別管理
 
 ## 同梱するアイコン（これ以外は同梱しない）

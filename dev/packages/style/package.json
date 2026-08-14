@@ -1,0 +1,27 @@
+{
+  "name": "@b4moss/the-wheels-style",
+  "version": "0.13.0",
+  "description": "The Wheels style package (tokens, typography, reset)",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": "./src/index.css",
+    "./css/*": "./src/*.css",
+    "./dist": "./dist/the-wheels-style.css"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "reset-css": "^5.0.2"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1"
+  }
+}

@@ -3,7 +3,6 @@
 ## タグ名・接頭辞
 
 - WC のデフォルト接頭辞は `tw-` とする（例: `tw-avatar`）
-- 過去の `twls-` は廃止する
 - ユーザーが接頭辞をオーバーライドできるようにする
   - API: `setPrefix('app')` のようにグローバル設定する
   - オーバーライドは、コンポーネント登録より前の、なるべく早期に行う
@@ -29,14 +28,16 @@
 
 ## カスタムイベント
 
-- 当面、カスタムイベントは発火しない
+- 既定はカスタムイベントを発火しない
   - DOM 標準イベント（例: `<dialog>` の `close` / `toggle`）とホストメソッドで足りる範囲とする
-- 将来カスタムイベントを出す場合、イベント名の接頭辞は `setPrefix` に **追従**する
-  - ヘルパー `getEventName('open')` を用意する（初回イベント実装まで未使用でよい）
+- **例外**（非同期供給や、選択結果を利用側へ渡す必要があるもの）
+  - 現行: Combobox の `load-request`（[combobox.md](./combobox.md)）
+  - 予定: FilePond（v0.14.0。[plans/v0.14.0](../../plans/v0.14.0/filepond.md)）
+- 例外で出す場合、イベント名の接頭辞は `setPrefix` に **追従**する（`getEventName`）
 
 ## 同梱アセット
 
-- 同梱 SVG は `packages/components/assets/` に集約する
+- 同梱 SVG は `dev/packages/components/assets/` に集約する
 - 対象一覧・入手方針は [icons.md](../icons.md) を参照
   - 例: `spinner`, `more-vertical`, `close`, `menu`, `check`, `chevron`（1種・rotate で開閉）, `lock`
   - 上記以外は同梱しない（利用側が用意）

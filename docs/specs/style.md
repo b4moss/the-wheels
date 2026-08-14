@@ -8,21 +8,23 @@
 - 公開エントリ: 全部入り + 部分 import
   - パスはカテゴリ付き（例: `@b4moss/the-wheels-style/css/tokens`, `/css/typography`）
 - ライセンス: MIT
-- v0.1.0 時点では npm 未公開（リポジトリ内利用）
+- npm 未公開（リポジトリ内利用。公開タイミングは PO）
 
 ## ソース構成
 
-`packages/style/src` は layer / 関心ごとに分割する。
+`dev/packages/style/src` は layer / 関心ごとに分割する。
 
 - 例: `reset.css`, `tokens.css`, `typography.css`, `focus.css`, `breakpoints.css`, `index.css`
 
-## 含む範囲（v0.1.0）
+## 含む範囲
 
 - reset（`reset-css`）
 - フォント stack
 - デザイントークン
 - Typography
 - focus / breakpoints
+- コンポーネント用スタイル（`@layer components`）
+- レイアウト最低限（container / sidebar 等）
 
 ## フォント
 
@@ -32,14 +34,13 @@
 
 ## ルート文字サイズ
 
-- `html { font-size: 62.5%; }` 方式を踏襲する（いわゆる 10px 基準）
+- `html { font-size: 62.5%; }` 方式（いわゆる 10px 基準）
 - 数値トークンからの rem 換算もこの前提に合わせる
 
 ## デザイントークン
 
 - CSS 変数名は `--tw-` 接頭辞を付ける（例: `--tw-text-main`）
 - ユースケース起点。色パレット（`red-100` 等）は必要になるまで作らない
-- v0.1.0 の初期値は参照実装のユースケース色を踏襲し、`--tw-` にリネームする
 
 ## 長文
 
@@ -48,12 +49,12 @@
 
 ## `@layer`
 
-初期から次を用意する（順序はこの順）。
+順序はこの順。
 
 1. `reset`
 2. `tokens`
 3. `base`
-4. `components`（v0.1.0 では空でよい）
+4. `components`
 
 ## ホスト / 内部のスタイル契約
 

@@ -1,10 +1,7 @@
-# The Wheels
+# the-wheels-reconstruct
 
 The Wheels デザインシステム（スタイル + Web Components）の monorepo です。  
 社内プロジェクトから全部入りパッケージで試し導入できる状態を目指しています。
-
-現行 workspace: **0.12.0**（npm 未公開。リポジトリを workspace / `file:` 参照で利用）  
-直近のマイルストーン: **v0.11.0** Combobox / InfiniteScroll、**v0.12.0** UserMenu / CookieConsent。版の全体は [roadmap.md](docs/roadmap.md)。
 
 ## パッケージ
 
@@ -23,125 +20,44 @@ Node.js: `>=22`
 npm install @b4moss/the-wheels
 ```
 
-（npm 公開は後続。公開まではこのリポジトリを workspace / `file:` 参照で利用してください。）
+（未公開の間は、このリポジトリを workspace / `file:` 参照で利用してください。）
 
 ## 使い方
 
-### CSS（全部入り）
-
-```css
-@import "@b4moss/the-wheels/style";
-```
-
-### 部分 CSS
-
-部分 import は style パッケージ側が正式です。
-
-```css
-@import "@b4moss/the-wheels-style/css/tokens";
-```
-
-### JavaScript
-
-コンポーネントは **import 時にカスタム要素として自動登録**されます。  
-プレフィックスを変える場合は、**コンポーネントを import する前に** `setPrefix` を呼んでください。
-
-```js
-import { setPrefix } from "@b4moss/the-wheels";
-
-setPrefix("app"); // タグは app-button など
-
-// setPrefix のあとにコンポーネントを読み込む
-import { TwButton } from "@b4moss/the-wheels";
-```
-
-通常（デフォルト `tw-`）はまとめて import して問題ありません。
-
-```js
-import { TwButton, TwAvatar, TwCombobox, TwUserMenu } from "@b4moss/the-wheels";
-```
-
-公開カスタム要素は 14（Snackbar レイヤは WC ではなく共有モジュール）:
-
-| 入った版 | コンポーネント |
-| --- | --- |
-| v0.2.0 | SVGLoader, Spinner, Button |
-| v0.3.0 | Dropdown, ActionMenu |
-| v0.4.0 | Accordion, Modal |
-| v0.5.0 | Avatar, Vertical Nav |
-| v0.8.0 | Tabs（最小） |
-| v0.11.0 | Combobox, InfiniteScroll |
-| v0.12.0 | UserMenu, CookieConsent |
-
-### 同梱アセット（SVG）
-
-アイコン SVG は `@b4moss/the-wheels-components` の `assets` から参照します（umbrella は JS / 全部入り CSS のみ保証）。
-
-```js
-import checkUrl from "@b4moss/the-wheels-components/assets/check.svg?url";
-```
-
-## Storybook
-
-コンポーネント・カタログ（手動の見た目確認用）。自動 VRT は入れていません。
-
-```bash
-npm install
-npm run build:components
-npm run build:the-wheels
-npm run dev:storybook
-```
-
-静的ビルド:
-
-```bash
-npm run build:storybook
-```
-
-preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/the-wheels` を読み込みます。  
-パッケージの `exports` はビルド成果物（`dist`）を指すため、起動前に components / the-wheels のビルドが必要です。
-
-## kitchen-sink（ドキュメントサイト）
-
-説明・導入・デモ導線用の Vituum + Twig MPA です。コンポーネントカタログは Storybook を使います。
-
-| ルート | 内容 |
-| --- | --- |
-| `/` | FV 付きトップ（Getting Started / Components 導線） |
-| `/getting-started/` | install・style・umbrella JS・`setPrefix` 注意 |
-| `/components/` | 14 WC + Typography / Tokens のデモ一覧 |
-| `/button/` など | 各コンポーネントの目視デモ |
-
-```bash
-npm install
-npm run build:components
-npm run build:the-wheels
-npm run dev:kitchen-sink
-```
-
-静的ビルド:
-
-```bash
-npm run build:kitchen-sink
-```
+[ユーザーガイド](./user-docs/index.md)を参照してください。
 
 ## 開発コマンド
 
+npm workspace のルートは `dev/` です。
+
 ```bash
-npm run build:style
-npm run build:components
-npm run build:the-wheels
-npm run build:kitchen-sink
-npm run build:storybook
-npm run test:components
-npm run test:package
-npm run dev:kitchen-sink
-npm run dev:storybook
+cd dev
+npm install
+npm run build:style # スタイルのみ生成
+npm run build:components # コンポーネントのみ生成
+npm run build:the-wheels # 全部入り生成
+npm run build:kitchen-sink # キッチンシンクのみ生成
+npm run build:storybook # Storybookのみ生成
+npm run test:components # コンポーネントのみテスト
+npm run test:package # パッケージテスト
+npm run test:e2e # Playwright E2E（kitchen-sink）
+npm run dev:kitchen-sink # キッチンシンク起動
+npm run dev:storybook # Storybook起動
 ```
 
 `test:package` はビルド後の dual package（ESM + CJS）と exports 解決のスモークです。
 
+`test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、CI は `preview`（ポート 5173）を対象にします。
+
 ## CI
 
-`develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走り、上記の build / test を検証します。  
+`develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走ります。
+
+- `verify`: `dev/` で Vitest と主要 `build:*`
+- `e2e`: Playwright（Chromium）。kitchen-sink の `preview` に対して実行。変更がすべて `docs/**` または `*.md` ならスキップ
+
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
+
+----
+
+以上

@@ -1,125 +1,88 @@
-# the-wheels-reconstruct
+# The Wheels
 
-このプロジェクトは、`the-wheels`というフロントエンドプロジェクトの再構築です。
+合同会社 知的・自転車向けのデザインシステム（スタイル + Web Components）。
 
 ## 目的
 
-`the-wheels`は、以下の目的で開発されました。
-
-- 合同会社 知的・自転車でよく使われるUI集（デザインシステム）として活用する。
-- 「すぐ使える最小同梱」を目指す。
-  - 日本語向けの見た目と、毎回必要になる基本機能は最初から入れる。
-  - 既存 OSS UI 集にありがちな、使わない機能や装飾的な部品は入れない。
-  - 全部入りではなく、必要十分。足りないものは後から足す。
-- スタイルと機能を分け、ネイティブCSS、Web Componentsを採用し、Web標準で利用できるようにする。
-- **ゴール**: npmパッケージとして公開する。
-
-
-## 背景
-
-- フロントエンドに関しては、「すぐ使える最小同梱」にしたかった。
-- スタイル・WebComponentsで分けて開発し、時間がかかっていた。いまだに完成していない。
-- 別々の開発を、モノリポ（workspaces）に統合したい。
-- スタイルやコンポーネントは別々にnpmパッケージ化するが、上層で全部入りのパッケージも用意したい。
-
-## やること
-
-- 作りかけのソースコードから、必要なエッセンスを抽出する。
-  - [the-wheels](../../the-wheels/)
-  - [the-wheels-css](../../the-wheels-css/)
-  - [the-wheels-webcomponents](../../the-wheels-webcomponents/)
-  - これらのリポジトリは、必要がなくなれば破棄する。
-- 当リポジトリを、正当な`the-wheels`として、将来リリースする。
-  - その時は、リポジトリ名称も変更する。
+- 「すぐ使える最小同梱」
+  - 日本語向けの見た目と、毎回必要になる基本機能は最初から入れる
+  - 使わない機能や装飾的な部品は入れない
+  - 足りないものは後から足す
+- スタイルと機能を分け、ネイティブ CSS と Web Components で Web 標準として使う
+- **ゴール**: npm パッケージとして公開する（タイミングは PO。現行 workspace は **0.12.0**、未公開）
 
 ## ネーミング
 
-- **正式名称**: `The Wheels` - 自然言語として扱う場合の固有名詞
-- **識別子**:
-  - `the-wheels`
-  - `thewheels` - ハイフンが使えない場合
+- **正式名称**: `The Wheels`
+- **識別子**: `the-wheels` / `thewheels`（ハイフンが使えない場合）
 
 ## フィロソフィーと責務
 
-- 日本語で読みやすいUIを提供すること
+- 日本語で読みやすい UI
 - 目に優しい
 - 認知としてわかりやすい
-- 組み込みが簡便であること
-- しかし、必要最低限の機能と、少しだけ使いやすい機能を提供すること
+- 組み込みが簡便
+- 必要最低限に、少しだけ使いやすい機能を足す
 
 ### スタイルの責務
 
-- リセットCSS - `reset-css`を採用
-- フォント - Inter + Noto Sans JP（本体は同梱せず、stack のみ定義。利用側が用意）
+- リセット CSS — `reset-css`
+- フォント — Inter + Noto Sans JP（本体は同梱せず、stack のみ。利用側が用意）
 - ルート文字サイズは 62.5% 方式
-- 詳細は [スタイル仕様](./specs/style.md) を参照
+- 詳細は [スタイル仕様](./specs/style.md)
 
-#### 長文の扱い
+#### 長文
 
-- 1行はおおよそ40文字以内に収めること
-- CSS では `max-width: 40ch` で抑える
+- 1行はおおよそ40文字以内
+- CSS では `max-width: 40ch`
 
 #### デザイントークン
 
-- 色や数値は、デザイントークンに抽象化する。
-- CSS 変数名は `--tw-` 接頭辞を付ける（例: `--tw-text-main`）
-- ユースケースごとの変数を作る。
-  - ユースケースにバリアントを求めるときは、下のユースケースから、oklchなどで色を変化させる。
-  - 色ごとのデザイントークンは必要が出るまで作らない（常識的な設計では、`red-100`などの定義は不要と考える）。
+- CSS 変数名は `--tw-` 接頭辞（例: `--tw-text-main`）
+- ユースケースごとの変数。バリアントは下のユースケースから oklch などで変化させる
+- 色パレット（`red-100` 等）は必要が出るまで作らない
 
 ### コンポーネントの責務
 
-- UIとしての振る舞いを提供する。
-- Web Componentsで実装する（JS クラス名は `TwButton` 形式。総則は [specs/components/all.md](./specs/components/all.md)）。
-- props, slotを適切に使用する。
-- Light DOMで実装する。Shadow DOMは使わない。
-- WCは、スタイルを持たない。（ユーザーが好きなCSSを当てられるようにするため）
-- 接頭辞はデフォルト `tw-`。import で自動登録。変えるときは import 前に `setPrefix`。
-- `data-tw-*` は接頭辞変更しても固定。将来のカスタムイベント名は接頭辞に追従（`getEventName`）。当面イベントは出さない。
+- UI としての振る舞いを Web Components で提供する（JS クラス名は `TwButton` 形式。総則は [specs/components/all.md](./specs/components/all.md)）
+- props / slot を適切に使う
+- Light DOM。Shadow DOM は使わない
+- WC はスタイルを持たない（利用側が CSS を当てられるようにする）
+- 接頭辞はデフォルト `tw-`。import で自動登録。変えるときは import 前に `setPrefix`
+- `data-tw-*` は接頭辞変更しても固定。カスタムイベント名は接頭辞に追従（`getEventName`）。既定は出さない（例外は [all.md](./specs/components/all.md)）
 
 ## 技術スタック
 
-- Vite/TypeScript - npmパッケージモード（`strict: true`）
-- 配布形式: ESM 主 + CJS も dual package
+- Vite / TypeScript（npm パッケージモード、`strict: true`）
+- 配布: ESM 主 + CJS dual package
 - Vitest
 - Node.js 22+
 - Native CSS（`@layer`: `reset` / `tokens` / `base` / `components`）
-- ルート文字サイズ: 62.5% 方式
 - Web Components（Light DOM）
 - Floating UI（`@floating-ui/dom`）— Dropdown 等のポジショニング（flip / shift デフォルト有効）
 - npm workspaces
-- kitchen-sink: Vituum による MPA（関心ごとの複数ページ）。Twig 化・ドキュメント体裁は roadmap v0.8〜v0.9
-- Storybook: コンポーネントカタログ（v0.7.0 で導入済み）。説明・導線は kitchen-sink 側
+- kitchen-sink: Vituum + Twig の MPA（動作確認 + ドキュメントサイト体裁）
+- Storybook: コンポーネントカタログ。説明・導線は kitchen-sink
 - 対応ブラウザ: Chrome / Firefox / Safari / Edge の最新2メジャー
 - ライセンス: MIT
-- npm 公開タイミングはバージョンに固定せず、PO が見計らう
 
 ## ディレクトリ構成
 
 ```text
-the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム）
-├── package.json                 # workspaces root
+the-wheels-reconstruct/          # Git repo
 ├── docs/
-│   └── main.md
-├── packages/
-│   ├── style/                   # @b4moss/the-wheels-style
-│   │   ├── package.json
-│   │   └── src/
-│   ├── components/              # @b4moss/the-wheels-components
-│   │   ├── package.json         # style は同梱しない
-│   │   ├── assets/              # 同梱 SVG（icons.md 参照。chevron は1種）
-│   │   └── src/
-│   │       ├── accordion/
-│   │       ├── modal/
-│   │       └── ...
-│   └── the-wheels/              # @b4moss/the-wheels（全部入り）
-│       ├── package.json         # deps: style + components
-│       └── src/
-└── apps/
-    ├── kitchen-sink/            # 動作確認 + ドキュメントサイト体裁（Vituum / Twig）
-    │   └── package.json
-    └── storybook/               # コンポーネントカタログ（v0.7.0）
-        └── package.json
+├── user-docs/
+└── dev/                         # npm workspaces root
+    ├── package.json
+    ├── e2e/                     # Playwright
+    ├── packages/
+    │   ├── style/               # @b4moss/the-wheels-style
+    │   ├── components/          # @b4moss/the-wheels-components
+    │   │   └── assets/          # 同梱 SVG（icons.md）
+    │   └── the-wheels/          # @b4moss/the-wheels（全部入り）
+    └── apps/
+        ├── kitchen-sink/        # 動作確認 + ドキュメントサイト（Vituum / Twig）
+        └── storybook/           # コンポーネントカタログ
 ```
 
 ### パッケージ関係
@@ -130,95 +93,49 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
   └─ @b4moss/the-wheels-components   # style 非依存（Light DOM）
 ```
 
-- 公開単位は最初からこの3つまでとする（form は v0.14.0 で subtree 予定。umbrella 必須バンドルとは切り分ける）。
-- `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）を提供する。
-- 部品ごとの個別パッケージ分割は、需要が出てから検討する。
-- kitchen-sink は動作確認場であり、v0.9.0 以降はドキュメントサイト体裁のホストでもある。
-- Storybook はコンポーネントカタログ。説明・導線は kitchen-sink。
-- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。現行 workspace は **0.12.0**（未公開）。ロードマップは [roadmap.md](./roadmap.md)、PO メモは [wishlist.md](./wishlist.md) を参照。
+- 公開単位はこの3つ（`yoshinani-form` の取り込みは無期限見送り。umbrella 必須バンドルにもしない）
+- `@b4moss/the-wheels-style` は全部入り + 部分 import（`/css/tokens` など）
+- 部品ごとの個別パッケージ分割は、需要が出てから検討する
 
-### 参考リポジトリ（リポジトリ外・将来削除）
+## 現行コンポーネント
 
-- [the-wheels](../../the-wheels/)
-- [the-wheels-css](../../the-wheels-css/)
-- [the-wheels-webcomponents](../../the-wheels-webcomponents/)
+仕様は `docs/specs/components/`。同梱アイコンは [icons.md](./specs/icons.md)。
 
-### 参考リポジトリから抽出する要素
+- SVGLoader / Spinner / Button
+- Dropdown / ActionMenu
+- Accordion / Modal
+- Avatar / Vertical Nav
+- Tabs（最小）
+- Combobox / InfiniteScroll
+- UserMenu / CookieConsent
+- Snackbar レイヤ（共有モジュール。WC ではない）
 
-#### スタイル（ほぼ再利用）
+## これから / 対象外
 
-- Typography
-- 色のルール（ユースケース起点のトークン）
-- reset, focus, spacing, breakpoints
-- コンポーネント用スタイル（下記コンポーネントに対応するもの）
-- レイアウト最低限（container / sidebar など。Vertical Nav のデモに必要）
+出荷済み WC の **JS の振る舞いは概ね足りている**。スタイル・アニメーションは甘い。全件監査マイルストーンは置かない。新規はトークンを使い、既存は触った画面だけ直す。
 
-#### コンポーネント
+- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast / Card / ContentSection）→ [roadmap.md](./roadmap.md) / [plans/](./plans/README.md)
+- フォーム系の深い統合、SaaS スキャフォールド、a11y 本検討など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
 
-##### 再利用
+## ドキュメントの読み方
 
-- Button（WC。仕様: `docs/specs/components/button.md`）
-- Accordion（Shadow DOM → Light DOM に書き換え）
-- Modal（同上。`<dialog>` 採用）
-- SVGLoader（参照に明確な実装がなければ新規。Button / Nav の依存元になりやすい）
-
-##### 新規（初期計画）
-
-- Dropdown（Floating UI 採用）
-- ActionMenu（Dropdown + SVGLoader。メニュー項目は slot 列挙）
-- Avatar
-- Vertical Nav（実体は Item。タグは `tw-vertical-nav`。リストは素の HTML）
-- Spinner（SVGLoader 経由）
-
-##### 追加済み（roadmap の版）
-
-- Tabs（最小。v0.8.0）
-- Combobox / InfiniteScroll（**v0.11.0**）
-- UserMenu / CookieConsent / Snackbar レイヤ（**v0.12.0**。Toast WC は将来）
-
-##### まだ対象外（版は roadmap 参照）
-
-- Card / ContentSection
-- Toast（Snackbar レイヤの上。版未定）
-- フォーム系の深い統合（`yoshinani-form` は v0.14.0 で subtree。公式バンドルは必須外）
-
-##### 実装順（目安）
-
-詳細な版分けは [roadmap.md](./roadmap.md) を参照。
-
-1. v0.1.0 スタイル土台（[specs/style.md](./specs/style.md)）
-2. v0.2.0 SVGLoader → Spinner → Button
-3. v0.3.0 Dropdown → ActionMenu
-4. v0.4.0 Accordion / Modal
-5. v0.5.0 Avatar / Vertical Nav
-6. v0.6.0 全部入り実用化 → v0.7.0 Storybook
-7. v0.8.0 Twig → v0.9.0 ドキュメント体裁 → v0.10.0 CI 整備
-8. v0.11.0 Combobox / InfiniteScroll → v0.12.0 UserMenu / CookieConsent
-9. v0.13.0 Playwright E2E → v0.14.0 form subtree → v0.15.0 SaaS 設計 → v0.16.0 安定化 → v1.0.0（a11y は無期限延期）
-
-仕様の詳細は `docs/specs/components/`、`docs/specs/style.md`、同梱アイコンは `docs/specs/icons.md` を参照。
-
-## テスト方針
-
-[テスト方針](./test.md)を参照して下さい。
-
-## Git / GitHub
-
-ブランチ・PR・タグ・CI/CD は [git.md](./git.md) を参照。
+- 目的・現行仕様: 本ファイル / `docs/specs/`
+- これから: [roadmap.md](./roadmap.md)（ハブ）/ [plans/](./plans/README.md)
+- 守るルール: [charter/](./charter/README.md)
+- 本リポの git / テスト上書き: [git.md](./git.md) / [test.md](./test.md)
+- PO メモ: [wishlist.md](./wishlist.md)
 
 ## 関数・メソッドの分割方針
 
-- UNIX哲学にある **1つのことをうまくやる** を大切にする。
-- 1ロジック、1責務と考える。
-- 関数にするか、クラス・メソッドにするかは、文脈に応じて適切に判断する。
+- 1つのことをうまくやる
+- 1ロジック、1責務
+- 関数にするか、クラス・メソッドにするかは文脈に応じて判断する
 
 ## 特記事項
 
 - the-wheels コア（style / components / umbrella）ではフォームを扱わない
-- フォームは別プロダクト `yoshinani-form`。roadmap **v0.14.0** で git subtree によりモノレポへ取り込む
-  - 取り込み後も、umbrella への深い統合や SaaS スキャフォールドとの本結合は後続（将来項目）
-- Git / CI: [git.md](./git.md)（CI 整備は roadmap **v0.10.0**）
-- a11y 本検討: roadmap 上は **無期限延期**（将来項目）
+- フォームは別プロダクト `yoshinani-form`。本リポへの subtree 取り込みは **無期限見送り**（[unscheduled](./plans/unscheduled/future-intents.md)）
+- a11y 本検討: **無期限延期**（[unscheduled](./plans/unscheduled/future-intents.md)）
 
 ----
 
