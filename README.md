@@ -3,6 +3,9 @@
 The Wheels デザインシステム（スタイル + Web Components）の monorepo です。  
 社内プロジェクトから全部入りパッケージで試し導入できる状態を目指しています。
 
+現行 workspace: **0.12.0**（npm 未公開。リポジトリを workspace / `file:` 参照で利用）  
+直近のマイルストーン: **v0.11.0** Combobox / InfiniteScroll、**v0.12.0** UserMenu / CookieConsent。版の全体は [roadmap.md](docs/roadmap.md)。
+
 ## パッケージ
 
 | パッケージ | 役割 |
@@ -20,7 +23,7 @@ Node.js: `>=22`
 npm install @b4moss/the-wheels
 ```
 
-（未公開の間は、このリポジトリを workspace / `file:` 参照で利用してください。）
+（npm 公開は後続。公開まではこのリポジトリを workspace / `file:` 参照で利用してください。）
 
 ## 使い方
 
@@ -55,8 +58,20 @@ import { TwButton } from "@b4moss/the-wheels";
 通常（デフォルト `tw-`）はまとめて import して問題ありません。
 
 ```js
-import { TwButton, TwAvatar } from "@b4moss/the-wheels";
+import { TwButton, TwAvatar, TwCombobox, TwUserMenu } from "@b4moss/the-wheels";
 ```
+
+公開カスタム要素は 14（Snackbar レイヤは WC ではなく共有モジュール）:
+
+| 入った版 | コンポーネント |
+| --- | --- |
+| v0.2.0 | SVGLoader, Spinner, Button |
+| v0.3.0 | Dropdown, ActionMenu |
+| v0.4.0 | Accordion, Modal |
+| v0.5.0 | Avatar, Vertical Nav |
+| v0.8.0 | Tabs（最小） |
+| v0.11.0 | Combobox, InfiniteScroll |
+| v0.12.0 | UserMenu, CookieConsent |
 
 ### 同梱アセット（SVG）
 
@@ -94,7 +109,7 @@ preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/th
 | --- | --- |
 | `/` | FV 付きトップ（Getting Started / Components 導線） |
 | `/getting-started/` | install・style・umbrella JS・`setPrefix` 注意 |
-| `/components/` | 9 WC + Typography / Tokens のデモ一覧 |
+| `/components/` | 14 WC + Typography / Tokens のデモ一覧 |
 | `/button/` など | 各コンポーネントの目視デモ |
 
 ```bash
