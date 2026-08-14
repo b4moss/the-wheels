@@ -2,7 +2,7 @@
 
 PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](./roadmap.md)）に転記する。
 
-- **WC 候補（UserMenu / CookieConsent）** → roadmap **v0.12.0**（実装中 / 本マイルストーン）
+- **WC 候補（UserMenu / CookieConsent）** → roadmap **v0.12.0**（済）
 - **アプリ・配信・統合の意図** → 本ファイル。版が決まったら roadmap のマイルストーンへ
 
 ## 優先順位（確定）
@@ -10,27 +10,38 @@ PO のメモ書き。決定事項は各ドキュメント（特に [roadmap.md](
 1. Twig → **v0.8.0**（済）
 2. ドキュメントサイト体裁 → **v0.9.0**（済）
 3. CI 整備 → **v0.10.0**（済）
-4. 追加コンポーネント（Combobox / InfiniteScroll）→ **v0.11.0**
-5. UserMenu / CookieConsent → **v0.12.0**
-6. Playwright / Storybook テストシナリオ → **v0.13.0**
+4. 追加コンポーネント（Combobox / InfiniteScroll）→ **v0.11.0**（済）
+5. UserMenu / CookieConsent → **v0.12.0**（済・現行 workspace 0.12.0）
+6. Playwright / Storybook テストシナリオ → **v0.13.0**（次）
 7. yoshinani-form subtree → **v0.14.0**
 8. SaaS スキャフォールド設計 → **v0.15.0**（実装は将来項目）
 9. a11y 本検討 → **無期限延期**（将来項目）
 
 詳細な含むもの／含まないものは roadmap を正とする。
 
+## メモ（判断保留）
+
+コードを正としてドキュメントを直したときの残り。版が決まったら roadmap へ、不要なら削除する。
+
+- **`dev-v0.13.0` ブランチ** — Playwright E2E（kitchen-sink）の着手コミットがある。`main` には未マージ。取り込むか、仕様書を書いてからやり直すかは **PO 判断**
+- **Git タグと package version** — タグ `v0.11.0` / `v0.12.0` は既にある。タグは動かさない（[git.md](./git.md)）。今回 workspace `version` だけ 0.12.0 に揃えた。npm 公開は後回し
+- **v0.11.0 単体の package version** — 現行ツリーは v0.12 込みのため 0.11.0 では止めない。履歴として 0.11.0 の npm 相当は作っていない
+- **Ruleset JSON** — `.github/rulesets/` は `main` にある。GitHub 上の実適用・required checks（CI `verify`）は 【PO作業】のまま
+- **FV 画像** — kitchen-sink は `apps/kitchen-sink/src/assets/img/main-visual.png` を参照している（ドライジーネ）。差し替えは **時期未決・先送り**（現行アセットのまま運用する）
+- **Tabs** — v0.8.0 で最小実装済み。roadmap v0.11.0 の「追加改修は対象外」は維持。改修版は未定
+
 ## 意図スタブ
 
-### app kitchen-sink（→ v0.8.0 / v0.9.0）
+### app kitchen-sink（→ v0.8.0 / v0.9.0・済）
 
 - Vituum を維持し、Twig テンプレートにしたい（v0.8.0）
 - その上でドキュメントサイトとして体裁を整えたい（v0.9.0）
 - 別 SSG ジェネレータや CMS は後日検討（将来項目）
 
-### ドキュメントサイト（→ v0.9.0）
+### ドキュメントサイト（→ v0.9.0・済）
 
 - kitchen-sink を拡張する形
-- FV 参照アセット（旧 the-wheels）: `the-wheels/dev/src/assets/img/home/main-visual.png`（自転車っぽい乗った人の絵）。取り込み方針は PO 判断（コピー or プレースホルダ）
+- FV: `apps/kitchen-sink/src/assets/img/main-visual.png`（差し替えは時期未決・先送り）
 
 ### yoshinani-form（→ v0.14.0）
 
@@ -57,6 +68,7 @@ SaaS によくある画面を最初から用意したい。まずは設計のみ
 ### ページネーション
 
 - よく使うやつがあるので、それ
+- 版未定
 
 ### ファイルポンド
 
@@ -65,6 +77,7 @@ SaaS によくある画面を最初から用意したい。まずは設計のみ
 - プレビュー表示
 - フロントでの容量チェック
 - フロントでの、MIME TYPEチェック
+- 版未定
 
 ### 展開可能な小窓
 
@@ -73,6 +86,7 @@ SaaS によくある画面を最初から用意したい。まずは設計のみ
   - 高さをどこまで展開するか
     - 全部/既定値/ユーザー指定
     - 選べるようにしたい
+- 版未定
 
 余談:
 それで言うと、アコーディオンも、高さ制限したい時ってあるよね…
@@ -80,3 +94,4 @@ SaaS によくある画面を最初から用意したい。まずは設計のみ
 ### ステップナビ
 
 重要項目入力フォームなど
+- 版未定
