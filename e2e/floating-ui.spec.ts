@@ -31,10 +31,15 @@ test.describe("Floating UI", () => {
       );
       const trigger = page.locator(`#dd-edge-${edge}-trigger`);
       await closeIfOpen(host);
-      const panel = await openDropdownByTrigger(host, trigger);
+      let panel = await openDropdownByTrigger(host, trigger);
       await expectMostlyInViewport(panel);
       await panel.locator("[data-tw-fixture-item]").first().click();
       await expect(panel).toBeVisible();
+      await page.keyboard.press("Escape");
+      await expect(host).not.toHaveAttribute("open");
+
+      panel = await openDropdownByTrigger(host, trigger);
+      await expectMostlyInViewport(panel);
       await page.keyboard.press("Escape");
       await expect(host).not.toHaveAttribute("open");
     }
@@ -95,6 +100,13 @@ test.describe("Floating UI", () => {
       await expect(panel).toBeVisible();
       await expectMostlyInViewport(panel);
       await panel.locator("[data-tw-fixture-item]").first().click();
+      await expect(host).not.toHaveAttribute("open");
+
+      await trigger.click();
+      await expect(host).toHaveAttribute("open", "");
+      await expect(panel).toBeVisible();
+      await expectMostlyInViewport(panel);
+      await page.keyboard.press("Escape");
       await expect(host).not.toHaveAttribute("open");
     }
   });
