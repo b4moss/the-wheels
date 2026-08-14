@@ -15,7 +15,7 @@ workspace `version` は **0.12.0**。npm は未公開。出荷済みの仕様は
 | 版 | 内容 | 状態 | 計画 |
 | --- | --- | --- | --- |
 | v0.13.0 | Playwright E2E | 次 | [plans/v0.13.0](./plans/v0.13.0/playwright-e2e.md) |
-| v0.14.0 | FilePond | 未着手 | [plans/v0.14.0](./plans/v0.14.0/filepond.md) |
+| v0.14.0 | FilePond / Make ヘルパー | 未着手 | [filepond](./plans/v0.14.0/filepond.md) / [make](./plans/v0.14.0/make.md) |
 | v0.15.0 | 展開小窓 / ステップナビ | 未着手 | [plans/v0.15.0](./plans/v0.15.0/expandable-and-step-nav.md) |
 | v0.16.0 | ページネーション / Tabs 改修 | 未着手 | [plans/v0.16.0](./plans/v0.16.0/pagination-and-tabs.md) |
 | v0.17.0 | Toast | 未着手 | [plans/v0.17.0](./plans/v0.17.0/toast.md) |
@@ -29,7 +29,7 @@ workspace `version` は **0.12.0**。npm は未公開。出荷済みの仕様は
 
 ```text
 v0.13.0 Playwright E2E
-   └─ v0.14.0 FilePond
+   └─ v0.14.0 FilePond / Make ヘルパー
          └─ v0.15.0 展開小窓 / ステップナビ
                └─ v0.16.0 ページネーション / Tabs 改修
                      └─ v0.17.0 Toast
