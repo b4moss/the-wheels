@@ -2,6 +2,10 @@ import { defineConfig, devices } from "@playwright/test";
 
 const PORT = 5173;
 const baseURL = `http://127.0.0.1:${PORT}`;
+const isCI = !!process.env.CI;
+const kitchenSinkServer = isCI
+  ? `npm run preview -w @b4moss/the-wheels-kitchen-sink -- --host 127.0.0.1 --port ${PORT} --strictPort`
+  : `npm run dev -w @b4moss/the-wheels-kitchen-sink -- --host 127.0.0.1 --port ${PORT} --strictPort`;
 
 export default defineConfig({
   testDir: "e2e",
@@ -22,9 +26,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run dev -w @b4moss/the-wheels-kitchen-sink -- --host 127.0.0.1 --port ${PORT} --strictPort`,
+    command: kitchenSinkServer,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !isCI,
     timeout: 120_000,
   },
 });
