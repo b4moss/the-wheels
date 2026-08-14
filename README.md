@@ -1,10 +1,7 @@
-# The Wheels
+# the-wheels-reconstruct
 
 The Wheels デザインシステム（スタイル + Web Components）の monorepo です。  
 社内プロジェクトから全部入りパッケージで試し導入できる状態を目指しています。
-
-現行 workspace: **0.12.0**（npm 未公開。リポジトリを workspace / `file:` 参照で利用）  
-次のマイルストーン: **v0.13.0** Playwright E2E。版の全体は [roadmap.md](docs/roadmap.md)。
 
 ## パッケージ
 
@@ -23,7 +20,7 @@ Node.js: `>=22`
 npm install @b4moss/the-wheels
 ```
 
-（npm 公開は後続。公開まではこのリポジトリを workspace / `file:` 参照で利用してください。）
+（未公開の間は、このリポジトリを workspace / `file:` 参照で利用してください。）
 
 ## 使い方
 
@@ -58,20 +55,8 @@ import { TwButton } from "@b4moss/the-wheels";
 通常（デフォルト `tw-`）はまとめて import して問題ありません。
 
 ```js
-import { TwButton, TwAvatar, TwCombobox, TwUserMenu } from "@b4moss/the-wheels";
+import { TwButton, TwAvatar } from "@b4moss/the-wheels";
 ```
-
-公開カスタム要素は 14（Snackbar レイヤは WC ではなく共有モジュール）:
-
-| 入った版 | コンポーネント |
-| --- | --- |
-| v0.2.0 | SVGLoader, Spinner, Button |
-| v0.3.0 | Dropdown, ActionMenu |
-| v0.4.0 | Accordion, Modal |
-| v0.5.0 | Avatar, Vertical Nav |
-| v0.8.0 | Tabs（最小） |
-| v0.11.0 | Combobox, InfiniteScroll |
-| v0.12.0 | UserMenu, CookieConsent |
 
 ### 同梱アセット（SVG）
 
@@ -109,7 +94,7 @@ preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/th
 | --- | --- |
 | `/` | FV 付きトップ（Getting Started / Components 導線） |
 | `/getting-started/` | install・style・umbrella JS・`setPrefix` 注意 |
-| `/components/` | 14 WC + Typography / Tokens のデモ一覧 |
+| `/components/` | 9 WC + Typography / Tokens のデモ一覧 |
 | `/button/` など | 各コンポーネントの目視デモ |
 
 ```bash
@@ -144,4 +129,4 @@ npm run dev:storybook
 ## CI
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走り、上記の build / test を検証します。  
-v0.13.0 で `verify` と Playwright `e2e` を分ける（現状は同一ジョブ）。方針は [docs/git.md](docs/git.md)。
+ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
