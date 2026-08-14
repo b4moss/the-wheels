@@ -4,6 +4,20 @@ npm 公開タイミングはバージョンに固定せず、PO が見計らう�
 各版のテスト仕様は `docs/specs/tests/vX.Y.Z.md`（その版のロジックをすべて載せる）。  
 PO メモ・未決定の意図は [wishlist.md](./wishlist.md)。決定した版分けは本ドキュメントに転記する。
 
+## 現状（コード基準）
+
+`main` の workspace `version` は **0.12.0**。npm は未公開。
+
+| 版 | 内容 | 状態 |
+| --- | --- | --- |
+| v0.1.0〜v0.10.0 | スタイル土台〜CI | 済 |
+| **v0.11.0** | Combobox / InfiniteScroll | **済**（実装・kitchen-sink / Storybook / Vitest。Git タグ `v0.11.0`） |
+| **v0.12.0** | UserMenu / CookieConsent / Snackbar レイヤ | **済・現行**（同上。Git タグ `v0.12.0`） |
+| v0.13.0 | Playwright / Storybook シナリオ | 次（`main` 未取り込み） |
+| v0.14.0〜v1.0.0 | form subtree 以降 | 未着手 |
+
+v0.11.0 / v0.12.0 実装時点では `package.json` の version が 0.10.0 のままだった。現行コードは v0.12.0 込みのため、workspace は **0.12.0 に揃える**（v0.11.0 単体の package version は残していない）。
+
 ---
 
 ## v0.1.0 — スタイル土台
@@ -205,7 +219,7 @@ Git / GitHub 戦略（[git.md](./git.md)）に沿った CI を、次の実装と
 
 ---
 
-## v0.11.0 — 追加コンポーネント
+## v0.11.0 — 追加コンポーネント（済）
 
 CI の次に、コンポーネント拡充を先に進める。候補は「将来項目」から取り上げ、版内でテスト仕様を切って実装する。
 
@@ -229,7 +243,7 @@ CI の次に、コンポーネント拡充を先に進める。候補は「将�
 
 ---
 
-## v0.12.0 — UserMenu / CookieConsent
+## v0.12.0 — UserMenu / CookieConsent（済・現行）
 
 v0.11.0 で外したアカウント系・同意バナーを入れる。既存の Playwright マイルストーン以降は 0.1 ずつ後ろへずらす。
 
