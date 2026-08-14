@@ -94,7 +94,7 @@
 - ライセンス: MIT
 - npm 公開タイミングはバージョンに固定せず、PO が見計らう
 
-## ディレクトリ構成案
+## ディレクトリ構成
 
 ```text
 the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム）
@@ -135,7 +135,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 - 部品ごとの個別パッケージ分割は、需要が出てから検討する。
 - kitchen-sink は動作確認場であり、v0.9.0 以降はドキュメントサイト体裁のホストでもある。
 - Storybook はコンポーネントカタログ。説明・導線は kitchen-sink。
-- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。ロードマップは [roadmap.md](./roadmap.md)、PO メモは [wishlist.md](./wishlist.md) を参照。
+- v0.1.0 では npm に公開しない（リポジトリ内利用）。以降も公開タイミングは PO が見計らう。現行 workspace は **0.12.0**（未公開）。ロードマップは [roadmap.md](./roadmap.md)、PO メモは [wishlist.md](./wishlist.md) を参照。
 
 ### 参考リポジトリ（リポジトリ外・将来削除）
 
@@ -162,7 +162,7 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 - Modal（同上。`<dialog>` 採用）
 - SVGLoader（参照に明確な実装がなければ新規。Button / Nav の依存元になりやすい）
 
-##### 新規
+##### 新規（初期計画）
 
 - Dropdown（Floating UI 採用）
 - ActionMenu（Dropdown + SVGLoader。メニュー項目は slot 列挙）
@@ -170,10 +170,16 @@ the-wheels-reconstruct/          # Git repo（将来 the-wheels にリネーム�
 - Vertical Nav（実体は Item。タグは `tw-vertical-nav`。リストは素の HTML）
 - Spinner（SVGLoader 経由）
 
-##### 今回対象外（初期 MVP 外。版は roadmap 参照）
+##### 追加済み（roadmap の版）
+
+- Tabs（最小。v0.8.0）
+- Combobox / InfiniteScroll（**v0.11.0**）
+- UserMenu / CookieConsent / Snackbar レイヤ（**v0.12.0**。Toast WC は将来）
+
+##### まだ対象外（版は roadmap 参照）
 
 - Card / ContentSection
-- Combobox / InfiniteScroll → **v0.11.0**、UserMenu / CookieConsent → **v0.12.0**（Toast は将来）
+- Toast（Snackbar レイヤの上。版未定）
 - フォーム系の深い統合（`yoshinani-form` は v0.14.0 で subtree。公式バンドルは必須外）
 
 ##### 実装順（目安）
