@@ -29,5 +29,8 @@
     "happy-dom": "^20.11.1",
     "typescript": "~5.6.2",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
   }
 }
