@@ -45,11 +45,12 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 - PR CI: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
   - トリガー: `develop` / `dev-v*` への `pull_request`
-  - Node.js 22 / `npm ci`
+  - Node.js 22 / `npm ci`（作業ディレクトリは `dev/`）
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
-  - **v0.13.0 でジョブを分ける**（現状は `verify` 末尾で E2E も走る。計画: [plans/v0.13.0](./plans/v0.13.0/playwright-e2e.md)）
-    - `verify`: Vitest と主要 `build:*`（`build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`）
-    - `e2e`: Playwright（Chromium）のみ。対象サーバは kitchen-sink の **`preview`**
+  - ジョブは `verify` と `e2e` を並列（`e2e` は `verify` を待たない。成果物も共有しない）
+    - `verify`: `dev/` で `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`
+    - `e2e`: `dev/` で `build:style` → `build:components` → `build:the-wheels` → `build:kitchen-sink` のあと Playwright（Chromium）。対象サーバは kitchen-sink の **`preview`**（ホスト `127.0.0.1`、ポート **5173**）
+    - ローカルの `npm run test:e2e`（`dev/` で実行）は kitchen-sink の **`dev` サーバ** を対象にする
     - 変更パスがすべて `docs/**` または `*.md`（ルートの `README.md` 含む）なら `e2e` をスキップする
 
 | 対象 | タイミング | 内容 |

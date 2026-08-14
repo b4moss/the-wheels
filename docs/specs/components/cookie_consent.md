@@ -13,7 +13,11 @@
 
 ## 組み合わせ
 
+<<<<<<< HEAD
+- **下部固定レイヤ（共有モジュール）** — Toast（v0.14.0）と show/hide・配置ロジックを共有する。v0.12.0 ではレイヤのみ先行し、Toast WC 自体は作らない（名称は実装時に固定。例: snackbar layer）
+=======
 - **下部固定レイヤ（共有モジュール）** — 将来の Toast と show/hide・配置ロジックを共有する。Toast WC 自体は作らない（[snackbar_layer.md](./snackbar_layer.md)）
+>>>>>>> develop
 
 ## UI（バナー）
 

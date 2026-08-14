@@ -19,6 +19,11 @@ test.describe("overlays", () => {
       await page.locator("#open-modal").click();
       await expect(dialog).toBeVisible();
 
+      await modal.evaluate((el) => {
+        (el as HTMLElement & { showModal?: () => void }).showModal?.();
+      });
+      await expect(dialog).toBeVisible();
+
       await closer.click();
       await expect(dialog).toBeHidden();
 
