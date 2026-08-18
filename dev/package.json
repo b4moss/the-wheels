@@ -5,7 +5,7 @@
   "type": "module",
   "description": "The Wheels monorepo (reconstruct)",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "workspaces": [
     "packages/*",
