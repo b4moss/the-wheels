@@ -1,18 +1,9 @@
 # 安定化・品質
 
-- **状態**: 意図スタブ
-- **マイルストーン**: `v0.19.0`
+**GitHub Issue へ転記済み**（2026-08-18）。
 
-## 含むもの
-
-- 分岐カバレッジの底上げ（v0.n 目標 50% からの引き上げを検討）
-- Playwright / Storybook シナリオの穴埋め（Playwright 主戦場は v0.13.0。Storybook play や不足分はここで足してよい）
-- API の破壊的変更の棚卸しと、1.0 に向けた凍結候補リスト
-- 既存 WC のスタイル・アニメーションのうち、触った画面・明らかな欠けの穴埋め（全件監査リストは作らない）
-
-## 含まないもの
-
-- a11y 本検討（無期限延期のまま。[unscheduled](../unscheduled/future-intents.md)）
+- Issue: [#40](https://github.com/b4moss/the-wheels/issues/40)
+- Milestone: [v0.19.0](https://github.com/b4moss/the-wheels/milestone/7)
 
 ----
 

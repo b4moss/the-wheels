@@ -1,21 +1,9 @@
 # Card / ContentSection
 
-- **状態**: 意図スタブ
-- **マイルストーン**: `v0.18.0`
+**GitHub Issue へ転記済み**（2026-08-18）。
 
-JS よりスタイル・レイアウト。詳細仕様は実装前に切る。
-
-## 含むもの
-
-- Card
-- ContentSection
-- 対応する `@layer components` のスタイル
-- kitchen-sink / Storybook
-
-## 含まないもの
-
-- SaaS スキャフォールドの画面実装
-- a11y 本検討
+- Issue: [#39](https://github.com/b4moss/the-wheels/issues/39)
+- Milestone: [v0.18.0](https://github.com/b4moss/the-wheels/milestone/6)
 
 ----
 

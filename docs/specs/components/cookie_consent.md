@@ -95,7 +95,7 @@
 ## 含まないもの
 
 - サービス一覧チェックボックス UI
-- Toast WC 本体（共有レイヤのみ。WC は [plans/v0.17.0](../../plans/v0.17.0/toast.md)）
+- Toast WC 本体（共有レイヤのみ。WC は [#38](https://github.com/b4moss/the-wheels/issues/38)）
 - a11y 本検討
 - 拒否専用ボタン（「すべて拒否」は必須としない）
 

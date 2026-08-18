@@ -114,13 +114,13 @@ the-wheels/          # Git repo
 
 出荷済み WC の **JS の振る舞いは概ね足りている**。スタイル・アニメーションは甘い。全件監査マイルストーンは置かない。新規はトークンを使い、既存は触った画面だけ直す。
 
-- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast / Card / ContentSection）→ [roadmap.md](./roadmap.md) / [plans/](./plans/README.md)
-- フォーム系の深い統合、SaaS スキャフォールド、a11y 本検討など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
+- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast / Card / ContentSection）→ [roadmap.md](./roadmap.md) / [Milestones](https://github.com/b4moss/the-wheels/milestones)
+- フォーム系の深い統合、SaaS スキャフォールド、a11y 本検討など → [Milestone unscheduled](https://github.com/b4moss/the-wheels/milestone/9)
 
 ## ドキュメントの読み方
 
 - 目的・現行仕様: 本ファイル / `docs/specs/`
-- これから: [roadmap.md](./roadmap.md)（ハブ）/ [plans/](./plans/README.md)
+- これから: [roadmap.md](./roadmap.md)（ハブ）/ [GitHub Milestones](https://github.com/b4moss/the-wheels/milestones)
 - 守るルール: [charter/](./charter/README.md)
 - 本リポの git / テスト上書き: [git.md](./git.md) / [test.md](./test.md)
 - PO メモ: [wishlist.md](./wishlist.md)
@@ -134,8 +134,8 @@ the-wheels/          # Git repo
 ## 特記事項
 
 - the-wheels コア（style / components / umbrella）ではフォームを扱わない
-- フォームは別プロダクト `yoshinani-form`。本リポへの subtree 取り込みは **無期限見送り**（[unscheduled](./plans/unscheduled/future-intents.md)）
-- a11y 本検討: **無期限延期**（[unscheduled](./plans/unscheduled/future-intents.md)）
+- フォームは別プロダクト `yoshinani-form`。本リポへの subtree 取り込みは **無期限見送り**（[#43](https://github.com/b4moss/the-wheels/issues/43)）
+- a11y 本検討: **無期限延期**（[#42](https://github.com/b4moss/the-wheels/issues/42)）
 
 ----
 
