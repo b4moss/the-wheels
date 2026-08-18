@@ -69,7 +69,7 @@
 ## ディレクトリ構成
 
 ```text
-the-wheels-reconstruct/          # Git repo
+the-wheels/          # Git repo
 ├── docs/
 ├── user-docs/
 └── dev/                         # npm workspaces root
