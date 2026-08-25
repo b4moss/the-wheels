@@ -14,7 +14,7 @@
   - 展開先: 全部（内容の高さ） / 既定値 / ユーザー指定。指定方法は上記属性に乗せる
 - 下部ボタンは **WC 内蔵**。開閉の文言は属性で上書き可
 - 内容は slot（折りたたみ中も DOM に残し、領域内スクロール）
-- Accordion の高さ制限は本版では入れない（要実装だが無期限延期。[unscheduled](../unscheduled/future-intents.md)）
+- Accordion の高さ制限は本版では入れない（要実装だが版未定。[unscheduled](../unscheduled/future-intents.md)）
 
 ## ステップナビ
 
