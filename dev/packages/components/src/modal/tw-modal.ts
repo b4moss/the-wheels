@@ -1,9 +1,9 @@
 import { getPrefix } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
 import "../svg_loader/tw-svg-loader.js";
+import closeUrl from "../../assets/close.svg?url";
 
-export const CLOSE_SRC = new URL("../../assets/close.svg", import.meta.url)
-  .href;
+export const CLOSE_SRC = closeUrl;
 
 export class TwModal extends HTMLElement {
   #dialog: HTMLDialogElement | null = null;
