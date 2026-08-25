@@ -1,0 +1,17 @@
+{% set current = "step-nav" %}
+{% extends "@layouts/app.twig" %}
+{% block title %}StepNav — The Wheels kitchen-sink{% endblock %}
+{% block content %}
+  <h1>StepNav</h1>
+  {% set preview %}
+    <tw-step-nav>
+      <div status="done">入力</div>
+      <div status="current">確認</div>
+      <div status="not_yet">完了</div>
+    </tw-step-nav>
+  {% endset %}
+  {% set html_sample %}<tw-step-nav>...</tw-step-nav>{% endset %}
+  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+{% endblock %}

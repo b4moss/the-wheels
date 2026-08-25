@@ -1,0 +1,14 @@
+{% set current = "toast" %}
+{% extends "@layouts/app.twig" %}
+{% block title %}Toast — The Wheels kitchen-sink{% endblock %}
+{% block content %}
+  <h1>Toast</h1>
+  {% set preview %}
+    <tw-toast id="demo-toast" variant="success" duration-ms="3000">保存しました</tw-toast>
+    <button type="button" id="show-toast">Toast を表示</button>
+  {% endset %}
+  {% set html_sample %}<tw-toast variant="success">保存しました</tw-toast>{% endset %}
+  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+{% endblock %}

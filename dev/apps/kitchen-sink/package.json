@@ -1,7 +1,7 @@
 {
   "name": "@b4moss/the-wheels-kitchen-sink",
   "private": true,
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "The Wheels docs / kitchen-sink (Vituum + Twig MPA)",
   "type": "module",
   "scripts": {
@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@b4moss/the-wheels": "0.13.0",
-    "@b4moss/the-wheels-components": "0.13.0",
+    "@b4moss/the-wheels": "0.14.0",
+    "@b4moss/the-wheels-components": "0.14.0",
     "highlight.js": "^11.11.1"
   },
   "devDependencies": {
