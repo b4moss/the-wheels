@@ -37,8 +37,17 @@ jobs:
       - name: Build style
         run: npm run build:style
 
-      - name: Test components
+      - name: Test components with coverage
         run: npm run test:components
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: dev/packages/components/coverage/lcov.info
+          flags: components
+          fail_ci_if_error: false
+          verbose: true
 
       - name: Test package
         run: npm run test:package
