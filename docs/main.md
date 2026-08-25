@@ -115,8 +115,8 @@ the-wheels-reconstruct/          # Git repo
 出荷済み WC の **JS の振る舞いは概ね足りている**。スタイル・アニメーションは甘い。全件監査マイルストーンは置かない。新規はトークンを使い、既存は触った画面だけ直す。
 
 - Playwright E2E（v0.13.0 出荷）→ [specs/e2e.md](./specs/e2e.md)
-- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast / Card / ContentSection）→ [roadmap.md](./roadmap.md) / [plans/](./plans/README.md)
-- フォーム系の深い統合、SaaS スキャフォールド、a11y 本検討など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
+- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast）→ [roadmap.md](./roadmap.md) / [plans/v0.14.0/](./plans/v0.14.0/)
+- フォーム系の深い統合、SaaS スキャフォールド、Card / ContentSection、a11y 本検討など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
 
 ## ドキュメントの読み方
 

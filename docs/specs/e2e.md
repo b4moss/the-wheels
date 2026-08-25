@@ -27,7 +27,7 @@ kitchen-sink 上の振る舞い E2E。実装は `dev/e2e/`・`dev/playwright.con
 
 - kitchen-sink 全ページの HTTP 200 / ナビ横断 smoke
 - UserMenu 専用ケース（ActionMenu で充足）
-- Storybook play / interaction（後続。計画: [plans/v0.19.0](../plans/v0.19.0/stabilization.md)）
+- Storybook play / interaction（後続。計画: [plans/v0.15.0](../plans/v0.15.0/stabilization.md)）
 - 自動 VRT・Chromatic
 - Firefox / WebKit
 - a11y 本検討

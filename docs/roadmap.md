@@ -17,30 +17,22 @@ workspace `version` は **0.13.0**。npm は未公開。出荷済みの仕様は
 | 版 | 内容 | 状態 | 計画 |
 | --- | --- | --- | --- |
 | v0.13.0 | Playwright E2E | 完了 | [specs/e2e.md](./specs/e2e.md) / [tests/v0.13.0.md](./tests/v0.13.0.md) |
-| v0.14.0 | FilePond | 未着手 | [filepond](./plans/v0.14.0/filepond.md) |
-| v0.15.0 | 展開小窓 / ステップナビ | 未着手 | [plans/v0.15.0](./plans/v0.15.0/expandable-and-step-nav.md) |
-| v0.16.0 | ページネーション / Tabs 改修 | 未着手 | [plans/v0.16.0](./plans/v0.16.0/pagination-and-tabs.md) |
-| v0.17.0 | Toast | 未着手 | [plans/v0.17.0](./plans/v0.17.0/toast.md) |
-| v0.18.0 | Card / ContentSection | 未着手 | [plans/v0.18.0](./plans/v0.18.0/card-and-content-section.md) |
-| v0.19.0 | 安定化・品質 | 未着手 | [plans/v0.19.0](./plans/v0.19.0/stabilization.md) |
+| v0.14.0 | FilePond / 展開小窓・ステップナビ / ページネーション・Tabs 改修 / Toast | 未着手 | [v0.14.0/](./plans/v0.14.0/) |
+| v0.15.0 | 安定化・品質 | 未着手 | [plans/v0.15.0](./plans/v0.15.0/stabilization.md) |
 | v1.0.0 | 初回プロダクション想定 | 未着手 | [plans/v1.0.0](./plans/v1.0.0/production.md) |
 
-無期限延期・版未定: [plans/unscheduled](./plans/unscheduled/future-intents.md)
+無期限延期・版未定: [plans/unscheduled](./plans/unscheduled/future-intents.md)（Card / ContentSection を含む）
 
 ## 依存（概略）
 
 ```text
 v0.13.0 Playwright E2E（完了）
-   └─ v0.14.0 FilePond
-         └─ v0.15.0 展開小窓 / ステップナビ
-               └─ v0.16.0 ページネーション / Tabs 改修
-                     └─ v0.17.0 Toast
-                           └─ v0.18.0 Card / ContentSection
-                                 └─ v0.19.0 安定化
-                                       └─ v1.0.0
+   └─ v0.14.0 FilePond / 展開小窓・ステップナビ / ページネーション・Tabs / Toast
+         └─ v0.15.0 安定化
+               └─ v1.0.0
 ```
 
-直列は版の優先順。コンポーネント同士の実装依存は薄い（Toast は Snackbar レイヤ済み。ステップナビは段階表示のみで Tabs に依存しない）。
+直列は版の優先順。v0.14.0 内の各項目同士の実装依存は薄い（Toast は Snackbar レイヤ済み。ステップナビは段階表示のみで Tabs に依存しない）。
 
 ----
 

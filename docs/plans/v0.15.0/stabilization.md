@@ -1,7 +1,7 @@
 # 安定化・品質
 
 - **状態**: 意図スタブ
-- **マイルストーン**: `v0.19.0`
+- **マイルストーン**: `v0.15.0`
 
 ## 含むもの
 
@@ -13,6 +13,7 @@
 ## 含まないもの
 
 - a11y 本検討（無期限延期のまま。[unscheduled](../unscheduled/future-intents.md)）
+- Card / ContentSection（無期限延期。[unscheduled](../unscheduled/future-intents.md)）
 
 ----
 

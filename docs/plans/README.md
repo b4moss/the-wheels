@@ -9,11 +9,10 @@
 | パス | マイルストーン | 状態 |
 | --- | --- | --- |
 | [v0.14.0/filepond.md](./v0.14.0/filepond.md) | v0.14.0 | 方針確定 |
-| [v0.15.0/expandable-and-step-nav.md](./v0.15.0/expandable-and-step-nav.md) | v0.15.0 | 仕様詳細 |
-| [v0.16.0/pagination-and-tabs.md](./v0.16.0/pagination-and-tabs.md) | v0.16.0 | 意図スタブ |
-| [v0.17.0/toast.md](./v0.17.0/toast.md) | v0.17.0 | 意図スタブ |
-| [v0.18.0/card-and-content-section.md](./v0.18.0/card-and-content-section.md) | v0.18.0 | 意図スタブ |
-| [v0.19.0/stabilization.md](./v0.19.0/stabilization.md) | v0.19.0 | 意図スタブ |
+| [v0.14.0/expandable-and-step-nav.md](./v0.14.0/expandable-and-step-nav.md) | v0.14.0 | 仕様詳細 |
+| [v0.14.0/pagination-and-tabs.md](./v0.14.0/pagination-and-tabs.md) | v0.14.0 | 意図スタブ |
+| [v0.14.0/toast.md](./v0.14.0/toast.md) | v0.14.0 | 意図スタブ |
+| [v0.15.0/stabilization.md](./v0.15.0/stabilization.md) | v0.15.0 | 意図スタブ |
 | [v1.0.0/production.md](./v1.0.0/production.md) | v1.0.0 | 意図スタブ |
 | [unscheduled/future-intents.md](./unscheduled/future-intents.md) | unscheduled | 意図スタブ |
 

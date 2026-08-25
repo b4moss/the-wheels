@@ -17,6 +17,7 @@
 - SaaS スキャフォールドの設計・実装
 - `yoshinani-form` の取り込みおよび公式バンドル
 - **a11y 本検討**（無期限延期）
+- **Card / ContentSection**（無期限延期）
 - FilePond の PDF 1枚目プレビュー（v1.0.0 より後）
 - Accordion の高さ制限（版未定）
 - [unscheduled](../unscheduled/future-intents.md) のうち未実施のもの
