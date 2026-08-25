@@ -2,11 +2,9 @@ import { getPrefix } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
 import { TwDropdown } from "../dropdown/tw-dropdown.js";
 import "../svg_loader/tw-svg-loader.js";
+import moreVerticalUrl from "../../assets/more-vertical.svg?url";
 
-export const MORE_VERTICAL_SRC = new URL(
-  "../../assets/more-vertical.svg",
-  import.meta.url,
-).href;
+export const MORE_VERTICAL_SRC = moreVerticalUrl;
 
 export class TwActionMenu extends HTMLElement {
   static observedAttributes = ["open", "placement", "src"];

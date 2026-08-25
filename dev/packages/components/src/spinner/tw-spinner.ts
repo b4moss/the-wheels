@@ -1,5 +1,6 @@
 import { getPrefix } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
+import spinnerUrl from "../../assets/spinner.svg?url";
 
 const APPEARANCE_ATTRS = [
   "width",
@@ -12,10 +13,7 @@ const APPEARANCE_ATTRS = [
   "rotate",
 ] as const;
 
-const DEFAULT_SPINNER_SRC = new URL(
-  "../../assets/spinner.svg",
-  import.meta.url,
-).href;
+const DEFAULT_SPINNER_SRC = spinnerUrl;
 
 export class TwSpinner extends HTMLElement {
   static observedAttributes = ["src", ...APPEARANCE_ATTRS];
