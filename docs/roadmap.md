@@ -6,16 +6,18 @@ PO メモは [wishlist.md](./wishlist.md)。開発ルールは [charter/](./char
 
 ## 現状
 
-workspace `version` は **0.12.0**。npm は未公開。出荷済みの仕様は [main.md](./main.md) と `docs/specs/`。
+workspace `version` は **0.13.0**。npm は未公開。出荷済みの仕様は [main.md](./main.md) と `docs/specs/`。
 
-コア WC の初期一式は v0.12.0 までで揃っている。以降は E2E 定着のあと、載せ替えで常用する部品を足す。軽いものを先にする必要はない（FilePond を早めにするのは、既存プロダクトの画面置換で欠けるため）。
+コア WC の初期一式は v0.12.0 までで揃い、v0.13.0 で Playwright E2E と CI の `verify` / `e2e` 分離を定着させた（正本: [specs/e2e.md](./specs/e2e.md)）。以降は載せ替えで常用する部品を足す。軽いものを先にする必要はない（FilePond を早めにするのは、既存プロダクトの画面置換で欠けるため）。
 
 出荷済み WC の JS 振る舞いは概ね足りている。スタイル・アニメーションは甘い。全件監査は置かない。新規はトークンを使い、既存は触った画面だけ直す。
 
+ルートの `Makefile` は `dev/package.json` の npm scripts をラップ済み（`make build-style` など）。
+
 | 版 | 内容 | 状態 | 計画 |
 | --- | --- | --- | --- |
-| v0.13.0 | Playwright E2E | 次 | [plans/v0.13.0](./plans/v0.13.0/playwright-e2e.md) |
-| v0.14.0 | FilePond / Make ヘルパー | 未着手 | [filepond](./plans/v0.14.0/filepond.md) / [make](./plans/v0.14.0/make.md) |
+| v0.13.0 | Playwright E2E | 完了 | [specs/e2e.md](./specs/e2e.md) / [tests/v0.13.0.md](./tests/v0.13.0.md) |
+| v0.14.0 | FilePond | 未着手 | [filepond](./plans/v0.14.0/filepond.md) |
 | v0.15.0 | 展開小窓 / ステップナビ | 未着手 | [plans/v0.15.0](./plans/v0.15.0/expandable-and-step-nav.md) |
 | v0.16.0 | ページネーション / Tabs 改修 | 未着手 | [plans/v0.16.0](./plans/v0.16.0/pagination-and-tabs.md) |
 | v0.17.0 | Toast | 未着手 | [plans/v0.17.0](./plans/v0.17.0/toast.md) |
@@ -28,8 +30,8 @@ workspace `version` は **0.12.0**。npm は未公開。出荷済みの仕様は
 ## 依存（概略）
 
 ```text
-v0.13.0 Playwright E2E
-   └─ v0.14.0 FilePond / Make ヘルパー
+v0.13.0 Playwright E2E（完了）
+   └─ v0.14.0 FilePond
          └─ v0.15.0 展開小窓 / ステップナビ
                └─ v0.16.0 ページネーション / Tabs 改修
                      └─ v0.17.0 Toast
@@ -38,7 +40,7 @@ v0.13.0 Playwright E2E
                                        └─ v1.0.0
 ```
 
-直列は版の順序。コンポーネント同士の実装依存は薄い（Toast は Snackbar レイヤ済み。ステップナビは段階表示のみで Tabs に依存しない）。
+直列は版の優先順。コンポーネント同士の実装依存は薄い（Toast は Snackbar レイヤ済み。ステップナビは段階表示のみで Tabs に依存しない）。
 
 ----
 

@@ -45,7 +45,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 - PR CI: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
   - トリガー: `develop` / `dev-v*` への `pull_request`
-  - Node.js 22 / `npm ci`（作業ディレクトリは `dev/`）
+  - Node.js 24 / `npm ci`（作業ディレクトリは `dev/`）
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
   - ジョブは `verify` と `e2e` を並列（`e2e` は `verify` を待たない。成果物も共有しない）
     - `verify`: `dev/` で `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`

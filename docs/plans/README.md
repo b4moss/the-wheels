@@ -8,9 +8,7 @@
 
 | パス | マイルストーン | 状態 |
 | --- | --- | --- |
-| [v0.13.0/playwright-e2e.md](./v0.13.0/playwright-e2e.md) | v0.13.0 | 仕様詳細 |
 | [v0.14.0/filepond.md](./v0.14.0/filepond.md) | v0.14.0 | 方針確定 |
-| [v0.14.0/make.md](./v0.14.0/make.md) | v0.14.0 | 仕様詳細 |
 | [v0.15.0/expandable-and-step-nav.md](./v0.15.0/expandable-and-step-nav.md) | v0.15.0 | 仕様詳細 |
 | [v0.16.0/pagination-and-tabs.md](./v0.16.0/pagination-and-tabs.md) | v0.16.0 | 意図スタブ |
 | [v0.17.0/toast.md](./v0.17.0/toast.md) | v0.17.0 | 意図スタブ |

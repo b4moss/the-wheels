@@ -1,13 +1,8 @@
 # モジュール: Snackbar レイヤ（共有）仕様書
 
-<<<<<<< HEAD
-- CookieConsent（v0.12.0）および Toast（v0.14.0）が共有する、画面端固定の表示レイヤ
-- WC 単体として必須公開するか、内部モジュールに留めるかは実装時判断。少なくとも packages から再利用可能にする
-- Toast WC 自体は v0.12.0 では作らない（→ v0.14.0）
-=======
 - CookieConsent および将来の Toast が共有する、画面端固定の表示レイヤ
-- モジュール（`createSnackbarLayer`）。WC ではない。packages から再利用可能
->>>>>>> develop
+- モジュール（`createSnackbarLayer`）。WC ではない。`@b4moss/the-wheels-components`（および umbrella）から再利用可能
+- 公開 API: `createSnackbarLayer` / `SNACKBAR_LAYER_ATTR` / 型 `SnackbarLayer`・`CreateSnackbarLayerOptions`
 
 ## 目的
 
@@ -16,8 +11,9 @@
 
 ## 振る舞い（最小）
 
-- 表示／非表示を切り替えられる
-- 既定の配置は **viewport 下部**
+- `show()` / `hide()` / `isVisible()` / `destroy()`
+- ホスト要素に `data-tw-snackbar-layer` とクラス `snackbar-layer` を付与する
+- 既定の配置は **viewport 下部**（スタイル側）
 - 複数同時表示のスタック規則は Toast 導入時に詰める（現行は CookieConsent 単体利用。計画: [plans/v0.17.0](../../plans/v0.17.0/toast.md)）
 
 ## 含まないもの
