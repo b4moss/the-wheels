@@ -70,6 +70,12 @@
 - スタイルに対する自動テストは行わない
 - 見た目の確認は Storybook カタログ上の手動レビューとする（自動 VRT は未実施）
 
+## Motion トークン
+
+- `--tw-motion-duration`（既定 `180ms`）
+- `--tw-motion-easing`（既定 `ease`）
+- `prefers-reduced-motion: reduce` 時は `--tw-motion-duration: 0ms`
+
 ----
 
 以上

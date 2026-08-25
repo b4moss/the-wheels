@@ -32,5 +32,15 @@
     --tw-bp-lg-end: 1679;
     --tw-bp-xl-start: 1680;
     --tw-bp-xl-end: 2560;
+
+    /* Motion (minimal; FilePond / Expandable share these) */
+    --tw-motion-duration: 180ms;
+    --tw-motion-easing: ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --tw-motion-duration: 0ms;
+    }
   }
 }
