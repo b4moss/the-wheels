@@ -1,3 +1,4 @@
+import { getEventName } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
 
 let tabsIdSeq = 0;
@@ -87,13 +88,23 @@ export class TwTabs extends HTMLElement {
 
   select(index: number): void {
     if (!Number.isFinite(index)) return;
+    if (this.#tabs.length === 0) return;
     const max = Math.max(this.#tabs.length - 1, 0);
     const next = Math.max(0, Math.min(Math.trunc(index), max));
+    const prev = this.#selected;
     this.#selected = next;
     if (this.getAttribute("selected-index") !== String(next)) {
       this.setAttribute("selected-index", String(next));
     }
     this.#syncSelection();
+    if (next !== prev) {
+      this.dispatchEvent(
+        new CustomEvent(getEventName("change"), {
+          bubbles: true,
+          detail: { selectedIndex: next },
+        }),
+      );
+    }
   }
 
   get selectedIndex(): number {

@@ -1,0 +1,14 @@
+{% set current = "pagination" %}
+{% extends "@layouts/app.twig" %}
+{% block title %}Pagination — The Wheels kitchen-sink{% endblock %}
+{% block content %}
+  <h1>Pagination</h1>
+  {% set preview %}
+    <tw-pagination page="1" total-pages="7"></tw-pagination>
+    <p id="pagination-page-label" class="ks-meta">page: 1</p>
+  {% endset %}
+  {% set html_sample %}<tw-pagination page="1" total-pages="7"></tw-pagination>{% endset %}
+  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+{% endblock %}

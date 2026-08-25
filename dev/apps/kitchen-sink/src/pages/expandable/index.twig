@@ -1,0 +1,17 @@
+{% set current = "expandable" %}
+{% extends "@layouts/app.twig" %}
+{% block title %}Expandable — The Wheels kitchen-sink{% endblock %}
+{% block content %}
+  <h1>Expandable</h1>
+  {% set preview %}
+    <tw-expandable collapsed-height="6rem">
+      <p>長い利用規約テキストのサンプルです。折りたたみ時は領域内スクロール、展開で全体を表示します。</p>
+      <p>追加の段落。追加の段落。追加の段落。追加の段落。追加の段落。</p>
+      <p>さらに追加の段落。さらに追加の段落。さらに追加の段落。</p>
+    </tw-expandable>
+  {% endset %}
+  {% set html_sample %}<tw-expandable collapsed-height="6rem">...</tw-expandable>{% endset %}
+  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% set current = "file-pond" %}
+{% extends "@layouts/app.twig" %}
+{% block title %}FilePond — The Wheels kitchen-sink{% endblock %}
+{% block content %}
+  <h1>FilePond</h1>
+  {% set preview %}
+    <tw-file-pond max-files="3" max-size="1048576" accept="image/*,application/pdf"></tw-file-pond>
+  {% endset %}
+  {% set html_sample %}<tw-file-pond max-files="3" accept="image/*"></tw-file-pond>{% endset %}
+  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
+  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+{% endblock %}

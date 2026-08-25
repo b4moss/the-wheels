@@ -105,9 +105,11 @@ the-wheels-reconstruct/          # Git repo
 - Dropdown / ActionMenu
 - Accordion / Modal
 - Avatar / Vertical Nav
-- Tabs（最小）
+- Tabs（`change` イベントあり）
 - Combobox / InfiniteScroll
 - UserMenu / CookieConsent
+- Expandable / StepNav
+- Pagination / FilePond / Toast
 - Snackbar レイヤ（共有モジュール。WC ではない）
 
 ## これから / 対象外
