@@ -59,7 +59,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 | 同上（`e2e`） | PR 時 | 走る。失敗でそのジョブは落ちる。required にするかは安定後（【PO作業】） |
 | `release` への PR | PR 時 | **dry-run**（未実装） |
 | `main` への PR / マージ | — | CI は走らせない |
-| `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [plans/unscheduled/future-intents.md](./plans/unscheduled/future-intents.md)） |
+| `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [#47](https://github.com/b4moss/the-wheels/issues/47)） |
 
 `develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、自動テストは行われたものとする。
 

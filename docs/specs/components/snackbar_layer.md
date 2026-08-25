@@ -14,7 +14,7 @@
 - `show()` / `hide()` / `isVisible()` / `destroy()`
 - ホスト要素に `data-tw-snackbar-layer` とクラス `snackbar-layer` を付与する
 - 既定の配置は **viewport 下部**（スタイル側）
-- 複数同時表示のスタック規則は Toast 導入時に詰める（現行は CookieConsent 単体利用。計画: [plans/v0.14.0](../../plans/v0.14.0/toast.md)）
+- 複数同時表示のスタック規則は Toast 導入時に詰める（現行は CookieConsent 単体利用。計画: [#38 Toast](https://github.com/b4moss/the-wheels/issues/38)）
 
 ## 含まないもの
 

@@ -115,13 +115,13 @@ the-wheels-reconstruct/          # Git repo
 出荷済み WC の **JS の振る舞いは概ね足りている**。スタイル・アニメーションは甘い。全件監査マイルストーンは置かない。新規はトークンを使い、既存は触った画面だけ直す。
 
 - Playwright E2E（v0.13.0 出荷）→ [specs/e2e.md](./specs/e2e.md)
-- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast）→ [roadmap.md](./roadmap.md) / [plans/v0.14.0/](./plans/v0.14.0/)
-- フォーム系の深い統合、SaaS スキャフォールド、Card / ContentSection、a11y 本検討など → [plans/unscheduled](./plans/unscheduled/future-intents.md)
+- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast）→ [roadmap.md](./roadmap.md) / [v0.14.0 Issues](https://github.com/b4moss/the-wheels/milestone/2)
+- フォーム系の深い統合、SaaS スキャフォールド、Card / ContentSection、a11y 本検討など → [unscheduled Issues](https://github.com/b4moss/the-wheels/milestone/9)
 
 ## ドキュメントの読み方
 
 - 目的・現行仕様: 本ファイル / `docs/specs/`
-- これから: [roadmap.md](./roadmap.md)（ハブ）/ [plans/](./plans/README.md)
+- これから: [roadmap.md](./roadmap.md)（ハブ）/ **GitHub Issues**（未実装計画の正本）
 - 守るルール: [charter/](./charter/README.md)
 - 本リポの git / テスト上書き: [git.md](./git.md) / [test.md](./test.md)
 - PO メモ: [wishlist.md](./wishlist.md)
@@ -135,8 +135,8 @@ the-wheels-reconstruct/          # Git repo
 ## 特記事項
 
 - the-wheels コア（style / components / umbrella）ではフォームを扱わない
-- フォームは別プロダクト `yoshinani-form`。本リポへの subtree 取り込みは **無期限見送り**（[unscheduled](./plans/unscheduled/future-intents.md)）
-- a11y 本検討: **無期限延期**（[unscheduled](./plans/unscheduled/future-intents.md)）
+- フォームは別プロダクト `yoshinani-form`。本リポへの subtree 取り込みは **無期限見送り**（[#43](https://github.com/b4moss/the-wheels/issues/43)）
+- a11y 本検討: **無期限延期**（[#42](https://github.com/b4moss/the-wheels/issues/42)）
 
 ----
 
