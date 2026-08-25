@@ -1,8 +1,9 @@
 import { getPrefix } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
+import lockUrl from "../../assets/lock.svg?url";
 
 const VARIANTS = new Set(["default", "stroke", "ghost"]);
-export const LOCK_SRC = new URL("../../assets/lock.svg", import.meta.url).href;
+export const LOCK_SRC = lockUrl;
 
 type SlotName = "icon-left" | "default" | "icon-right";
 

@@ -2,11 +2,9 @@ import { getPrefix } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
 import "../svg_loader/tw-svg-loader.js";
 import { ensureAccordionGroupDelegation } from "./accordion-group.js";
+import chevronUrl from "../../assets/chevron.svg?url";
 
-export const CHEVRON_SRC = new URL(
-  "../../assets/chevron.svg",
-  import.meta.url,
-).href;
+export const CHEVRON_SRC = chevronUrl;
 
 export class TwAccordion extends HTMLElement {
   static observedAttributes = ["open"];
