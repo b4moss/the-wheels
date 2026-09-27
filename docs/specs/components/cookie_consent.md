@@ -78,15 +78,18 @@
 - **スライディング**: TTL 内にアクセス（接続時の有効判定・延長処理）があれば、**その日から再度 `ttl-days` 日延長**する
 - **TTL 切れ**: ストレージを削除（または同等の全リセット）し、未承諾に戻してバナーを再表示する
 
-## サービス許否 API（ホストメソッド）
+## ホストメソッド
 
-チェック UI は利用側。WC は次を提供する。
+- `acceptAll()`: すべて承諾を書き、バナーを非表示にする
+- `dismissBanner()`: バナーのみ消す（`status` は変えず `bannerHidden = true`。「設定する」相当）
+- `getConsentState()`: 現在の同意 JSON 相当を返す
+- `getSnackbarLayer()`: 内部共有レイヤ（テスト／デバッグ用）
+- サービス許否（チェック UI は利用側）:
+  - `setServiceConsent(id: string, allowed: boolean): void`
+  - `getServiceConsent(id: string): boolean | undefined`（未登録は `undefined`。全体 `accepted` 時の解釈は利用側でも可）
+  - `getAllServiceConsents(): Record<string, boolean>`
 
-- `setServiceConsent(id: string, allowed: boolean): void`
-- `getServiceConsent(id: string): boolean | undefined`（未登録は `undefined`。全体 `accepted` 時の解釈は利用側でも可）
-- `getAllServiceConsents(): Record<string, boolean>`
-
-設定画面保存後に利用側がこれらのメソッドで書き込む想定。
+設定画面保存後に利用側が `setServiceConsent` 等で書き込む想定。
 
 ## 含まないもの
 

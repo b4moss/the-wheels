@@ -140,9 +140,15 @@ el.loadOptions = async (ctx) => {
 
 ## その他属性・状態（最小）
 
+- `open`（真偽）: 開閉。内部 Dropdown と同期。`open()` / `close()` / `toggle()` も公開
 - `disabled`（真偽）
 - `placeholder`（検索入力の placeholder に反映）
 - `placement` 等は Dropdown に準拠
+- `async` / `hybrid` で内側 InfiniteScroll へ透過する属性:
+  - `sort-key`（未指定時は内側へ `value` を渡す）
+  - `sort-direction`（`asc` / `desc`）
+  - `max-items`（ウィンドウ上限）
+- 検索クエリはプロパティ `query`（getter）で読み取り可能
 - loading 中はリスト領域に読み込み表示
 - 静的検索の一致は、大文字小文字を無視した label の部分一致を既定とする
 

@@ -27,6 +27,7 @@
 - ホストメソッド `close()` を公開し、内部 `<dialog>` の `close()` に委譲する
 - デフォルトで、header 右上に閉じるボタン（×）を置く
   - 同梱 SVG（`close.svg`）を SVGLoader で描画する（[icons.md](../icons.md)）
+  - 定数 `CLOSE_SRC` も export する
 - バックドロップクリックでも閉じる
 - footer などにユーザーが任意に追加した要素からも閉じられるようにする
   - 閉じたい要素に `data-tw-modal-close` 属性を付ける（`data-tw-*` 固定）
