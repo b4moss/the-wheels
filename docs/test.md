@@ -15,7 +15,7 @@
   - 自動 VRT は当面行わない
   - interaction / play は入れない（後続。計画: [#40 安定化・品質](https://github.com/b4moss/the-wheels/issues/40)）
 - Playwright
-  - kitchen-sink 上の E2E（現行: [specs/e2e.md](./specs/e2e.md)、ケース: [tests/v0.13.0.md](./tests/v0.13.0.md)）
+  - kitchen-sink 上の E2E（現行: [specs/e2e.md](./specs/e2e.md)、ケース: [tests/e2e.md](./tests/e2e.md) / [tests/components/](./tests/components/)）
   - アサートは振る舞いのみ（色・px・アニメ完了待ちは入れない）
   - ローカルは kitchen-sink の `dev`、CI は `preview`
   - CI は `verify` と `e2e` を分離。required は当面 `verify`（[git.md](./git.md)）
@@ -25,10 +25,11 @@
 
 ## テスト仕様書の置き場
 
-charter のドメイン別 `docs/tests/{lib,...}/` は使わない。本リポは **版ごと 1 ファイル**:
+`docs/specs/` と**同じドメイン切り**（OKF v0.1 / [doc-rule](./charter/doc-rule.md)）:
 
-- `docs/tests/vX.Y.Z.md`
-- そのバージョンで実装するロジックをすべて載せる
+- `docs/tests/e2e.md` — E2E 共通前提・実行・対象外
+- `docs/tests/components/` — コンポーネント別 E2E ケース（[specs/components/](./specs/components/) に対応）
+- SemVer フォルダ（`vX.Y.Z/`）や版ごと 1 ファイルは使わない（履歴は [_archived/tests/](./_archived/tests/)）
 
 書き方のフォーマットは charter に従う。
 
