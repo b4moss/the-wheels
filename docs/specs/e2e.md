@@ -1,6 +1,6 @@
 # Playwright E2E（現行）
 
-kitchen-sink 上の振る舞い E2E。実装は `dev/e2e/`・`dev/playwright.config.ts`。テストケースの詳細は [tests/v0.13.0.md](../tests/v0.13.0.md)。CI のジョブ分離は [git.md](../git.md)。方針上書きは [test.md](../test.md)。
+kitchen-sink 上の振る舞い E2E。実装は `dev/e2e/`・`dev/playwright.config.ts`。テストケースの詳細は [tests/e2e.md](../tests/e2e.md) と [tests/components/](../tests/components/)。CI のジョブ分離は [git.md](../git.md)。方針上書きは [test.md](../test.md)。
 
 ## 範囲
 

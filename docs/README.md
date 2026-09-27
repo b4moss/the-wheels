@@ -1,5 +1,8 @@
 # The Wheels
 
+プロダクトの意味的な pillar 正本（目的・スコープ・技術方針のハブ）。  
+OKF の版索引は [`index.md`](./index.md)（`okf_version` のみ）。
+
 合同会社 知的・自転車向けのデザインシステム（スタイル + Web Components）。
 
 ## 目的
@@ -114,16 +117,18 @@ the-wheels-reconstruct/          # Git repo
 
 出荷済み WC の **JS の振る舞いは概ね足りている**。スタイル・アニメーションは甘い。全件監査マイルストーンは置かない。新規はトークンを使い、既存は触った画面だけ直す。
 
-- Playwright E2E（v0.13.0 出荷）→ [specs/e2e.md](./specs/e2e.md)
-- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast）→ [roadmap.md](./roadmap.md) / [v0.14.0 Issues](https://github.com/b4moss/the-wheels/milestone/2)
+- Playwright E2E（v0.13.0 出荷）→ [specs/e2e.md](./specs/e2e.md) / [tests/e2e.md](./tests/e2e.md)
+- これから足す WC（FilePond / 展開小窓 / ステップナビ（段階表示） / ページネーション / Tabs 改修 / Toast）→ [roadmap.md](./roadmap.md) / [plans](./plans/)（現行の Issue 索引: [v0.14.0](https://github.com/b4moss/the-wheels/milestone/2)）
 - フォーム系の深い統合、SaaS スキャフォールド、Card / ContentSection、a11y 本検討など → [unscheduled Issues](https://github.com/b4moss/the-wheels/milestone/9)
 
 ## ドキュメントの読み方
 
-- 目的・現行仕様: 本ファイル / `docs/specs/`
-- これから: [roadmap.md](./roadmap.md)（ハブ）/ **GitHub Issues**（未実装計画の正本）
-- 守るルール: [charter/](./charter/README.md)
+- 目的・現行仕様: 本ファイル（pillar） / `docs/specs/`
+- OKF 索引: [index.md](./index.md)
+- これから: [roadmap.md](./roadmap.md)（ハブ）/ [plans/](./plans/)
+- 守るルール: [charter/](./charter/README.md) / [OKF v0.1](./charter/okf/)
 - 本リポの git / テスト上書き: [git.md](./git.md) / [test.md](./test.md)
+- テスト仕様: [tests/](./tests/)（`specs/` と同じドメイン切り）
 - PO メモ: [wishlist.md](./wishlist.md)
 
 ## 関数・メソッドの分割方針
