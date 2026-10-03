@@ -1,0 +1,76 @@
+{% set current = "pagination" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Pagination — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Pagination</h1>
+  <p class="ks-meta">page / total-pages · tw-change · 先頭 / 中間 / 末尾</p>
+
+  {% set preview %}
+    <section>
+      <h2>先頭ページ</h2>
+      <tw-pagination id="pager-first" page="1" total-pages="7"></tw-pagination>
+      <p id="pagination-first-label" class="ks-meta">page: 1</p>
+    </section>
+
+    <section>
+      <h2>中間ページ</h2>
+      <tw-pagination id="pager-middle" page="4" total-pages="7"></tw-pagination>
+      <p id="pagination-middle-label" class="ks-meta">page: 4</p>
+    </section>
+
+    <section>
+      <h2>末尾ページ</h2>
+      <tw-pagination id="pager-last" page="7" total-pages="7"></tw-pagination>
+      <p id="pagination-last-label" class="ks-meta">page: 7</p>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-pagination page="1" total-pages="7"></tw-pagination>
+<tw-pagination page="4" total-pages="7"></tw-pagination>
+<tw-pagination page="7" total-pages="7"></tw-pagination>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const bind = (pagerId, labelId) => {
+  const el = document.getElementById(pagerId);
+  const label = document.getElementById(labelId);
+  el?.addEventListener("tw-change", (event) => {
+    if (label) label.textContent = `page: ${event.detail.page}`;
+  });
+};
+
+bind("pager-first", "pagination-first-label");
+bind("pager-middle", "pagination-middle-label");
+bind("pager-last", "pagination-last-label");
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwPagination } from "@b4moss/the-wheels";
+
+const bind = (pagerId: string, labelId: string) => {
+  const el = document.getElementById(pagerId) as TwPagination | null;
+  const label = document.getElementById(labelId);
+  el?.addEventListener("tw-change", ((event: CustomEvent<{ page: number }>) => {
+    if (label) label.textContent = `page: ${event.detail.page}`;
+  }) as EventListener);
+};
+
+bind("pager-first", "pagination-first-label");
+bind("pager-middle", "pagination-middle-label");
+bind("pager-last", "pagination-last-label");
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/pagination.js"></script>
+{% endblock %}
