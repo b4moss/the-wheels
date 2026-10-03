@@ -45,6 +45,7 @@ npm run build:components # コンポーネントのみ生成
 npm run build:the-wheels # 全部入り生成
 npm run build:kitchen-sink # キッチンシンクのみ生成
 npm run build:storybook # Storybookのみ生成
+npm run build:pages # GitHub Pages 用に kitchen-sink + Storybook を組み立て
 npm run test:components # コンポーネントのみテスト
 npm run test:package # パッケージテスト
 npm run test:e2e # Playwright E2E（kitchen-sink）
@@ -58,12 +59,16 @@ npm run dev:storybook # Storybook起動
 
 `test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、GitHub Actions の手動実行は `preview`（ポート 5173）を対象にします。PR 提出前に手元で回してください。
 
+`build:pages` は kitchen-sink を `/`、Storybook を `/storybook/` に置いた静的サイトを `dev/pages-site/` に出力します（[#63](https://github.com/b4moss/the-wheels/issues/63)）。公開先はカスタムドメイン [https://thewheels.oss.b4m.jp/](https://thewheels.oss.b4m.jp/)（CNAME: `thewheels.oss.b4m.jp`、ベースパス `/`）。
+
 ## CI
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走ります。
 
 - `verify`: `dev/` で Vitest と主要 `build:*`（PR の通常チェックはこれだけ）
 - e2e は PR では回さない。手元で `npm run test:e2e` / `make test-e2e`。必要なら [E2E](.github/workflows/e2e.yml) を Actions 画面から `workflow_dispatch` で手動実行
+
+`develop` への push で [`.github/workflows/pages.yml`](.github/workflows/pages.yml) が [https://thewheels.oss.b4m.jp/](https://thewheels.oss.b4m.jp/)（kitchen-sink）と [https://thewheels.oss.b4m.jp/storybook/](https://thewheels.oss.b4m.jp/storybook/) を公開します。PR ではビルドのみ（デプロイなし）。【PO作業】Settings → Pages → Source を GitHub Actions、Custom domain を `thewheels.oss.b4m.jp` にしてください。
 
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
 
