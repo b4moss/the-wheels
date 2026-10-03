@@ -1,17 +1,115 @@
 {% set current = "step-nav" %}
 {% extends "@layouts/app.twig" %}
+
 {% block title %}StepNav — The Wheels kitchen-sink{% endblock %}
+
 {% block content %}
   <h1>StepNav</h1>
+  <p class="ks-meta">status=current|done|not_yet · setCurrent(index) · 表示専用</p>
+
   {% set preview %}
-    <tw-step-nav>
-      <div status="done">入力</div>
-      <div status="current">確認</div>
-      <div status="not_yet">完了</div>
-    </tw-step-nav>
+    <section>
+      <h2>進行中（done / current / not_yet）</h2>
+      <tw-step-nav>
+        <div status="done">入力</div>
+        <div status="current">確認</div>
+        <div status="not_yet">完了</div>
+      </tw-step-nav>
+    </section>
+
+    <section>
+      <h2>未着手</h2>
+      <tw-step-nav>
+        <div status="not_yet">カート</div>
+        <div status="not_yet">お届け先</div>
+        <div status="not_yet">支払い</div>
+        <div status="not_yet">完了</div>
+      </tw-step-nav>
+    </section>
+
+    <section>
+      <h2>完了</h2>
+      <tw-step-nav>
+        <div status="done">入力</div>
+        <div status="done">確認</div>
+        <div status="done">完了</div>
+      </tw-step-nav>
+    </section>
+
+    <section>
+      <h2>setCurrent(index)</h2>
+      <tw-step-nav id="step-nav-api">
+        <div status="not_yet">入力</div>
+        <div status="not_yet">確認</div>
+        <div status="not_yet">完了</div>
+      </tw-step-nav>
+      <div class="ks-row" style="margin-top: 1.6rem">
+        <tw-button type="button" id="step-to-0" variant="stroke">setCurrent(0)</tw-button>
+        <tw-button type="button" id="step-to-1" variant="ghost">setCurrent(1)</tw-button>
+        <tw-button type="button" id="step-to-2">setCurrent(2)</tw-button>
+      </div>
+      <p class="ks-meta">クリックでは遷移しません。setCurrent は指定インデックスのみ current にします。</p>
+    </section>
   {% endset %}
-  {% set html_sample %}<tw-step-nav>...</tw-step-nav>{% endset %}
-  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
-  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
-  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+
+  {% set html_sample %}
+<tw-step-nav>
+  <div status="done">入力</div>
+  <div status="current">確認</div>
+  <div status="not_yet">完了</div>
+</tw-step-nav>
+
+<tw-step-nav>
+  <div status="not_yet">カート</div>
+  <div status="not_yet">お届け先</div>
+  <div status="not_yet">支払い</div>
+  <div status="not_yet">完了</div>
+</tw-step-nav>
+
+<tw-step-nav id="step-nav-api">
+  <div status="not_yet">入力</div>
+  <div status="not_yet">確認</div>
+  <div status="not_yet">完了</div>
+</tw-step-nav>
+<button type="button" id="…">setCurrent(0)</button>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const nav = document.getElementById("step-nav-api");
+document.getElementById("step-to-0")?.addEventListener("click", () => {
+  nav?.setCurrent(0);
+});
+document.getElementById("step-to-1")?.addEventListener("click", () => {
+  nav?.setCurrent(1);
+});
+document.getElementById("step-to-2")?.addEventListener("click", () => {
+  nav?.setCurrent(2);
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwStepNav } from "@b4moss/the-wheels";
+
+const nav = document.getElementById("step-nav-api") as TwStepNav | null;
+document.getElementById("step-to-0")?.addEventListener("click", () => {
+  nav?.setCurrent(0);
+});
+document.getElementById("step-to-1")?.addEventListener("click", () => {
+  nav?.setCurrent(1);
+});
+document.getElementById("step-to-2")?.addEventListener("click", () => {
+  nav?.setCurrent(2);
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/step-nav.js"></script>
 {% endblock %}

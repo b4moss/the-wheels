@@ -1,14 +1,108 @@
 {% set current = "toast" %}
 {% extends "@layouts/app.twig" %}
+
 {% block title %}Toast — The Wheels kitchen-sink{% endblock %}
+
 {% block content %}
   <h1>Toast</h1>
+  <p class="ks-meta">variant / duration-ms / show() / hide() · スタック表示</p>
+
   {% set preview %}
-    <tw-toast id="demo-toast" variant="success" duration-ms="3000">保存しました</tw-toast>
-    <button type="button" id="show-toast">Toast を表示</button>
+    <section>
+      <h2>variant</h2>
+      <tw-toast id="toast-info" variant="info" duration-ms="3000">お知らせです</tw-toast>
+      <tw-toast id="toast-success" variant="success" duration-ms="3000">保存しました</tw-toast>
+      <tw-toast id="toast-warning" variant="warning" duration-ms="3000">確認してください</tw-toast>
+      <tw-toast id="toast-error" variant="error" duration-ms="3000">エラーが発生しました</tw-toast>
+      <div class="ks-row">
+        <tw-button type="button" id="show-info" variant="ghost">info</tw-button>
+        <tw-button type="button" id="show-success">success</tw-button>
+        <tw-button type="button" id="show-warning" variant="stroke">warning</tw-button>
+        <tw-button type="button" id="show-error" variant="ghost">error</tw-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>duration-ms（固定表示）</h2>
+      <tw-toast id="toast-sticky" variant="info" duration-ms="0">手動で閉じるまで表示されます</tw-toast>
+      <div class="ks-row">
+        <tw-button type="button" id="show-sticky">show()</tw-button>
+        <tw-button type="button" id="hide-sticky" variant="stroke">hide()</tw-button>
+      </div>
+    </section>
+
+    <section>
+      <h2>スタック</h2>
+      <tw-toast id="toast-stack-a" variant="success" duration-ms="5000">1 件目の通知</tw-toast>
+      <tw-toast id="toast-stack-b" variant="info" duration-ms="5000">2 件目の通知</tw-toast>
+      <tw-toast id="toast-stack-c" variant="warning" duration-ms="5000">3 件目の通知</tw-toast>
+      <div class="ks-row">
+        <tw-button type="button" id="show-stack">まとめて表示</tw-button>
+      </div>
+    </section>
   {% endset %}
-  {% set html_sample %}<tw-toast variant="success">保存しました</tw-toast>{% endset %}
-  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
-  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
-  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+
+  {% set html_sample %}
+<tw-toast id="toast-success" variant="success" duration-ms="3000">保存しました</tw-toast>
+<button type="button" id="show-success">success</button>
+
+<tw-toast id="toast-sticky" variant="info" duration-ms="0">手動で閉じるまで表示されます</tw-toast>
+<button type="button" id="show-sticky">show()</button>
+<button type="button" id="hide-sticky">hide()</button>
+
+<tw-toast id="toast-stack-a" variant="success">1 件目の通知</tw-toast>
+<tw-toast id="toast-stack-b" variant="info">2 件目の通知</tw-toast>
+<button type="button" id="show-stack">まとめて表示</button>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+document.getElementById("show-success")?.addEventListener("click", () => {
+  document.getElementById("toast-success")?.show();
+});
+
+document.getElementById("show-sticky")?.addEventListener("click", () => {
+  document.getElementById("toast-sticky")?.show();
+});
+document.getElementById("hide-sticky")?.addEventListener("click", () => {
+  document.getElementById("toast-sticky")?.hide();
+});
+
+document.getElementById("show-stack")?.addEventListener("click", () => {
+  document.getElementById("toast-stack-a")?.show();
+  document.getElementById("toast-stack-b")?.show();
+  document.getElementById("toast-stack-c")?.show();
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwToast } from "@b4moss/the-wheels";
+
+document.getElementById("show-success")?.addEventListener("click", () => {
+  (document.getElementById("toast-success") as TwToast | null)?.show();
+});
+
+document.getElementById("show-sticky")?.addEventListener("click", () => {
+  (document.getElementById("toast-sticky") as TwToast | null)?.show();
+});
+document.getElementById("hide-sticky")?.addEventListener("click", () => {
+  (document.getElementById("toast-sticky") as TwToast | null)?.hide();
+});
+
+document.getElementById("show-stack")?.addEventListener("click", () => {
+  (document.getElementById("toast-stack-a") as TwToast | null)?.show();
+  (document.getElementById("toast-stack-b") as TwToast | null)?.show();
+  (document.getElementById("toast-stack-c") as TwToast | null)?.show();
+});
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/toast.js"></script>
 {% endblock %}
