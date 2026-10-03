@@ -1,7 +1,9 @@
 name: GitHub Pages preview
 
-# Developer preview: kitchen-sink at `/`, Storybook at `/storybook/` (issue #63).
-# No Basic auth. No Netlify. Not a long-lived docs site.
+# Developer preview on custom domain (issue #63):
+#   https://thewheels.oss.b4m.jp/           → kitchen-sink
+#   https://thewheels.oss.b4m.jp/storybook/ → Storybook
+# Base path is `/` (not project Pages /the-wheels/). No Basic auth. No Netlify.
 
 on:
   push:
@@ -54,23 +56,12 @@ jobs:
         id: base
         run: |
           set -euo pipefail
-          if [ "${{ steps.pages.outcome }}" = "success" ]; then
-            raw="${{ steps.pages.outputs.base_path }}"
-          else
-            # Pages API unavailable (not enabled yet): assume project site /<repo>/.
-            raw="/${{ github.event.repository.name }}"
-            echo "configure-pages did not succeed; using project base ${raw}"
-          fi
-          if [ -z "$raw" ] || [ "$raw" = "/" ]; then
-            site_base="/"
-          else
-            site_base="/${raw#/}"
-            site_base="${site_base%/}/"
-          fi
+          # Custom domain thewheels.oss.b4m.jp → site root is `/`
+          site_base="/"
           echo "site_base=${site_base}" >> "$GITHUB_OUTPUT"
-          echo "storybook_base=${site_base}storybook/" >> "$GITHUB_OUTPUT"
+          echo "storybook_base=/storybook/" >> "$GITHUB_OUTPUT"
           echo "PAGES_BASE=${site_base}"
-          echo "PAGES_BASE_STORYBOOK=${site_base}storybook/"
+          echo "PAGES_BASE_STORYBOOK=/storybook/"
 
       - name: Build Pages site
         env:

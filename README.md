@@ -57,18 +57,18 @@ npm run dev:storybook # Storybook起動
 
 `test:package` はビルド後の dual package（ESM + CJS）と exports 解決のスモークです。
 
-`test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、CI は `preview`（ポート 5173）を対象にします。
+`test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、GitHub Actions の手動実行は `preview`（ポート 5173）を対象にします。PR 提出前に手元で回してください。
 
-`build:pages` は kitchen-sink を `/`、Storybook を `/storybook/` に置いた静的サイトを `dev/pages-site/` に出力します（[#63](https://github.com/b4moss/the-wheels/issues/63)）。プロジェクト Pages では `PAGES_BASE=/<repo>/` を渡します。
+`build:pages` は kitchen-sink を `/`、Storybook を `/storybook/` に置いた静的サイトを `dev/pages-site/` に出力します（[#63](https://github.com/b4moss/the-wheels/issues/63)）。公開先はカスタムドメイン [https://thewheels.oss.b4m.jp/](https://thewheels.oss.b4m.jp/)（CNAME: `thewheels.oss.b4m.jp`、ベースパス `/`）。
 
 ## CI
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走ります。
 
-- `verify`: `dev/` で Vitest と主要 `build:*`
-- `e2e`: Playwright（Chromium）。kitchen-sink の `preview` に対して実行。変更がすべて `docs/**` または `*.md` ならスキップ
+- `verify`: `dev/` で Vitest と主要 `build:*`（PR の通常チェックはこれだけ）
+- e2e は PR では回さない。手元で `npm run test:e2e` / `make test-e2e`。必要なら [E2E](.github/workflows/e2e.yml) を Actions 画面から `workflow_dispatch` で手動実行
 
-`develop` への push で [`.github/workflows/pages.yml`](.github/workflows/pages.yml) が kitchen-sink（`/`）と Storybook（`/storybook/`）を GitHub Pages に公開します。PR ではビルドのみ（デプロイなし）。【PO作業】Settings → Pages → Source を GitHub Actions にしてください（デプロイに必要。未設定でも PR ビルドは `/<repo>/` 想定で通る）。
+`develop` への push で [`.github/workflows/pages.yml`](.github/workflows/pages.yml) が [https://thewheels.oss.b4m.jp/](https://thewheels.oss.b4m.jp/)（kitchen-sink）と [https://thewheels.oss.b4m.jp/storybook/](https://thewheels.oss.b4m.jp/storybook/) を公開します。PR ではビルドのみ（デプロイなし）。【PO作業】Settings → Pages → Source を GitHub Actions、Custom domain を `thewheels.oss.b4m.jp` にしてください。
 
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
 

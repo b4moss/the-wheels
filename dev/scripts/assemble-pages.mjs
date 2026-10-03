@@ -3,10 +3,13 @@
  * Assemble kitchen-sink + Storybook into one static tree for GitHub Pages.
  * - `/`            → kitchen-sink `dist/`
  * - `/storybook/`  → Storybook `storybook-static/`
+ * Custom domain CNAME: thewheels.oss.b4m.jp (base path `/`)
  */
 import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+
+const CUSTOM_DOMAIN = "thewheels.oss.b4m.jp";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const out = resolve(root, "pages-site");
@@ -28,7 +31,9 @@ cpSync(kitchen, out, { recursive: true });
 mkdirSync(resolve(out, "storybook"), { recursive: true });
 cpSync(storybook, resolve(out, "storybook"), { recursive: true });
 writeFileSync(resolve(out, ".nojekyll"), "");
+writeFileSync(resolve(out, "CNAME"), `${CUSTOM_DOMAIN}\n`);
 
 console.log(`Assembled GitHub Pages site at ${out}`);
 console.log("  /           → kitchen-sink");
 console.log("  /storybook/ → Storybook");
+console.log(`  CNAME       → ${CUSTOM_DOMAIN}`);

@@ -17,8 +17,8 @@
 - Playwright
   - kitchen-sink 上の E2E（現行: [specs/e2e.md](./specs/e2e.md)、ケース: [tests/e2e.md](./tests/e2e.md) / [tests/components/](./tests/components/)）
   - アサートは振る舞いのみ（色・px・アニメ完了待ちは入れない）
-  - ローカルは kitchen-sink の `dev`、CI は `preview`
-  - CI は `verify` と `e2e` を分離。required は当面 `verify`（[git.md](./git.md)）
+  - ローカルは kitchen-sink の `dev`、Actions 手動実行は `preview`
+  - PR CI は `verify` のみ（e2e は毎回回さない）。PR 前に手元で `npm run test:e2e` / `make test-e2e`。必要なら Actions の `workflow_dispatch`（[git.md](./git.md)）
 - スタイル（CSS）
   - 自動テストは行わない
   - 見た目は Storybook の手動レビュー（自動 VRT は未実施）

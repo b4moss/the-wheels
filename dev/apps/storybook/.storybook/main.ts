@@ -8,8 +8,9 @@ function normalizeBase(value: string | undefined): string {
 }
 
 /**
- * GitHub Pages serves Storybook under `/storybook/` on the same site as kitchen-sink.
- * Prefer PAGES_BASE_STORYBOOK; otherwise derive from PAGES_BASE (site root).
+ * Storybook is served under `/storybook/` on the Pages site
+ * (https://thewheels.oss.b4m.jp/storybook/). Prefer PAGES_BASE_STORYBOOK;
+ * otherwise derive from PAGES_BASE (site root, default `/`).
  */
 function storybookBase(): string {
   if (process.env.PAGES_BASE_STORYBOOK) {

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Build kitchen-sink + Storybook and assemble a GitHub Pages site (#63).
-# Override PAGES_BASE for project pages (e.g. /the-wheels/). Default: /
+# Custom domain thewheels.oss.b4m.jp uses base `/` (default).
+# Override PAGES_BASE only for local subdirectory experiments.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
