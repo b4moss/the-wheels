@@ -20,6 +20,7 @@
     "build:the-wheels": "npm run build -w @b4moss/the-wheels",
     "build:kitchen-sink": "npm run build -w @b4moss/the-wheels-kitchen-sink",
     "build:storybook": "npm run build -w @b4moss/the-wheels-storybook",
+    "build:pages": "bash scripts/build-pages.sh",
     "test:components": "npm run test -w @b4moss/the-wheels-components",
     "test:package": "npm run build:components && npm run build:the-wheels && vitest run --config vitest.package.config.ts",
     "test:e2e": "playwright test"

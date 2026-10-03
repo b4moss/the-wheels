@@ -28,7 +28,7 @@ RULESET_CURRENT_REPO = $(shell gh repo view --json nameWithOwner -q .nameWithOwn
 
 .PHONY: help \
 	dev-kitchen-sink preview-kitchen-sink dev-storybook \
-	build-style build-components build-the-wheels build-kitchen-sink build-storybook \
+	build-style build-components build-the-wheels build-kitchen-sink build-storybook build-pages \
 	test-components test-package test-e2e \
 	ruleset-help ruleset-create ruleset-apply ruleset-check
 
@@ -44,6 +44,7 @@ help:
 		'  make build-the-wheels' \
 		'  make build-kitchen-sink' \
 		'  make build-storybook' \
+		'  make build-pages' \
 		'  make test-components' \
 		'  make test-package' \
 		'  make test-e2e' \
@@ -73,6 +74,9 @@ build-kitchen-sink:
 
 build-storybook:
 	cd "$(DEV_DIR)" && npm run build:storybook
+
+build-pages:
+	cd "$(DEV_DIR)" && npm run build:pages
 
 test-components:
 	cd "$(DEV_DIR)" && npm run test:components
