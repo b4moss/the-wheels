@@ -48,7 +48,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
   - Node.js 24 / `npm ci`（作業ディレクトリは `dev/`）
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
   - ジョブは `verify` と `e2e` を並列（`e2e` は `verify` を待たない。成果物も共有しない）
-    - `verify`: `dev/` で `build:style` → `test:components` → `test:package` → `build:kitchen-sink` → `build:storybook`
+    - `verify`: `dev/` で `build:style` → `test:components`（coverage）→ Codecov アップロード → `test:package` → `build:kitchen-sink` → `build:storybook`
     - `e2e`: `dev/` で `build:style` → `build:components` → `build:the-wheels` → `build:kitchen-sink` のあと Playwright（Chromium）。対象サーバは kitchen-sink の **`preview`**（ホスト `127.0.0.1`、ポート **5173**）
     - ローカルの `npm run test:e2e`（`dev/` で実行）は kitchen-sink の **`dev` サーバ** を対象にする
     - 変更パスがすべて `docs/**` または `*.md`（ルートの `README.md` 含む）なら `e2e` をスキップする
@@ -58,10 +58,24 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 | `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない** |
 | 同上（`e2e`） | PR 時 | 走る。失敗でそのジョブは落ちる。required にするかは安定後（【PO作業】） |
 | `release` への PR | PR 時 | **dry-run**（未実装） |
-| `main` への PR / マージ | — | CI は走らせない |
+| `main` への PR / マージ | — | PR CI（`ci.yml`）は走らせない |
 | `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [#47](https://github.com/b4moss/the-wheels/issues/47)） |
+| タグ push | CD | GitHub Release を冪等作成（[`.github/workflows/release-on-tag.yml`](../.github/workflows/release-on-tag.yml)）。npm 公開とは別 |
+| `main` / `develop` push・週次など | 監査 | OpenSSF Scorecard（[`.github/workflows/scorecard.yml`](../.github/workflows/scorecard.yml)）。**残す**。現状 `develop` push では失敗しうるが、PO は当面許容（フォロー: [#59](https://github.com/b4moss/the-wheels/issues/59)） |
 
 `develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、自動テストは行われたものとする。
+
+### プレビューサイト
+
+- **Netlify は使わない**（[#60](https://github.com/b4moss/the-wheels/issues/60) 中止済み）。`netlify.toml` や Netlify 向け CI は置かない
+- プレビューは **公開 GitHub Pages** に寄せる（正本: [#63](https://github.com/b4moss/the-wheels/issues/63)。サイト本体の実装は別変更）
+  - `/` に kitchen-sink、`/storybook/` に Storybook
+  - Basic 認証は不要（リポジトリ公開）
+  - 長期間の公開ドキュメントサイト化はしない（開発者が見るプレビュー）
+
+### ライセンス
+
+- リポジトリルートに MIT の [`LICENSE`](../LICENSE) を置く
 
 ### 【PO作業】ブランチ保護（required checks）
 
