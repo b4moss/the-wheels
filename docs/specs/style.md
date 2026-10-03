@@ -14,7 +14,8 @@
 
 `dev/packages/style/src` は layer / 関心ごとに分割する。
 
-- 例: `reset.css`, `tokens.css`, `typography.css`, `focus.css`, `breakpoints.css`, `index.css`
+- `index.css`（`@layer` 宣言と import ハブ）
+- `reset.css`, `tokens.css`, `breakpoints.css`, `focus.css`, `typography.css`, `layout.css`, `components.css`
 
 ## 含む範囲
 

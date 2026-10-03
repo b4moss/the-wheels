@@ -12,22 +12,34 @@
 - 取得結果を単純追記するだけでなく、**ソートキーに従ってマージ／再ソート**し、可能な限りがたつきなく自然に差し込む
 - DOM／メモリ上の要素数を **ウィンドウ**で抑え、パフォーマンスを保つ
 
+## 公開 API（ホスト）
+
+| 種別 | 名前 | 内容 |
+|---|---|---|
+| プロパティ | `loadItems` | ローダ関数（未設定ならロードしない） |
+| プロパティ | `renderItem` | 行描画。未設定時は `label`／`value` の簡易テキスト |
+| プロパティ | `autoLoad` | 既定 `true`。接続後に自動で `initial` ロード。親がオーケストレーションする場合は `false` |
+| getter | `items` / `query` / `loading` | 現在ウィンドウ・クエリ・ロード中 |
+| メソッド | `refresh()` | `direction: 'initial'` で再取得 |
+| メソッド | `reset({ query?, seed? })` | ウィンドウ／ページ状態をリセットして初期ロード |
+| メソッド | `setItems(items)` | fetch なしでウィンドウを差し替え |
+| メソッド | `scrollToTop()` | ビューポートを先頭へ |
+| メソッド | `loadDirection('up' \| 'down')` | 端ロードの明示呼び出し（主にテスト用） |
+
 ## データ取得
 
-- 利用側（または親 Combobox）が渡すローダを呼ぶ
-  - 形は Combobox の `loadOptions` と同じく、メタ付き戻りを推奨する
+- `loadItems` に渡すローダを呼ぶ（形は Combobox の `loadOptions` と同じく、メタ付き戻りを推奨）
 
 ```ts
-async (ctx) => {
-  // ctx: { query?, page, signal, direction: 'up' | 'down' | 'initial' }
+el.loadItems = async (ctx) => {
+  // ctx: { query, page, signal, direction: 'up' | 'down' | 'initial' }
   return { items, hasMore, nextPage? }
 }
 ```
 
 - `direction` で上端／下端／初期を区別する
 - `hasMore` は方向ごとに管理してよい（上にまだある／下にまだある）
-- **`autoLoad`**（JS プロパティ、既定 `true`）: 接続後に自動で `initial` ロードする。親が自分でオーケストレーションする場合は `false` にし、明示的に `refresh()` 等を呼ぶ
-  - Combobox は二重 fetch 防止のため、内側 InfiniteScroll に `autoLoad = false` をセットする
+- Combobox は二重 fetch 防止のため、内側 InfiniteScroll に `autoLoad = false` をセットする
 
 ## ソートとマージ
 
@@ -37,7 +49,7 @@ async (ctx) => {
 - 新規 `items` を既存ウィンドウ内容と **value で重複排除**したうえでマージし、`sort-key` で再ソートする（同一 value は新規側優先）
 - `sortKey` が欠ける item は **末尾** に寄せる（例外なし）
 - 時系列の前後に割り込む要素も、ソート結果どおりの位置に挿入する
-- 再描画時はスクロール位置・アンカー要素を維持し、**がたつきを抑える**（具体アルゴリズムは実装時。仕様上の要件は「可能な限り自然な挿入・ソート」）
+- 再描画時はスクロール位置・アンカー要素を維持し、**がたつきを抑える**（可能な限り自然な挿入・ソート）
 
 ## 要素数制御（ウィンドウ）
 

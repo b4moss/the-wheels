@@ -1,5 +1,12 @@
 # the-wheels-reconstruct
 
+[![CI](https://github.com/b4moss/the-wheels/actions/workflows/ci.yml/badge.svg)](https://github.com/b4moss/the-wheels/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/codecov/c/github/b4moss/the-wheels)](https://codecov.io/gh/b4moss/the-wheels)
+[![npm](https://img.shields.io/npm/v/@b4moss/the-wheels)](https://www.npmjs.com/package/@b4moss/the-wheels)
+[![Release](https://img.shields.io/github/v/release/b4moss/the-wheels)](https://github.com/b4moss/the-wheels/releases)
+[![License](https://img.shields.io/github/license/b4moss/the-wheels)](https://github.com/b4moss/the-wheels/blob/main/LICENSE)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/b4moss/the-wheels/badge)](https://securityscorecards.dev/viewer/?uri=github.com/b4moss/the-wheels)
+
 The Wheels デザインシステム（スタイル + Web Components）の monorepo です。  
 社内プロジェクトから全部入りパッケージで試し導入できる状態を目指しています。
 
