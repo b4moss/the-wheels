@@ -53,10 +53,19 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
     - ローカルの `npm run test:e2e`（`dev/` で実行）は kitchen-sink の **`dev` サーバ** を対象にする
     - 変更パスがすべて `docs/**` または `*.md`（ルートの `README.md` 含む）なら `e2e` をスキップする
 
+- GitHub Pages プレビュー: [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)（[#63](https://github.com/b4moss/the-wheels/issues/63)）
+  - トリガー: `develop` への `push` / `pull_request`、および `workflow_dispatch`
+  - `push` / `workflow_dispatch` でデプロイ。PR では静的ビルドのみ（デプロイなし）
+  - 同一サイト: kitchen-sink を `/`、Storybook を `/storybook/`（Basic 認証なし・Netlify なし）
+  - 組み立ては `dev/` の `npm run build:pages`（成果物 `dev/pages-site/`）
+  - 【PO作業】Settings → Pages → Source を **GitHub Actions** にする
+
 | 対象 | タイミング | 内容 |
 | --- | --- | --- |
 | `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない** |
 | 同上（`e2e`） | PR 時 | 走る。失敗でそのジョブは落ちる。required にするかは安定後（【PO作業】） |
+| `develop` への PR | PR 時 | Pages ワークフローは **ビルドのみ**（デプロイしない） |
+| `develop` への push | マージ後 | Pages に kitchen-sink + Storybook を公開 |
 | `release` への PR | PR 時 | **dry-run**（未実装） |
 | `main` への PR / マージ | — | CI は走らせない |
 | `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [#47](https://github.com/b4moss/the-wheels/issues/47)） |

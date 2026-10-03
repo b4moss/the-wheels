@@ -1,0 +1,86 @@
+name: GitHub Pages preview
+
+# Developer preview: kitchen-sink at `/`, Storybook at `/storybook/` (issue #63).
+# No Basic auth. No Netlify. Not a long-lived docs site.
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: dev/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve base paths
+        id: base
+        run: |
+          raw="${{ steps.pages.outputs.base_path }}"
+          if [ -z "$raw" ] || [ "$raw" = "/" ]; then
+            site_base="/"
+          else
+            site_base="/${raw#/}"
+            site_base="${site_base%/}/"
+          fi
+          echo "site_base=${site_base}" >> "$GITHUB_OUTPUT"
+          echo "storybook_base=${site_base}storybook/" >> "$GITHUB_OUTPUT"
+          echo "PAGES_BASE=${site_base}"
+          echo "PAGES_BASE_STORYBOOK=${site_base}storybook/"
+
+      - name: Build Pages site
+        env:
+          PAGES_BASE: ${{ steps.base.outputs.site_base }}
+          PAGES_BASE_STORYBOOK: ${{ steps.base.outputs.storybook_base }}
+        run: npm run build:pages
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dev/pages-site
+
+  deploy:
+    name: deploy
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -45,6 +45,7 @@ npm run build:components # コンポーネントのみ生成
 npm run build:the-wheels # 全部入り生成
 npm run build:kitchen-sink # キッチンシンクのみ生成
 npm run build:storybook # Storybookのみ生成
+npm run build:pages # GitHub Pages 用に kitchen-sink + Storybook を組み立て
 npm run test:components # コンポーネントのみテスト
 npm run test:package # パッケージテスト
 npm run test:e2e # Playwright E2E（kitchen-sink）
@@ -58,12 +59,16 @@ npm run dev:storybook # Storybook起動
 
 `test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、CI は `preview`（ポート 5173）を対象にします。
 
+`build:pages` は kitchen-sink を `/`、Storybook を `/storybook/` に置いた静的サイトを `dev/pages-site/` に出力します（[#63](https://github.com/b4moss/the-wheels/issues/63)）。プロジェクト Pages では `PAGES_BASE=/<repo>/` を渡します。
+
 ## CI
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走ります。
 
 - `verify`: `dev/` で Vitest と主要 `build:*`
 - `e2e`: Playwright（Chromium）。kitchen-sink の `preview` に対して実行。変更がすべて `docs/**` または `*.md` ならスキップ
+
+`develop` への push で [`.github/workflows/pages.yml`](.github/workflows/pages.yml) が kitchen-sink（`/`）と Storybook（`/storybook/`）を GitHub Pages に公開します。PR ではビルドのみ（デプロイなし）。【PO作業】Settings → Pages → Source を GitHub Actions にしてください。
 
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
 

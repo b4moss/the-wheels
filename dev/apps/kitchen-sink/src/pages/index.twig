@@ -68,8 +68,8 @@
     </div>
 
     <nav class="ks-home-cta twls-container horizontal" aria-label="主要導線">
-      <a href="/getting-started/" class="ks-button">Getting Started</a>
-      <a href="/components/" class="ks-button ks-button--ghost">Components</a>
+      <a href="{{ site_base }}getting-started/" class="ks-button">Getting Started</a>
+      <a href="{{ site_base }}components/" class="ks-button ks-button--ghost">Components</a>
     </nav>
 
     <nav aria-label="コンテンツ一覧">
@@ -77,19 +77,19 @@
         <h2 class="heading">はじめに</h2>
         <div class="twls-index-nav-list">
           {% include "@partials/card-button.twig" with {
-            href: "/getting-started/",
+            href: site_base ~ "getting-started/",
             title: "Getting Started",
             caption: "インストール、CSS、umbrella JS、setPrefix の導入手順",
             ctaLabel: "詳細を見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/components/",
+            href: site_base ~ "components/",
             title: "Components",
             caption: "kitchen-sink 上のデモへのインデックス",
             ctaLabel: "詳細を見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/getting-started/",
+            href: site_base ~ "getting-started/",
             title: "Storybook",
             caption: "カタログは Storybook。説明・デモ導線はこのサイト",
             ctaLabel: "案内を見る"
@@ -101,13 +101,13 @@
         <h2 class="heading">スタイル確認</h2>
         <div class="twls-index-nav-list">
           {% include "@partials/card-button.twig" with {
-            href: "/typography/",
+            href: site_base ~ "typography/",
             title: "Typography",
             caption: "見出し・本文・40ch・フォーカスの確認",
             ctaLabel: "詳細を見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/tokens/",
+            href: site_base ~ "tokens/",
             title: "Tokens",
             caption: "色と数値トークンの一覧",
             ctaLabel: "詳細を見る"
@@ -119,85 +119,85 @@
         <h2 class="heading">Web Components</h2>
         <div class="twls-index-nav-list">
           {% include "@partials/card-button.twig" with {
-            href: "/svg-loader/",
+            href: site_base ~ "svg-loader/",
             title: "SVGLoader",
             caption: "SVG fetch・プレースホルダ",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/spinner/",
+            href: site_base ~ "spinner/",
             title: "Spinner",
             caption: "同梱アニメーション SVG",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/button/",
+            href: site_base ~ "button/",
             title: "Button",
             caption: "variant / slot / disable-on-click",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/dropdown/",
+            href: site_base ~ "dropdown/",
             title: "Dropdown",
             caption: "trigger / panel / placement",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/action-menu/",
+            href: site_base ~ "action-menu/",
             title: "ActionMenu",
             caption: "more-vertical / src / カスタム trigger",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/user-menu/",
+            href: site_base ~ "user-menu/",
             title: "UserMenu",
             caption: "Avatar＋名前 trigger · Dropdown 合成",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/accordion/",
+            href: site_base ~ "accordion/",
             title: "Accordion",
             caption: "details / chevron / グループ一斉開閉",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/modal/",
+            href: site_base ~ "modal/",
             title: "Modal",
             caption: "dialog / showModal / サイズ固定",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/avatar/",
+            href: site_base ~ "avatar/",
             title: "Avatar",
             caption: "書記素イニシャル · コントラスト · 画像",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/vertical-nav/",
+            href: site_base ~ "vertical-nav/",
             title: "Vertical Nav",
             caption: "Item · aria-current · layout-sidebar",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/tabs/",
+            href: site_base ~ "tabs/",
             title: "Tabs",
             caption: "tab / panel · selected-index · select()",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/combobox/",
+            href: site_base ~ "combobox/",
             title: "Combobox",
             caption: "static / async / hybrid · 検索 · 選択",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/infinite-scroll/",
+            href: site_base ~ "infinite-scroll/",
             title: "InfiniteScroll",
             caption: "上下ページング · ウィンドウ",
             ctaLabel: "デモを見る"
           } %}
           {% include "@partials/card-button.twig" with {
-            href: "/cookie-consent/",
+            href: site_base ~ "cookie-consent/",
             title: "CookieConsent",
             caption: "下部 snackbar · localStorage 同意",
             ctaLabel: "デモを見る"
