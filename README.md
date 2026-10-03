@@ -68,7 +68,7 @@ npm run dev:storybook # Storybook起動
 - `verify`: `dev/` で Vitest と主要 `build:*`
 - `e2e`: Playwright（Chromium）。kitchen-sink の `preview` に対して実行。変更がすべて `docs/**` または `*.md` ならスキップ
 
-`develop` への push で [`.github/workflows/pages.yml`](.github/workflows/pages.yml) が kitchen-sink（`/`）と Storybook（`/storybook/`）を GitHub Pages に公開します。PR ではビルドのみ（デプロイなし）。【PO作業】Settings → Pages → Source を GitHub Actions にしてください。
+`develop` への push で [`.github/workflows/pages.yml`](.github/workflows/pages.yml) が kitchen-sink（`/`）と Storybook（`/storybook/`）を GitHub Pages に公開します。PR ではビルドのみ（デプロイなし）。【PO作業】Settings → Pages → Source を GitHub Actions にしてください（デプロイに必要。未設定でも PR ビルドは `/<repo>/` 想定で通る）。
 
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
 

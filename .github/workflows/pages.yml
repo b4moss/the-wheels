@@ -34,7 +34,11 @@ jobs:
 
       - name: Setup Pages
         id: pages
+        continue-on-error: true
         uses: actions/configure-pages@v5
+        with:
+          # Try to enable Actions-based Pages when missing (needs pages:write).
+          enablement: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -49,7 +53,14 @@ jobs:
       - name: Resolve base paths
         id: base
         run: |
-          raw="${{ steps.pages.outputs.base_path }}"
+          set -euo pipefail
+          if [ "${{ steps.pages.outcome }}" = "success" ]; then
+            raw="${{ steps.pages.outputs.base_path }}"
+          else
+            # Pages API unavailable (not enabled yet): assume project site /<repo>/.
+            raw="/${{ github.event.repository.name }}"
+            echo "configure-pages did not succeed; using project base ${raw}"
+          fi
           if [ -z "$raw" ] || [ "$raw" = "/" ]; then
             site_base="/"
           else

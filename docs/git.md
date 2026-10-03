@@ -58,7 +58,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
   - `push` / `workflow_dispatch` でデプロイ。PR では静的ビルドのみ（デプロイなし）
   - 同一サイト: kitchen-sink を `/`、Storybook を `/storybook/`（Basic 認証なし・Netlify なし）
   - 組み立ては `dev/` の `npm run build:pages`（成果物 `dev/pages-site/`）
-  - 【PO作業】Settings → Pages → Source を **GitHub Actions** にする
+  - 【PO作業】Settings → Pages → Source を **GitHub Actions** にする（未設定だと初回の `configure-pages` は失敗しうるが、ビルドは `/<repo>/` 想定で続行する。デプロイには Pages 有効化が必要）
 
 | 対象 | タイミング | 内容 |
 | --- | --- | --- |
