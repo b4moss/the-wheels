@@ -1,0 +1,78 @@
+{% set current = "expandable" %}
+{% extends "@layouts/app.twig" %}
+
+{% block title %}Expandable — The Wheels kitchen-sink{% endblock %}
+
+{% block content %}
+  <h1>Expandable</h1>
+  <p class="ks-meta">collapsed-height / expanded-height / expand-label / collapse-label / open</p>
+
+  {% set preview %}
+    <section>
+      <h2>折りたたみ（初期）</h2>
+      <tw-expandable collapsed-height="6rem">
+        <p>長い利用規約テキストのサンプルです。折りたたみ時は領域内スクロール、展開で全体を表示します。</p>
+        <p>追加の段落。追加の段落。追加の段落。追加の段落。追加の段落。</p>
+        <p>さらに追加の段落。さらに追加の段落。さらに追加の段落。</p>
+        <p>末尾の段落までスクロールできます。コンテンツは DOM に残ります。</p>
+      </tw-expandable>
+    </section>
+
+    <section>
+      <h2>展開（open）</h2>
+      <tw-expandable open collapsed-height="4rem">
+        <p>open 属性付きで初期展開されます。トグルで折りたたみに戻せます。</p>
+        <p>追加の段落。追加の段落。追加の段落。</p>
+        <p>さらに追加の段落。さらに追加の段落。</p>
+      </tw-expandable>
+    </section>
+
+    <section>
+      <h2>高さ・ラベル</h2>
+      <tw-expandable
+        collapsed-height="3rem"
+        expanded-height="10rem"
+        expand-label="続きを読む"
+        collapse-label="折りたたむ"
+      >
+        <p>collapsed-height / expanded-height とカスタムラベルの例です。</p>
+        <p>展開時も max-height でクリップされ、はみ出しはスクロールできます。</p>
+        <p>段落を重ねて高さを確保しています。段落を重ねて高さを確保しています。</p>
+        <p>段落を重ねて高さを確保しています。段落を重ねて高さを確保しています。</p>
+        <p>段落を重ねて高さを確保しています。段落を重ねて高さを確保しています。</p>
+      </tw-expandable>
+    </section>
+  {% endset %}
+
+  {% set html_sample %}
+<tw-expandable collapsed-height="6rem">
+  <p>長い利用規約テキストのサンプルです。</p>
+  <p>追加の段落。</p>
+</tw-expandable>
+
+<tw-expandable open collapsed-height="4rem">
+  <p>open 属性付きで初期展開されます。</p>
+</tw-expandable>
+
+<tw-expandable
+  collapsed-height="3rem"
+  expanded-height="10rem"
+  expand-label="続きを読む"
+  collapse-label="折りたたむ"
+>
+  <p>高さ・ラベルのカスタム例です。</p>
+</tw-expandable>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}

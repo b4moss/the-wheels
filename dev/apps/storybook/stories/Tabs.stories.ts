@@ -61,3 +61,30 @@ export const SelectMethod: Story = {
     return root;
   },
 };
+
+export const ChangeEvent: Story = {
+  name: "tw-change",
+  render: () => {
+    const root = fromHtml(`
+      <div>
+        <tw-tabs id="story-tabs-change">
+          <button type="button" slot="tab">概要</button>
+          <button type="button" slot="tab">詳細</button>
+          <button type="button" slot="tab">設定</button>
+          <div slot="panel"><p style="margin:0">概要パネル</p></div>
+          <div slot="panel"><p style="margin:0">詳細パネル</p></div>
+          <div slot="panel"><p style="margin:0">設定パネル</p></div>
+        </tw-tabs>
+        <p id="change-label" style="margin:1.6rem 0 0;opacity:.7;font-size:1.4rem">selectedIndex: 0</p>
+      </div>
+    `);
+    const tabs = root.querySelector("#story-tabs-change");
+    const label = root.querySelector("#change-label");
+    tabs?.addEventListener("tw-change", ((
+      event: CustomEvent<{ selectedIndex: number }>
+    ) => {
+      if (label) label.textContent = `selectedIndex: ${event.detail.selectedIndex}`;
+    }) as EventListener);
+    return root;
+  },
+};

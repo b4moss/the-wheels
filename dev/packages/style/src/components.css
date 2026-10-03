@@ -739,4 +739,167 @@
     gap: 0.8rem;
     margin-left: auto;
   }
+
+  /* —— Expandable —— */
+  [data-tw-component="expandable"] {
+    display: block;
+  }
+
+  [data-tw-component="expandable"] .expandable-body {
+    transition: max-height var(--tw-motion-duration) var(--tw-motion-easing);
+  }
+
+  [data-tw-component="expandable"] .expandable-toggle {
+    margin-top: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--tw-bg-button-optional);
+    border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+    background: var(--tw-bg-highlight);
+    color: var(--tw-text-main);
+    cursor: pointer;
+    font: inherit;
+  }
+
+  /* —— StepNav —— */
+  [data-tw-component="step-nav"] {
+    display: block;
+  }
+
+  [data-tw-component="step-nav"] .step-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0 0 0.8rem;
+  }
+
+  [data-tw-component="step-nav"] .step-nav-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    background: var(--tw-bg-button-optional);
+    color: var(--tw-text-main);
+    font-weight: 600;
+  }
+
+  [data-tw-component="step-nav"] [data-tw-step-status="current"] .step-nav-marker {
+    background: var(--tw-bg-button-main);
+    color: #fff;
+  }
+
+  [data-tw-component="step-nav"] [data-tw-step-status="done"] .step-nav-marker {
+    background: color-mix(in srgb, var(--tw-bg-button-main) 40%, white);
+  }
+
+  /* —— Pagination —— */
+  [data-tw-component="pagination"] .pagination-root {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  [data-tw-component="pagination"] .pagination-root button {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--tw-bg-button-optional);
+    border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+    background: var(--tw-bg-highlight);
+    color: var(--tw-text-main);
+    cursor: pointer;
+    font: inherit;
+  }
+
+  [data-tw-component="pagination"] .pagination-root button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  [data-tw-component="pagination"] .pagination-root button[aria-current="page"] {
+    background: var(--tw-bg-button-main);
+    color: #fff;
+    border-color: var(--tw-bg-button-main);
+  }
+
+  /* —— FilePond —— */
+  [data-tw-component="file-pond"] {
+    display: block;
+  }
+
+  [data-tw-component="file-pond"] .file-pond-dropzone {
+    padding: 2.4rem;
+    border: 1px dashed var(--tw-bg-button-optional);
+    border-radius: calc(var(--tw-global-radius) / 10 * 1rem);
+    background: var(--tw-bg-highlight);
+    color: var(--tw-text-caption);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--tw-motion-duration) var(--tw-motion-easing),
+      background var(--tw-motion-duration) var(--tw-motion-easing);
+  }
+
+  [data-tw-component="file-pond"] .file-pond-list {
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  [data-tw-component="file-pond"] .file-pond-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    background: var(--tw-bg-highlight);
+    border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+  }
+
+  [data-tw-component="file-pond"] .file-pond-thumb {
+    width: 4.8rem;
+    height: 4.8rem;
+    object-fit: cover;
+    border-radius: calc(var(--tw-global-radius-minor) / 10 * 1rem);
+  }
+
+  [data-tw-component="file-pond"] .file-pond-remove {
+    margin-left: auto;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  /* —— Toast —— */
+  [data-tw-toast-stack].toast-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: min(40rem, 100%);
+  }
+
+  .toast-item {
+    padding: 1.2rem 1.6rem;
+    border-radius: calc(var(--tw-global-radius) / 10 * 1rem);
+    background: var(--tw-bg-highlight);
+    color: var(--tw-text-main);
+    border: 1px solid var(--tw-bg-button-optional);
+    box-shadow: 0 0.2rem 1.2rem color-mix(in srgb, var(--tw-text-main) 12%, transparent);
+  }
+
+  .toast-item[data-tw-toast-variant="success"] {
+    border-color: color-mix(in srgb, #2f7d32 50%, var(--tw-bg-button-optional));
+  }
+
+  .toast-item[data-tw-toast-variant="warning"] {
+    border-color: color-mix(in srgb, #b8860b 50%, var(--tw-bg-button-optional));
+  }
+
+  .toast-item[data-tw-toast-variant="error"] {
+    border-color: var(--tw-alert);
+  }
+
+  [data-tw-component="toast"] {
+    display: none;
+  }
 }
