@@ -19,6 +19,11 @@
 - `select(index)`: 指定インデックスのタブ／パネルを表示する
 - `selectedIndex`（getter）: 現在の選択インデックス
 
+## イベント
+
+- `change`（`getEventName`）。選択が変わったとき。`detail.selectedIndex`（0-based）
+- 同じ index への再選択では発火しない
+
 ----
 
 以上

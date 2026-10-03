@@ -12,7 +12,7 @@ The Wheels デザインシステム（スタイル + Web Components）の monore
 | `@b4moss/the-wheels-style` | CSS（トークン / typography / components レイヤーなど） |
 
 ライセンス: MIT  
-Node.js: `>=22`
+Node.js: `>=24`
 
 ## インストール
 
@@ -44,6 +44,8 @@ npm run test:e2e # Playwright E2E（kitchen-sink）
 npm run dev:kitchen-sink # キッチンシンク起動
 npm run dev:storybook # Storybook起動
 ```
+
+リポジトリルートからは `Makefile` でも同じ scripts を実行できます（`:` は `-` に置換。例: `make build-style` / `make test-e2e`）。
 
 `test:package` はビルド後の dual package（ESM + CJS）と exports 解決のスモークです。
 

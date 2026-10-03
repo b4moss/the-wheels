@@ -32,7 +32,8 @@
   - DOM 標準イベント（例: `<dialog>` の `close` / `toggle`）とホストメソッドで足りる範囲とする
 - **例外**（非同期供給や、選択結果を利用側へ渡す必要があるもの）
   - 現行: Combobox の `load-request`（[combobox.md](./combobox.md)）
-  - 予定: FilePond（v0.14.0。[plans/v0.14.0](../../plans/v0.14.0/filepond.md)）
+  - FilePond の `add` / `remove` / `reject`（[file_pond.md](./file_pond.md)）
+  - Tabs / Pagination の `change`（[tabs.md](./tabs.md) / [pagination.md](./pagination.md)）
 - 例外で出す場合、イベント名の接頭辞は `setPrefix` に **追従**する（`getEventName`）
 
 ## 同梱アセット

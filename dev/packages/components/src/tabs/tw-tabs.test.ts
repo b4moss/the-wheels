@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { getPrefix, setPrefix } from "../core/prefix.js";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { getEventName, getPrefix, setPrefix } from "../core/prefix.js";
 import { defineComponent } from "../core/register.js";
 import { TwTabs } from "./tw-tabs.js";
 
@@ -120,5 +120,27 @@ describe("TwTabs", () => {
 
     expect(el.selectedIndex).toBe(1);
     expect(document.activeElement).toBe(tabs[1]);
+  });
+
+  it("emits change with selectedIndex on click and select", () => {
+    const el = mountTabs(`
+      <button type="button" slot="tab">One</button>
+      <button type="button" slot="tab">Two</button>
+      <div slot="panel">A</div>
+      <div slot="panel">B</div>
+    `);
+    const spy = vi.fn();
+    el.addEventListener(getEventName("change"), spy);
+    el.querySelectorAll<HTMLButtonElement>("[data-tw-tab]")[1]!.click();
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy.mock.calls[0]![0].detail.selectedIndex).toBe(1);
+
+    spy.mockClear();
+    el.select(0);
+    expect(spy.mock.calls[0]![0].detail.selectedIndex).toBe(0);
+
+    spy.mockClear();
+    el.select(0);
+    expect(spy).not.toHaveBeenCalled();
   });
 });
