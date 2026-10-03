@@ -56,14 +56,14 @@ npm run dev:storybook # Storybook起動
 
 `test:package` はビルド後の dual package（ESM + CJS）と exports 解決のスモークです。
 
-`test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、CI は `preview`（ポート 5173）を対象にします。
+`test:e2e` は Playwright（Chromium）で kitchen-sink 上の振る舞いを検証します。ローカルは kitchen-sink の `dev`、GitHub Actions の手動実行は `preview`（ポート 5173）を対象にします。PR 提出前に手元で回してください。
 
 ## CI
 
 `develop` / `dev-v*` への PR で GitHub Actions（[`.github/workflows/ci.yml`](.github/workflows/ci.yml)）が走ります。
 
-- `verify`: `dev/` で Vitest と主要 `build:*`
-- `e2e`: Playwright（Chromium）。kitchen-sink の `preview` に対して実行。変更がすべて `docs/**` または `*.md` ならスキップ
+- `verify`: `dev/` で Vitest と主要 `build:*`（PR の通常チェックはこれだけ）
+- e2e は PR では回さない。手元で `npm run test:e2e` / `make test-e2e`。必要なら [E2E](.github/workflows/e2e.yml) を Actions 画面から `workflow_dispatch` で手動実行
 
 ブランチ・PR・タグ・CI/CD の方針とブランチ保護（【PO作業】）は [docs/git.md](docs/git.md) を参照してください。
 

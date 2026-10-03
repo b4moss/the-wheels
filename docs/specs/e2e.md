@@ -15,13 +15,13 @@ kitchen-sink 上の振る舞い E2E。実装は `dev/e2e/`・`dev/playwright.con
 ## 実行対象サーバ
 
 - ローカル（`npm run test:e2e` / `make test-e2e`）: kitchen-sink の **`dev`**（`127.0.0.1:5173`）
-- CI: kitchen-sink の **`preview`**（同ホスト・ポート）
+- GitHub Actions 手動実行（`e2e.yml` / `workflow_dispatch`）: kitchen-sink の **`preview`**（同ホスト・ポート）
 
-## CI
+## 実行タイミング
 
-- `verify` と `e2e` を並列（成果物共有なし）
-- 変更パスがすべて `docs/**` または `*.md`（ルート `README.md` 含む）なら `e2e` をスキップ
-- required check は当面 `verify`。`e2e` を required にするかは 【PO作業】（[wishlist.md](../wishlist.md)）
+- **PR CI（`ci.yml`）では e2e を回さない**。required は `verify` のみ（[git.md](../git.md)）
+- 実装者は PR 提出前に手元で `npm run test:e2e`（または `make test-e2e`）を回す
+- 必要なら GitHub Actions の [E2E](../../.github/workflows/e2e.yml) を `workflow_dispatch` で手動起動できる
 
 ## 含まないもの
 
