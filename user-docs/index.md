@@ -74,7 +74,7 @@ preview は kitchen-sink と同様に `@b4moss/the-wheels/style` と `@b4moss/th
 | --- | --- |
 | `/` | FV 付きトップ（Getting Started / Components 導線） |
 | `/getting-started/` | install・style・umbrella JS・`setPrefix` 注意 |
-| `/components/` | 9 WC + Typography / Tokens のデモ一覧 |
+| `/components/` | 出荷済み WC（SVGLoader〜CookieConsent）+ Typography / Tokens のデモ一覧 |
 | `/button/` など | 各コンポーネントの目視デモ |
 
 ```bash
