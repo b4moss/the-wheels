@@ -1,13 +1,105 @@
 {% set current = "file-pond" %}
 {% extends "@layouts/app.twig" %}
+
 {% block title %}FilePond — The Wheels kitchen-sink{% endblock %}
+
 {% block content %}
   <h1>FilePond</h1>
+  <p class="ks-meta">max-files / max-size / accept · tw-add / tw-remove / tw-reject</p>
+
   {% set preview %}
-    <tw-file-pond max-files="3" max-size="1048576" accept="image/*,application/pdf"></tw-file-pond>
+    <section>
+      <h2>画像（accept=image/*）</h2>
+      <tw-file-pond id="pond-image" max-files="3" max-size="1048576" accept="image/*"></tw-file-pond>
+    </section>
+
+    <section>
+      <h2>非画像（accept=application/pdf）</h2>
+      <tw-file-pond id="pond-pdf" max-files="2" accept="application/pdf"></tw-file-pond>
+      <p class="ks-meta">PDF など非画像はサムネイルではなくファイル名とサイズを表示します。</p>
+    </section>
+
+    <section>
+      <h2>拒否理由（max-files / max-size / accept）</h2>
+      <tw-file-pond
+        id="pond-reject"
+        max-files="1"
+        max-size="1024"
+        accept="image/png"
+      ></tw-file-pond>
+      <p class="ks-meta">1 件・1KB・PNG のみ。超過や不一致は tw-reject で reason が届きます。</p>
+      <pre id="pond-event-log" class="ks-code"><code>（イベントログ）</code></pre>
+    </section>
   {% endset %}
-  {% set html_sample %}<tw-file-pond max-files="3" accept="image/*"></tw-file-pond>{% endset %}
-  {% set js_sample %}import "@b4moss/the-wheels";{% endset %}
-  {% set ts_sample %}import "@b4moss/the-wheels";{% endset %}
-  {% include "@partials/code-sample.twig" with { preview: preview, html: html_sample, js: js_sample, ts: ts_sample } only %}
+
+  {% set html_sample %}
+<tw-file-pond max-files="3" max-size="1048576" accept="image/*"></tw-file-pond>
+
+<tw-file-pond max-files="2" accept="application/pdf"></tw-file-pond>
+
+<tw-file-pond
+  id="pond-reject"
+  max-files="1"
+  max-size="1024"
+  accept="image/png"
+></tw-file-pond>
+<pre id="pond-event-log"><code>（イベントログ）</code></pre>
+  {% endset %}
+  {% set js_sample %}
+import "@b4moss/the-wheels";
+
+const log = document.getElementById("pond-event-log")?.querySelector("code");
+const pond = document.getElementById("pond-reject");
+
+const append = (line) => {
+  if (!log) return;
+  const prev = log.textContent === "（イベントログ）" ? "" : `${log.textContent}\n`;
+  log.textContent = `${prev}${line}`;
+};
+
+pond?.addEventListener("tw-add", (event) => {
+  append(`add: ${event.detail.file.name}`);
+});
+pond?.addEventListener("tw-remove", (event) => {
+  append(`remove: ${event.detail.file.name}`);
+});
+pond?.addEventListener("tw-reject", (event) => {
+  append(`reject: ${event.detail.file.name} (${event.detail.reason})`);
+});
+  {% endset %}
+  {% set ts_sample %}
+import "@b4moss/the-wheels";
+import type { TwFilePond } from "@b4moss/the-wheels";
+
+const log = document.getElementById("pond-event-log")?.querySelector("code");
+const pond = document.getElementById("pond-reject") as TwFilePond | null;
+
+const append = (line: string) => {
+  if (!log) return;
+  const prev = log.textContent === "（イベントログ）" ? "" : `${log.textContent}\n`;
+  log.textContent = `${prev}${line}`;
+};
+
+pond?.addEventListener("tw-add", ((event: CustomEvent<{ file: File }>) => {
+  append(`add: ${event.detail.file.name}`);
+}) as EventListener);
+pond?.addEventListener("tw-remove", ((event: CustomEvent<{ file: File }>) => {
+  append(`remove: ${event.detail.file.name}`);
+}) as EventListener);
+pond?.addEventListener("tw-reject", ((
+  event: CustomEvent<{ file: File; reason: string }>
+) => {
+  append(`reject: ${event.detail.file.name} (${event.detail.reason})`);
+}) as EventListener);
+  {% endset %}
+  {% include "@partials/code-sample.twig" with {
+    preview: preview,
+    html: html_sample,
+    js: js_sample,
+    ts: ts_sample
+  } only %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/src/scripts/demos/file-pond.js"></script>
 {% endblock %}
