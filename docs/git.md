@@ -47,23 +47,28 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
   - トリガー: `develop` / `dev-v*` への `pull_request`
   - Node.js 24 / `npm ci`（作業ディレクトリは `dev/`）
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
-  - ジョブは `verify` と `e2e` を並列（`e2e` は `verify` を待たない。成果物も共有しない）
+  - ジョブは **`verify` のみ**（`pull_request` では e2e を回さない）
     - `verify`: `dev/` で `build:style` → `test:components`（coverage）→ Codecov アップロード → `test:package` → `build:kitchen-sink` → `build:storybook`
-    - `e2e`: `dev/` で `build:style` → `build:components` → `build:the-wheels` → `build:kitchen-sink` のあと Playwright（Chromium）。対象サーバは kitchen-sink の **`preview`**（ホスト `127.0.0.1`、ポート **5173**）
-    - ローカルの `npm run test:e2e`（`dev/` で実行）は kitchen-sink の **`dev` サーバ** を対象にする
-    - 変更パスがすべて `docs/**` または `*.md`（ルートの `README.md` 含む）なら `e2e` をスキップする
+- E2E（手動）: [`.github/workflows/e2e.yml`](../.github/workflows/e2e.yml)
+  - トリガー: **`workflow_dispatch` のみ**（GitHub Actions 画面から手動実行）
+  - `pull_request` では起動しない
+  - ジョブ `e2e`: `dev/` で `build:style` → `build:components` → `build:the-wheels` → `build:kitchen-sink` のあと Playwright（Chromium）。対象サーバは kitchen-sink の **`preview`**（ホスト `127.0.0.1`、ポート **5173**）
+- 実装者は PR を出す前に、手元で e2e を回す（運用の正）。コマンド:
+  - `dev/` で `npm run test:e2e`（kitchen-sink の **`dev` サーバ**、ホスト `127.0.0.1`、ポート **5173**）
+  - リポジトリルートなら `make test-e2e`
 
 | 対象 | タイミング | 内容 |
 | --- | --- | --- |
-| `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない** |
-| 同上（`e2e`） | PR 時 | 走る。失敗でそのジョブは落ちる。required にするかは安定後（【PO作業】） |
+| `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない**。e2e は走らない |
+| E2E（`e2e.yml`） | 手動（`workflow_dispatch`） | GitHub Actions から起動。失敗でそのジョブは落ちる。PR の required にはしない |
+| 手元（実装者） | PR 提出前 | `npm run test:e2e` / `make test-e2e` を回す |
 | `release` への PR | PR 時 | **dry-run**（未実装） |
 | `main` への PR / マージ | — | PR CI（`ci.yml`）は走らせない |
 | `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [#47](https://github.com/b4moss/the-wheels/issues/47)） |
 | タグ push | CD | GitHub Release を冪等作成（[`.github/workflows/release-on-tag.yml`](../.github/workflows/release-on-tag.yml)）。npm 公開とは別 |
 | `main` / `develop` push・週次など | 監査 | OpenSSF Scorecard（[`.github/workflows/scorecard.yml`](../.github/workflows/scorecard.yml)）。**残す**。現状 `develop` push では失敗しうるが、PO は当面許容（フォロー: [#59](https://github.com/b4moss/the-wheels/issues/59)） |
 
-`develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、自動テストは行われたものとする。
+`develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、CI 上の自動テストは行われたものとする。e2e は PR 前の手元実行（必要なら Actions 手動）で担保する。
 
 ### プレビューサイト
 
@@ -80,7 +85,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 ### 【PO作業】ブランチ保護（required checks）
 
 1. GitHub → Settings → Branches → Branch protection rules
-2. `develop` に PR 必須 + status checks 必須。ジョブ名は当面 **verify**（`e2e` は安定したら required に上げる）
+2. `develop` に PR 必須 + status checks 必須。ジョブ名は **verify**（`e2e` は PR CI に含めないため required にしない）
 3. `dev-v*` にも同様（glob 非対応なら現行マイルストーンごとに追加）
 4. `main` / `release` には、この PR CI を required にしない
 
