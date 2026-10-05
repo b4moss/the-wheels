@@ -75,7 +75,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 | `main` への PR / マージ | — | PR CI（`ci.yml`）は走らせない |
 | `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [#47](https://github.com/b4moss/the-wheels/issues/47)） |
 | タグ push | CD | GitHub Release を冪等作成（[`.github/workflows/release-on-tag.yml`](../.github/workflows/release-on-tag.yml)）。npm 公開とは別 |
-| `main` / `develop` push・週次など | 監査 | OpenSSF Scorecard（[`.github/workflows/scorecard.yml`](../.github/workflows/scorecard.yml)）。**残す**。現状 `develop` push では失敗しうるが、PO は当面許容（フォロー: [#59](https://github.com/b4moss/the-wheels/issues/59)） |
+| `main` push・週次・branch_protection_rule | 監査 | OpenSSF Scorecard（[`.github/workflows/scorecard.yml`](../.github/workflows/scorecard.yml)）。**`main` のみ**（`develop` では走らせない） |
 
 `develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、CI 上の自動テストは行われたものとする。e2e は PR 前の手元実行（必要なら Actions 手動）で担保する。
 
@@ -94,7 +94,9 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 ### 【PO作業】ブランチ保護（required checks）
 
-1. GitHub → Settings → Branches → Branch protection rules
+ルールセット（`.github/rulesets/`）のコード管理はしない。ブランチ保護は **PO が GitHub の GUI で手動設定**する。
+
+1. GitHub → Settings → Branches → Branch protection rules（または Rules → Rulesets）
 2. `develop` に PR 必須 + status checks 必須。ジョブ名は **verify**（`e2e` は PR CI に含めないため required にしない）
 3. `dev-v*` にも同様（glob 非対応なら現行マイルストーンごとに追加）
 4. `main` / `release` には、この PR CI を required にしない
