@@ -128,7 +128,7 @@ the-wheels-reconstruct/          # Git repo
 - 目的・現行仕様: 本ファイル（pillar） / `docs/specs/`
 - OKF 索引: [index.md](./index.md)
 - これから: [roadmap.md](./roadmap.md)（ハブ）/ [plans/](./plans/)
-- 守るルール: [charter/](./charter/README.md) / [OKF v0.1](./charter/okf/)
+- 守るルール: [charter/](./charter/README.md)
 - 本リポの git / テスト上書き: [git.md](./git.md) / [test.md](./test.md)
 - テスト仕様: [tests/](./tests/)（`specs/` と同じドメイン切り）
 - PO メモ: [wishlist.md](./wishlist.md)

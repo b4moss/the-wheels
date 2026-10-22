@@ -8,8 +8,7 @@ okf_version: "0.1"
 
 本ファイル（`index.md`）は **OKF 索引のみ**。プロダクトの目的・スコープ等の pillar 正本は各プロダクトの `docs/README.md`（旧称 `main.md`）。
 
-* [OKF v0.1 とは](charter/okf/) - 定義・最小ツリー・硬いルール・執筆サンプル
-* [憲章（charter）](charter/) - 開発方針の最上位取り決めと個別ルール
+* [憲章（charter）](charter/) - 開発方針の最上位取り決めと個別ルール（配置・ライフサイクルは [doc-rule](charter/doc-rule.md)）
 * [このプロジェクト独自のルール](override-charter.md) - 憲章をオーバーライドする範囲（現状は設定なし）
 
 # Project Docs Placeholders
