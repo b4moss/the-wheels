@@ -18,6 +18,9 @@ dist/
 storybook-static/
 pages-site/
 
+# Vite pre-bundle cache (must not be committed)
+**/.vite/
+
 *.log
 .npm
 

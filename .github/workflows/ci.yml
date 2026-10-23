@@ -5,6 +5,10 @@ on:
     branches:
       - develop
       - "dev-v*"
+      - main
+    paths-ignore:
+      - "docs/**/*.md"
+      - "docs/*.md"
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

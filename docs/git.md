@@ -44,7 +44,8 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 ## CI / CD
 
 - PR CI: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
-  - トリガー: `develop` / `dev-v*` への `pull_request`
+  - トリガー: `develop` / `dev-v*` / `main` への `pull_request`（Dependabot の `main` 向け PR でも `verify` が走るようにする）
+  - `docs/**/*.md` / `docs/*.md` のみの変更では発火しない（`paths-ignore`）
   - Node.js 24 / `npm ci`（作業ディレクトリは `dev/`）
   - `permissions.contents: read` / concurrency（同一 PR は cancel-in-progress）
   - ジョブは **`verify` のみ**（`pull_request` では e2e を回さない）
@@ -66,16 +67,16 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 | 対象 | タイミング | 内容 |
 | --- | --- | --- |
-| `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない**。e2e は走らない |
+| `develop` / `dev-vX.Y.Z` への PR | PR 時 | CI。**`verify` が通らない PR は受け付けない**。e2e は走らない。`docs/*.md` のみならスキップ |
+| `main` への PR | PR 時 | CI（`verify`）。Dependabot 向け。`docs/*.md` のみならスキップ。required にはしない |
 | E2E（`e2e.yml`） | 手動（`workflow_dispatch`） | GitHub Actions から起動。失敗でそのジョブは落ちる。PR の required にはしない |
 | 手元（実装者） | PR 提出前 | `npm run test:e2e` / `make test-e2e` を回す |
 | `develop` への PR | PR 時 | Pages ワークフローは **ビルドのみ**（デプロイしない） |
 | `develop` への push | マージ後 | Pages に kitchen-sink + Storybook を公開（https://thewheels.oss.b4m.jp/） |
 | `release` への PR | PR 時 | **dry-run**（未実装） |
-| `main` への PR / マージ | — | PR CI（`ci.yml`）は走らせない |
 | `release` へのマージ後 | CD | npm 等へのリリース（**未実装**。計画: [#47](https://github.com/b4moss/the-wheels/issues/47)） |
-| タグ push | CD | GitHub Release を冪等作成（[`.github/workflows/release-on-tag.yml`](../.github/workflows/release-on-tag.yml)）。npm 公開とは別 |
-| `main` / `develop` push・週次など | 監査 | OpenSSF Scorecard（[`.github/workflows/scorecard.yml`](../.github/workflows/scorecard.yml)）。**残す**。現状 `develop` push では失敗しうるが、PO は当面許容（フォロー: [#59](https://github.com/b4moss/the-wheels/issues/59)） |
+| タグ push（`v*` のみ） | CD | GitHub Release を冪等作成（[`.github/workflows/release-on-tag.yml`](../.github/workflows/release-on-tag.yml)）。npm 公開とは別 |
+| 週次（月曜）・手動 | 監査 | OpenSSF Scorecard（[`.github/workflows/scorecard.yml`](../.github/workflows/scorecard.yml)）。`push` / `branch_protection_rule` では走らせない |
 
 `develop` までに、対象変更について最低 1 回 `verify` が通ったことをもって、CI 上の自動テストは行われたものとする。e2e は PR 前の手元実行（必要なら Actions 手動）で担保する。
 
@@ -94,7 +95,9 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 ### 【PO作業】ブランチ保護（required checks）
 
-1. GitHub → Settings → Branches → Branch protection rules
+ルールセット（`.github/rulesets/`）のコード管理はしない。ブランチ保護は **PO が GitHub の GUI で手動設定**する。
+
+1. GitHub → Settings → Branches → Branch protection rules（または Rules → Rulesets）
 2. `develop` に PR 必須 + status checks 必須。ジョブ名は **verify**（`e2e` は PR CI に含めないため required にしない）
 3. `dev-v*` にも同様（glob 非対応なら現行マイルストーンごとに追加）
 4. `main` / `release` には、この PR CI を required にしない
