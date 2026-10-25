@@ -3,7 +3,7 @@
 npm 公開タイミングはバージョンに固定せず、PO が見計らう。  
 未実装の新機能計画の正本は [plans/](./plans/)（版フォルダ）。現状の作業索引として GitHub Issues / milestone も併用する。  
 テスト仕様は `docs/tests/`（`specs/` と同じドメイン切り）。  
-PO メモは [wishlist.md](./wishlist.md)。開発ルールは [charter/](./charter/README.md)。
+PO メモは [wishlist.md](./wishlist.md)。開発ルールは [AGENTS.md](../AGENTS.md) / [b4moss/charter v1](https://github.com/b4moss/charter/tree/v1/docs/charter)。
 
 ## 現状
 

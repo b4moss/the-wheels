@@ -8,7 +8,7 @@ okf_version: "0.1"
 
 本ファイル（`index.md`）は **OKF 索引のみ**。プロダクトの目的・スコープ等の pillar 正本は各プロダクトの `docs/README.md`（旧称 `main.md`）。
 
-* [憲章（charter）](charter/) - 開発方針の最上位取り決めと個別ルール（配置・ライフサイクルは [doc-rule](charter/doc-rule.md)）
+* [憲章（charter）](https://github.com/b4moss/charter/tree/v1/docs/charter) - 開発方針の最上位取り決め（AGENTS.md の charter 節。配置・ライフサイクルは [doc-rule](https://github.com/b4moss/charter/blob/v1/docs/charter/doc-rule.md)）
 * [このプロジェクト独自のルール](override-charter.md) - 憲章をオーバーライドする範囲（現状は設定なし）
 
 # Project Docs Placeholders
