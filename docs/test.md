@@ -1,6 +1,6 @@
 # the-wheels テスト方針（本リポの上書き）
 
-共通ルール（TDD、氷山パターン、カバレッジ目安 50%、テスト仕様書の書き方、Red → Green → Refactor）は [charter/tdd.md](./charter/tdd.md)。  
+共通ルール（TDD、氷山パターン、カバレッジ目安 50%、テスト仕様書の書き方、Red → Green → Refactor）は [tdd.md](https://github.com/b4moss/charter/blob/v1/docs/charter/tdd.md)。  
 このファイルは **the-wheels 固有の上書き**だけ書く。矛盾する場合は本ファイルを優先する。
 
 薄い DDD / DB テスト / Repository 層は、本リポでは対象外（パッケージのため。charter README の「CLI・パッケージ」どおり）。
@@ -25,7 +25,7 @@
 
 ## テスト仕様書の置き場
 
-`docs/specs/` と**同じドメイン切り**（OKF v0.1 / [doc-rule](./charter/doc-rule.md)）:
+`docs/specs/` と**同じドメイン切り**（OKF v0.1 / [doc-rule](https://github.com/b4moss/charter/blob/v1/docs/charter/doc-rule.md)）:
 
 - `docs/tests/e2e.md` — E2E 共通前提・実行・対象外
 - `docs/tests/components/` — コンポーネント別 E2E ケース（[specs/components/](./specs/components/) に対応）

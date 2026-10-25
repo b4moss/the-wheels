@@ -1,6 +1,6 @@
 # Git / GitHub 戦略（本リポの上書き）
 
-共通ルールは [charter/git-rule.md](./charter/git-rule.md) と [charter/versioning-rule.md](./charter/versioning-rule.md)。  
+共通ルールは [git-rule.md](https://github.com/b4moss/charter/blob/v1/docs/charter/git-rule.md) と [versioning-rule.md](https://github.com/b4moss/charter/blob/v1/docs/charter/versioning-rule.md)。  
 このファイルは **the-wheels 固有の上書き**だけ書く。矛盾する場合は本ファイルを優先する。
 
 パッケージ配信のため、charter の `staging` / `production` は使わない。`release` をプロダクション相当とする。
@@ -36,7 +36,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 ## タグ
 
-- タグは `main` にマージされたコミットへ付ける（[versioning-rule.md](./charter/versioning-rule.md)）
+- タグは `main` にマージされたコミットへ付ける（[versioning-rule.md](https://github.com/b4moss/charter/blob/v1/docs/charter/versioning-rule.md)）
 - `dev-v*` / `develop` の tip には付けない
 - `main` 上のタグは原則動かさない
 - npm 公開の対象は、通常このタグ（またはそれ以降の `main` のうち PO が選んだもの）を `release` に載せる
@@ -104,7 +104,7 @@ hotfix は `main`（公開済みなら必要に応じて `release`）から切�
 
 ## 関連
 
-- 共通 git: [charter/git-rule.md](./charter/git-rule.md)
+- 共通 git: [git-rule.md](https://github.com/b4moss/charter/blob/v1/docs/charter/git-rule.md)
 - ロードマップ: [roadmap.md](./roadmap.md)
 - テスト上書き: [test.md](./test.md)
 
